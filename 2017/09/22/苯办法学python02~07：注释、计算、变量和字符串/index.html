@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-hk">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="苯办法学python," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="注释123456789# A comment, this is so you can read your program later.# Anything after the # is ignored by python.print &amp;quot;I could have code like this.&amp;quot; # and the comment after is ignored# You ca">
+<meta name="keywords" content="苯办法学python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="苯办法学python02~07：注释、计算、变量和字符串">
+<meta property="og:url" content="http://liub.site/2017/09/22/苯办法学python02~07：注释、计算、变量和字符串/index.html">
+<meta property="og:site_name" content="劉濱的部落格">
+<meta property="og:description" content="注释123456789# A comment, this is so you can read your program later.# Anything after the # is ignored by python.print &amp;quot;I could have code like this.&amp;quot; # and the comment after is ignored# You ca">
+<meta property="og:locale" content="zh-hk">
+<meta property="og:updated_time" content="2017-09-22T10:38:25.226Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="苯办法学python02~07：注释、计算、变量和字符串">
+<meta name="twitter:description" content="注释123456789# A comment, this is so you can read your program later.# Anything after the # is ignored by python.print &amp;quot;I could have code like this.&amp;quot; # and the comment after is ignored# You ca">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liub.site/2017/09/22/苯办法学python02~07：注释、计算、变量和字符串/"/>
+
+
+
+
+
+  <title>苯办法学python02~07：注释、计算、变量和字符串 | 劉濱的部落格</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-hk">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">劉濱的部落格</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">見自己 見天地</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liub.site/2017/09/22/苯办法学python02~07：注释、计算、变量和字符串/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LiuBin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="劉濱的部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">苯办法学python02~07：注释、计算、变量和字符串</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-09-22T16:18:50+08:00">
+                2017-09-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># A comment, this is so you can read your program later.</div><div class="line"># Anything after the # is ignored by python.</div><div class="line"></div><div class="line">print &quot;I could have code like this.&quot; # and the comment after is ignored</div><div class="line"></div><div class="line"># You can also use a comment to &quot;disable&quot; or comment out a piece of code:</div><div class="line"># print &quot;This won&apos;t run.&quot;</div><div class="line"></div><div class="line">print &quot;This will run.&quot;</div></pre></td></tr></table></figure>
+<p>你应该看到的结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">python ex2.py </div><div class="line">I could have code like this.</div><div class="line">This will run.</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<hr>
+<h3 id="数字和数学计算"><a href="#数字和数学计算" class="headerlink" title="数字和数学计算"></a>数字和数学计算</h3><p>每一种编程语言都包含处理数字和进行数学计算的方法。不必担心，程序员经常撒谎说他们是多么牛的数学天才，其实他们根本不是。如果他们真是数学天才，他们早就去从事数学相关的行业了，而不是写写广告程序和社交网络游戏，从人们身上偷赚点小钱而已。</p>
+<p>这章练习里有很多的数学运算符号。我们来看一遍它们都叫什么名字。你要一边写一边念出它们的名字来，直到你念烦了为止。名字如下：</p>
+<p><code>+</code>plus 加号<br><code>-</code>minus 减号<br><code>/</code>slash 斜杠<br><code>*</code>asterisk 星号<br><code>%</code>percent 百分号<br><code>&lt;</code>less-than 小于号<br><code>&gt;</code>greater-than 大于号<br><code>&lt;=</code>less-than-equal 小于等于号<br><code>&gt;=</code>greater-than-equal 大于等于号</p>
+<p>有没有注意到以上只是些符号，没有运算操作呢？写完下面的练习代码后，再回到上面的列表，写出每个符号的作用。例如 + 是用来做加法运算的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">print &quot;I will now count my chickens:&quot;</div><div class="line"></div><div class="line">print &quot;Hens&quot;, 25 + 30 / 6</div><div class="line">print &quot;Roosters&quot;, 100 - 25 * 3 % 4</div><div class="line"></div><div class="line">print &quot;Now I will count the eggs:&quot;</div><div class="line"></div><div class="line">print 3 + 2 + 1 - 5 + 4 % 2 - 1 / 4 + 6</div><div class="line"></div><div class="line">print &quot;Is it true that 3 + 2 &lt; 5 - 7?&quot;</div><div class="line"></div><div class="line">print 3 + 2 &lt; 5 - 7</div><div class="line"></div><div class="line">print &quot;What is 3 + 2?&quot;, 3 + 2</div><div class="line">print &quot;What is 5 - 7?&quot;, 5 - 7</div><div class="line"></div><div class="line">print &quot;Oh, that&apos;s why it&apos;s False.&quot;</div><div class="line"></div><div class="line">print &quot;How about some more.&quot;</div><div class="line"></div><div class="line">print &quot;Is it greater?&quot;, 5 &gt; -2</div><div class="line">print &quot;Is it greater or equal?&quot;, 5 &gt;= -2</div><div class="line">print &quot;Is it less or equal?&quot;, 5 &lt;= -2</div></pre></td></tr></table></figure>
+<p>你应该看到的结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">python ex3.py </div><div class="line">I will now count my chickens:</div><div class="line">Hens 30</div><div class="line">Roosters 97</div><div class="line">Now I will count the eggs:</div><div class="line">7</div><div class="line">Is it true that 3 + 2 &lt; 5 - 7?</div><div class="line">False</div><div class="line">What is 3 + 2? 5</div><div class="line">What is 5 - 7? -2</div><div class="line">Oh, that&apos;s why it&apos;s False.</div><div class="line">How about some more.</div><div class="line">Is it greater? True</div><div class="line">Is it greater or equal? True</div><div class="line">Is it less or equal? False</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="变量和命名"><a href="#变量和命名" class="headerlink" title="变量和命名"></a>变量和命名</h3><p>你已经学会了<code>print</code>和算术运算。下一步你要学的是“变量”。在编程中，变量只不过是用来指代某个东西的名字。程序员通过使用变量名可以让他们的程序读起来更像英语。而且因为程序员的记性都不怎么地，变量名可以让他们更容易记住程序的内容。如果他们没有在写程序时使用好的变量名，在下一次读到原来写的代码时他们会大为头疼的。</p>
+<p>如果你被这章习题难住了的话，记得我们之前教过的：找到不同点、注意细节。</p>
+<p>在每一行的上面写一行注解，给自己解释一下这一行的作用。<br>倒着读你的<code>.py</code>文件。<br>朗读你的<code>.py</code>文件，将每个字符也朗读出来。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">cars = 100</div><div class="line">space_in_a_car = 4.0</div><div class="line">drivers = 30</div><div class="line">passengers = 90</div><div class="line">cars_not_driven = cars - drivers</div><div class="line">cars_driven = drivers</div><div class="line">carpool_capacity = cars_driven * space_in_a_car</div><div class="line">average_passengers_per_car = passengers / cars_driven</div><div class="line"></div><div class="line"></div><div class="line">print &quot;There are&quot;, cars, &quot;cars available.&quot;</div><div class="line">print &quot;There are only&quot;, drivers, &quot;drivers available.&quot;</div><div class="line">print &quot;There will be&quot;, cars_not_driven, &quot;empty cars today.&quot;</div><div class="line">print &quot;We can transport&quot;, carpool_capacity, &quot;people today.&quot;</div><div class="line">print &quot;We have&quot;, passengers, &quot;to carpool today.&quot;</div><div class="line">print &quot;We need to put about&quot;, average_passengers_per_car, &quot;in each car.&quot;</div></pre></td></tr></table></figure>
+<p><strong>你应该看到的结果</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">python ex4.py</div><div class="line">There are 100 cars available.</div><div class="line">There are only 30 drivers available.</div><div class="line">There will be 70 empty cars today.</div><div class="line">We can transport 120.0 people today.</div><div class="line">We have 90 to carpool today.</div><div class="line">We need to put about 3 in each car.</div></pre></td></tr></table></figure>
+<h3 id="更多的变量和打印"><a href="#更多的变量和打印" class="headerlink" title="更多的变量和打印"></a>更多的变量和打印</h3><p>我们现在要键入更多的变量并且把它们打印出来。这次我们将使用一个叫“格式化字符串(format string)”的东西. 每一次你使用 “ 把一些文本引用起来，你就建立了一个字符串。 字符串是程序将信息展示给人的方式。你可以打印它们，可以将它们写入文件，还可以将它们发送给网站服务器，很多事情都是通过字符串交流实现的。</p>
+<p>字符串是非常好用的东西，所以再这个练习中你将学会如何创建包含变量内容的字符串。使用专门的格式和语法把变量的内容放到字符串里，相当于来告诉 python ：“嘿，这是一个格式化字符串，把这些变量放到那几个位置。”</p>
+<p>一样的，即使你读不懂这些内容，只要一字不差地键入就可以了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">my_name = &apos;Zed A. Shaw&apos;</div><div class="line">my_age = 35 # not a lie</div><div class="line">my_height = 74 # inches</div><div class="line">my_weight = 180 # lbs</div><div class="line">my_eyes = &apos;Blue&apos;</div><div class="line">my_teeth = &apos;White&apos;</div><div class="line">my_hair = &apos;Brown&apos;</div><div class="line"></div><div class="line">print &quot;Let&apos;s talk about %s.&quot; % my_name</div><div class="line">print &quot;He&apos;s %d inches tall.&quot; % my_height</div><div class="line">print &quot;He&apos;s %d pounds heavy.&quot; % my_weight</div><div class="line">print &quot;Actually that&apos;s not too heavy.&quot;</div><div class="line">print &quot;He&apos;s got %s eyes and %s hair.&quot; % (my_eyes, my_hair)</div><div class="line">print &quot;His teeth are usually %s depending on the coffee.&quot; % my_teeth</div><div class="line"></div><div class="line"># this line is tricky, try to get it exactly right</div><div class="line">print &quot;If I add %d, %d, and %d I get %d.&quot; % (</div><div class="line">    my_age, my_height, my_weight, my_age + my_height + my_weight)</div></pre></td></tr></table></figure>
+<p><strong>你应该看到的结果</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Let&apos;s talk about Zed A. Shaw.</div><div class="line">He&apos;s 74 inches tall.</div><div class="line">He&apos;s 180 pounds heavy.</div><div class="line">Actually that&apos;s not too heavy.</div><div class="line">He&apos;s got Blue eyes and Brown hair.</div><div class="line">His teeth are usually White depending on the coffee.</div><div class="line">If I add 35, 74, and 180 I get 289.</div></pre></td></tr></table></figure>
+<p>如果你使用了非 ASCII 字符而且碰到了编码错误，记得在最顶端加一行 <code># -- coding: utf-8 --</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">%c     格式化字符及其ASCII码</div><div class="line">%s     格式化字符串</div><div class="line">%d     格式化整数</div><div class="line">%u     格式化无符号整型</div><div class="line">%o     格式化无符号八进制数</div><div class="line">%x     格式化无符号十六进制数</div><div class="line">%X     格式化无符号十六进制数（大写）</div><div class="line">%f     格式化浮点数字，可指定小数点后的精度</div><div class="line">%e     用科学计数法格式化浮点数</div><div class="line">%E     作用同%e，用科学计数法格式化浮点数</div><div class="line">%g     %f和%e的简写</div><div class="line">%G     %f 和 %E 的简写</div><div class="line">%p     用十六进制数格式化变量的地址</div></pre></td></tr></table></figure>
+<p>格式化字符串语法例子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">\&gt;&gt;&gt; &apos;Hello, %s&apos; % &apos;world&apos;</div><div class="line">&apos;Hello, world&apos;</div><div class="line">\&gt;&gt;&gt; &apos;Hi, %s, you have $%d.&apos; % (&apos;Michael&apos;, 1000000)</div><div class="line">&apos;Hi, Michael, you have $1000000.&apos;</div></pre></td></tr></table></figure></p>
+<h3 id="字符串-string-和文本"><a href="#字符串-string-和文本" class="headerlink" title="字符串(string)和文本"></a>字符串(string)和文本</h3><p>虽然你已经在程序中写过字符串了，你还没学过它们的用处。在这章习题中我们将使用复杂的字符串来建立一系列的变量，从中你将学到它们的用途。首先我们解释一下字符串是什么 东西。</p>
+<p>字符串通常是指你想要展示给别人的、或者是你想要从程序里“导出”的一小段字符。Python 可以通过文本里的双引号 “ 或者单引号 ‘ 识别出字符串来。这在你以前的 print 练习中你已经见过很多次了。如果你把单引号或者双引号括起来的文本放到 print 后面，它们就会被 python 打印出来。</p>
+<p>字符串可以包含格式化字符<code>%s</code>，这个你之前也见过的。你只要将格式化的变量放到字符串中，再紧跟着一个百分号<code>%</code>(percent)，再紧跟着变量名即可。唯一要注意的地方，是如果你想要在字符串中通过格式化字符放入多个变量的时候，你需要将变量放到<code>( )</code>圆括号(parenthesis)中，而且变量之间用<code>,</code>逗号(comma)隔开。就像你逛商店说“我要买牛奶、面包、鸡蛋、八宝粥”一样，只不过程序员说的是<code>(milk, eggs, bread, soup)</code>。</p>
+<p>我们将键入大量的字符串、变量、和格式化字符，并且将它们打印出来。我们还将练习使用简写的变量名。程序员喜欢使用恼人的难度的简写来节约打字时间，所以我们现在就提早学会这个，这样你就能读懂并且写出这些东西了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">x = &quot;There are %d types of people.&quot; % 10</div><div class="line">binary = &quot;binary&quot;</div><div class="line">do_not = &quot;don&apos;t&quot;</div><div class="line">y = &quot;Those who know %s and those who %s.&quot; % (binary, do_not)</div><div class="line"></div><div class="line">print x</div><div class="line">print y</div><div class="line"></div><div class="line">print &quot;I said: %r.&quot; % x</div><div class="line">print &quot;I also said: &apos;%s&apos;.&quot; % y</div><div class="line"></div><div class="line">hilarious = False</div><div class="line">joke_evaluation = &quot;Isn&apos;t that joke so funny?! %r&quot;</div><div class="line"></div><div class="line">print joke_evaluation % hilarious</div><div class="line"></div><div class="line">w = &quot;This is the left side of...&quot;</div><div class="line">e = &quot;a string with a right side.&quot;</div><div class="line"></div><div class="line">print w + e</div></pre></td></tr></table></figure>
+<p><strong>你应该看到的结果</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">There are 10 types of people.</div><div class="line">Those who know binary and those who don&apos;t.</div><div class="line">I said: &apos;There are 10 types of people.&apos;.</div><div class="line">I also said: &apos;Those who know binary and those who don&apos;t.&apos;.</div><div class="line">Isn&apos;t that joke so funny?! False</div><div class="line">This is the left side of...a string with a right side.</div></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/苯办法学python/" rel="tag"># 苯办法学python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/22/笨办法学python01：第一个python程序/" rel="next" title="笨办法学python01：第一个python程序">
+                <i class="fa fa-chevron-left"></i> 笨办法学python01：第一个python程序
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/22/苯办法学python07-10：更多打印/" rel="prev" title="苯办法学python07-10：更多打印">
+                苯办法学python07-10：更多打印 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image"
+              src="/images/avatar.gif"
+              alt="LiuBin" />
+          
+            <p class="site-author-name" itemprop="name">LiuBin</p>
+            <p class="site-description motion-element" itemprop="description">不慢不快 不好不坏 专心而澎湃</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Kevin031" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2122637140" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>微博</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#注释"><span class="nav-number">1.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数字和数学计算"><span class="nav-number">2.</span> <span class="nav-text">数字和数学计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量和命名"><span class="nav-number">3.</span> <span class="nav-text">变量和命名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更多的变量和打印"><span class="nav-number">4.</span> <span class="nav-text">更多的变量和打印</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串-string-和文本"><span class="nav-number">5.</span> <span class="nav-text">字符串(string)和文本</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 &mdash; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LiuBin</span>
+
+  
+</div>
+
+
+  <!--<div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>-->
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

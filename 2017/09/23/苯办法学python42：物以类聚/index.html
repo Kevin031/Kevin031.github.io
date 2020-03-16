@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-hk">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="苯办法学python," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="虽说将函数放到字典里是很有趣的一件事情，你应该也会想到“如果 Python 能自动为你做这件事情该多好”。事实上也的确有，那就是 class 这个关键字。你可以使用 class 创建更棒的“函数字典”，比你在上节练习中做的强大多了。Class（类）有着各种各样强大的功能和用法，但本书不会深入讲这些内容，在这里，你只要你学会把它们当作高级的“函数字典”使用就可以了。 用到“class”的编程语言被称">
+<meta name="keywords" content="苯办法学python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="苯办法学python42：物以类聚">
+<meta property="og:url" content="http://liub.site/2017/09/23/苯办法学python42：物以类聚/index.html">
+<meta property="og:site_name" content="劉濱的部落格">
+<meta property="og:description" content="虽说将函数放到字典里是很有趣的一件事情，你应该也会想到“如果 Python 能自动为你做这件事情该多好”。事实上也的确有，那就是 class 这个关键字。你可以使用 class 创建更棒的“函数字典”，比你在上节练习中做的强大多了。Class（类）有着各种各样强大的功能和用法，但本书不会深入讲这些内容，在这里，你只要你学会把它们当作高级的“函数字典”使用就可以了。 用到“class”的编程语言被称">
+<meta property="og:locale" content="zh-hk">
+<meta property="og:updated_time" content="2017-11-28T08:14:55.179Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="苯办法学python42：物以类聚">
+<meta name="twitter:description" content="虽说将函数放到字典里是很有趣的一件事情，你应该也会想到“如果 Python 能自动为你做这件事情该多好”。事实上也的确有，那就是 class 这个关键字。你可以使用 class 创建更棒的“函数字典”，比你在上节练习中做的强大多了。Class（类）有着各种各样强大的功能和用法，但本书不会深入讲这些内容，在这里，你只要你学会把它们当作高级的“函数字典”使用就可以了。 用到“class”的编程语言被称">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liub.site/2017/09/23/苯办法学python42：物以类聚/"/>
+
+
+
+
+
+  <title>苯办法学python42：物以类聚 | 劉濱的部落格</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-hk">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">劉濱的部落格</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">見自己 見天地</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liub.site/2017/09/23/苯办法学python42：物以类聚/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LiuBin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="劉濱的部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">苯办法学python42：物以类聚</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-09-23T10:35:59+08:00">
+                2017-09-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>虽说将函数放到字典里是很有趣的一件事情，你应该也会想到“如果 Python 能自动为你做这件事情该多好”。事实上也的确有，那就是 class 这个关键字。你可以使用 class 创建更棒的“函数字典”，比你在上节练习中做的强大多了。Class（类）有着各种各样强大的功能和用法，但本书不会深入讲这些内容，在这里，你只要你学会把它们当作高级的“函数字典”使用就可以了。</p>
+<p>用到“class”的编程语言被称作“Object Oriented Programming（面向对象编程）”语言。这是一种传统的编程方式，你需要做出“东西”来，然后你“告诉”这些东西去完成它们的工作。类似的事情你其实已经做过不少了，只不过还没有意识到而已。记得你做过的这个吧：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">stuff = [&apos;Test&apos;, &apos;This&apos;, &apos;Out&apos;]</div><div class="line">print &apos; &apos;.join(stuff)</div></pre></td></tr></table></figure>
+<p>其实你这里已经使用了 class。<code>stuff</code> 这个变量其实是一个 list class （列表类）。而 ‘ ‘.join(stuff) 里调用函数 join 的字符串 ‘ ‘（就是一个空格）也是一个 class —— 它是一个 string class (字符串类)。到处都是 class！</p>
+<p>还有一个概念是 object（物件），不过我们暂且不提。当你创建过几个 class 后就会学到了。你怎样创建 class 呢？和你创建 ROOMS 的方法差不多，但其实更简单：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">class TheThing(object):</div><div class="line"> def __init__(self):</div><div class="line"> self.number = 0</div><div class="line"> def some_function(self):</div><div class="line"> print &quot;I got called.&quot;</div><div class="line">148</div><div class="line"> def add_me_up(self, more):</div><div class="line"> self.number += more</div><div class="line"> return self.number</div><div class="line"># two different things</div><div class="line">a = TheThing()</div><div class="line">b = TheThing()</div><div class="line">a.some_function()</div><div class="line">b.some_function()</div><div class="line">print a.add_me_up(20)</div><div class="line">print a.add_me_up(20)</div><div class="line">print b.add_me_up(30)</div><div class="line">print b.add_me_up(30)</div><div class="line">print a.number</div><div class="line">print b.number</div></pre></td></tr></table></figure>
+<p>你看到参数里的<code>self</code>了吧？你知道它是什么东西吗？对了，它就是 Python 创建的额外的一个参数，有了它你才能实现<code>a.some_function()</code>这种用法，这时它就会把前者翻译成 <code>some_function(a)</code> 执行下去。为什么用 <code>self</code> 呢？</p>
+<a id="more"></a>
+<p>因为你的函数并不知道你的这个“实例”是来自叫<code>TheThing</code>或者别的名字的class。所以你只要使用一个通用的名字<code>self</code>。这样你写出来的函数就会在任何情况下都能正常工作。</p>
+<p>其实你可以使用<code>self</code>以外的别的字眼，不过如果你这样做的话，你就会成为所有<code>Python</code>程序员的众之矢的，所以还是随大流的好。只有变态才会在这里乱改，</p>
+<p>我教你的没错。对以后会读到你的代码的人好点儿，因为你现在的代码 10 年以后所有的代码都会是一团糟。</p>
+<p>接下来，看到<code>__init__</code>函数了吗？这就是你为 Python class 设置内部变量的方式。你可以使用 . 将它们设置到<code>self</code>上面。另外看到我们使用了<code>add_me_up()</code>为你创建的<code>self.number</code>加值。后面你可以看到我们怎样可以使用这种方法为数字加值，然后打印出来。</p>
+<p>Class 是很强大的东西，你应该好好读读相关的东西。尽可能多找些东西读并且多多实验。你其实知道它们该怎么用，只要试试就知道了。其实我马上就要去练吉他了，所以我不会让你写练习了。你将使用 class 写一个练习。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/苯办法学python/" rel="tag"># 苯办法学python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/23/苯办法学python32：循环和列表/" rel="next" title="苯办法学python32：循环和列表">
+                <i class="fa fa-chevron-left"></i> 苯办法学python32：循环和列表
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/23/苯办法学python40：字典，可爱的字典/" rel="prev" title="苯办法学python40：字典，可爱的字典">
+                苯办法学python40：字典，可爱的字典 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image"
+              src="/images/avatar.gif"
+              alt="LiuBin" />
+          
+            <p class="site-author-name" itemprop="name">LiuBin</p>
+            <p class="site-description motion-element" itemprop="description">不慢不快 不好不坏 专心而澎湃</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Kevin031" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2122637140" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>微博</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 &mdash; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LiuBin</span>
+
+  
+</div>
+
+
+  <!--<div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>-->
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

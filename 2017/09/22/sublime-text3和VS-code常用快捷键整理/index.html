@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-hk">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="sublime text,VS code," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="sublime text 3选择类Ctrl+D 选中光标所占的文本，继续操作则会选中下一个相同的文本。 Alt+F3 选中文本按下快捷键，即可一次性选择全部的相同文本进行同时编辑。举个栗子：快速选中并更改所有相同的变量名、函数名等。 Ctrl+L 选中整行，继续操作则继续选择下一行，效果和 Shift+↓ 效果一样。 Ctrl+Shift+L 先选中多行，再按下快捷键，会在每行行尾插入光标，即可同">
+<meta name="keywords" content="sublime text,VS code">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sublime text3和VS code常用快捷键整理">
+<meta property="og:url" content="http://liub.site/2017/09/22/sublime-text3和VS-code常用快捷键整理/index.html">
+<meta property="og:site_name" content="劉濱的部落格">
+<meta property="og:description" content="sublime text 3选择类Ctrl+D 选中光标所占的文本，继续操作则会选中下一个相同的文本。 Alt+F3 选中文本按下快捷键，即可一次性选择全部的相同文本进行同时编辑。举个栗子：快速选中并更改所有相同的变量名、函数名等。 Ctrl+L 选中整行，继续操作则继续选择下一行，效果和 Shift+↓ 效果一样。 Ctrl+Shift+L 先选中多行，再按下快捷键，会在每行行尾插入光标，即可同">
+<meta property="og:locale" content="zh-hk">
+<meta property="og:updated_time" content="2017-09-22T03:10:24.510Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="sublime text3和VS code常用快捷键整理">
+<meta name="twitter:description" content="sublime text 3选择类Ctrl+D 选中光标所占的文本，继续操作则会选中下一个相同的文本。 Alt+F3 选中文本按下快捷键，即可一次性选择全部的相同文本进行同时编辑。举个栗子：快速选中并更改所有相同的变量名、函数名等。 Ctrl+L 选中整行，继续操作则继续选择下一行，效果和 Shift+↓ 效果一样。 Ctrl+Shift+L 先选中多行，再按下快捷键，会在每行行尾插入光标，即可同">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liub.site/2017/09/22/sublime-text3和VS-code常用快捷键整理/"/>
+
+
+
+
+
+  <title>sublime text3和VS code常用快捷键整理 | 劉濱的部落格</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-hk">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">劉濱的部落格</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">見自己 見天地</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liub.site/2017/09/22/sublime-text3和VS-code常用快捷键整理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LiuBin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="劉濱的部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">sublime text3和VS code常用快捷键整理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-09-22T10:39:42+08:00">
+                2017-09-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="sublime-text-3"><a href="#sublime-text-3" class="headerlink" title="sublime text 3"></a>sublime text 3</h1><h2 id="选择类"><a href="#选择类" class="headerlink" title="选择类"></a>选择类</h2><p><code>Ctrl+D</code> 选中光标所占的文本，继续操作则会选中下一个相同的文本。</p>
+<p><code>Alt+F3</code> 选中文本按下快捷键，即可一次性选择全部的相同文本进行同时编辑。举个栗子：快速选中并更改所有相同的变量名、函数名等。</p>
+<p><code>Ctrl+L</code> 选中整行，继续操作则继续选择下一行，效果和 <code>Shift+↓</code> 效果一样。</p>
+<p><code>Ctrl+Shift+L</code> 先选中多行，再按下快捷键，会在每行行尾插入光标，即可同时编辑这些行。</p>
+<p><code>Ctrl+Shift+M</code> 选择括号内的内容（继续选择父括号）。举个栗子：快速选中删除函数中的代码，重写函数体代码或重写括号内里的内容。</p>
+<p><code>Ctrl+M</code> 光标移动至括号内结束或开始的位置。</p>
+<p><code>Ctrl+Enter</code> 在下一行插入新行。举个栗子：即使光标不在行尾，也能快速向下插入一行。</p>
+<p><code>Ctrl+Shift+Enter</code> 在上一行插入新行。举个栗子：即使光标不在行首，也能快速向上插入一行。</p>
+<p><code>Ctrl+Shift+[</code> 选中代码，按下快捷键，折叠代码。</p>
+<p><code>Ctrl+Shift+]</code> 选中代码，按下快捷键，展开代码。</p>
+<p><code>Ctrl+K+0</code> 展开所有折叠代码。</p>
+<p><code>Ctrl+←</code> 向左单位性地移动光标，快速移动光标。</p>
+<p><code>Ctrl+→</code> 向右单位性地移动光标，快速移动光标。</p>
+<p><code>shift+↑</code> 向上选中多行。</p>
+<p><code>shift+↓</code> 向下选中多行。</p>
+<p><code>Shift+←</code> 向左选中文本。</p>
+<p><code>Shift+→</code> 向右选中文本。</p>
+<p><code>Ctrl+Shift+←</code> 向左单位性地选中文本。</p>
+<p><code>Ctrl+Shift+→</code> 向右单位性地选中文本。</p>
+<p><code>Ctrl+Shift+↑</code> 将光标所在行和上一行代码互换（将光标所在行插入到上一行之前）。</p>
+<p><code>Ctrl+Shift+↓</code> 将光标所在行和下一行代码互换（将光标所在行插入到下一行之后）。</p>
+<p><code>Ctrl+Alt+↑</code> 向上添加多行光标，可同时编辑多行。</p>
+<p><code>Ctrl+Alt+↓</code> 向下添加多行光标，可同时编辑多行。</p>
+<a id="more"></a>
+<hr>
+<h2 id="编辑类"><a href="#编辑类" class="headerlink" title="编辑类"></a>编辑类</h2><p><code>Ctrl+J</code> 合并选中的多行代码为一行。举个栗子：将多行格式的CSS属性合并为一行。</p>
+<p><code>Ctrl+Shift+D</code> 复制光标所在整行，插入到下一行。</p>
+<p><code>Tab</code> 向右缩进。</p>
+<p><code>Shift+Tab</code> 向左缩进。</p>
+<p><code>Ctrl+K+K</code> 从光标处开始删除代码至行尾。</p>
+<p><code>Ctrl+Shift+K</code> 删除整行。</p>
+<p><code>Ctrl+/</code> 注释单行。</p>
+<p><code>Ctrl+Shift+/</code> 注释多行。</p>
+<p><code>Ctrl+K+U</code> 转换大写。</p>
+<p><code>Ctrl+K+L</code> 转换小写。</p>
+<p><code>Ctrl+Z</code> 撤销。</p>
+<p><code>Ctrl+Y</code> 恢复撤销。</p>
+<p><code>Ctrl+U</code> 软撤销，感觉和 <code>Gtrl+Z</code> 一样。</p>
+<p><code>Ctrl+F2</code> 设置书签</p>
+<p><code>Ctrl+T</code> 左右字母互换。</p>
+<p><code>F6</code> 单词检测拼写</p>
+<hr>
+<h2 id="搜索类"><a href="#搜索类" class="headerlink" title="搜索类"></a>搜索类</h2><p><code>Ctrl+F</code> 打开底部搜索框，查找关键字。</p>
+<p><code>Ctrl+shift+F</code> 在文件夹内查找，与普通编辑器不同的地方是sublime允许添加多个文件夹进行查找，略高端，未研究。</p>
+<p><code>Ctrl+P</code> 打开搜索框。举个栗子：1、输入当前项目中的文件名，快速搜索文件，2、输入@和关键字，查找文件中函数名，3、输入：和数字，跳转到文件中该行代码，4、输入#和关键字，查找变量名。</p>
+<p><code>Ctrl+G</code> 打开搜索框，自动带：，输入数字跳转到该行代码。举个栗子：在页面代码比较长的文件中快速定位。</p>
+<p><code>Ctrl+R</code> 打开搜索框，自动带@，输入关键字，查找文件中的函数名。举个栗子：在函数较多的页面快速查找某个函数。</p>
+<p><code>Ctrl+：</code> 打开搜索框，自动带#，输入关键字，查找文件中的变量名、属性名等。</p>
+<p><code>Ctrl+Shift+P</code> 打开命令框。场景栗子：打开命名框，输入关键字，调用sublime text或插件的功能，例如使用package安装插件。</p>
+<p><code>Esc</code> 退出光标多行选择，退出搜索框，命令框等。</p>
+<hr>
+<h2 id="显示类"><a href="#显示类" class="headerlink" title="显示类"></a>显示类</h2><p><code>Ctrl+Tab</code> 按文件浏览过的顺序，切换当前窗口的标签页。</p>
+<p><code>Ctrl+PageDown</code> 向左切换当前窗口的标签页。</p>
+<p><code>Ctrl+PageUp</code> 向右切换当前窗口的标签页。</p>
+<p><code>Alt+Shift+1</code> 窗口分屏，恢复默认1屏（非小键盘的数字）</p>
+<p><code>Alt+Shift+2</code> 左右分屏-2列</p>
+<p><code>Alt+Shift+3</code> 左右分屏-3列</p>
+<p><code>Alt+Shift+4</code> 左右分屏-4列</p>
+<p><code>Alt+Shift+5</code> 等分4屏</p>
+<p><code>Alt+Shift+8</code> 垂直分屏-2屏</p>
+<p><code>Alt+Shift+9</code> 垂直分屏-3屏</p>
+<p><code>Ctrl+K+B</code> 开启/关闭侧边栏。</p>
+<p><code>F11</code> 全屏模式</p>
+<p><code>Shift+F11</code> 免打扰模式</p>
+<hr>
+<h2 id="emmet快速编辑"><a href="#emmet快速编辑" class="headerlink" title="emmet快速编辑"></a>emmet快速编辑</h2><h3 id="输入“-”或“html-5”，然后按Tab键生成html5格式的代码"><a href="#输入“-”或“html-5”，然后按Tab键生成html5格式的代码" class="headerlink" title="输入“!”或“html:5”，然后按Tab键生成html5格式的代码"></a>输入“!”或“html:5”，然后按Tab键生成html5格式的代码</h3><p><code>html:5</code> 或 <code>!：</code> 用于HTML5文档类型</p>
+<p><code>html:xt</code> 用于XHTML过渡文档类型</p>
+<p><code>html:4s</code> 用于HTML4严格文档类型</p>
+<h3 id="轻松添加类、id、文本和属性"><a href="#轻松添加类、id、文本和属性" class="headerlink" title="轻松添加类、id、文本和属性"></a>轻松添加类、id、文本和属性</h3><p><code>p#foo</code> 补充ID</p>
+<p><code>p.foo</code> 补充类</p>
+<p><code>h1{foo}</code> 和a <code>[href=#]</code> 补充为 <code>&lt;h1&gt;foo&lt;/h1&gt; &lt;a href=&quot;#&quot;&gt;&lt;/a&gt;</code></p>
+<h3 id="嵌套"><a href="#嵌套" class="headerlink" title="嵌套"></a>嵌套</h3><p><code>&gt;</code> 子元素符号，表示嵌套的元素</p>
+<p><code>+</code> 同级标签符号</p>
+<p><code>^</code> 可以使该符号前的标签提升一行</p>
+<h3 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h3><p><code>(.foo&gt;h1)+(.bar&gt;h2)</code></p>
+<p>生成：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;foo&quot;&gt;</div><div class="line"></div><div class="line">   &lt;h1&gt;&lt;/h1&gt;</div><div class="line"></div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line">&lt;div class=&quot;bar&quot;&gt;</div><div class="line"></div><div class="line">   &lt;h2&gt;&lt;/h2&gt;</div><div class="line"></div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<h3 id="定义多个元素"><a href="#定义多个元素" class="headerlink" title="定义多个元素 *"></a>定义多个元素 *</h3><p><code>ul&gt;li*3</code></p>
+<h3 id="定义多个带属性的元素"><a href="#定义多个带属性的元素" class="headerlink" title="定义多个带属性的元素"></a>定义多个带属性的元素</h3><p><code>ul&gt;li.item$*3 //$代表尾数不同1、2、3</code></p>
+<h3 id="Css快捷"><a href="#Css快捷" class="headerlink" title="Css快捷"></a>Css快捷</h3><p><code>w100</code> width: 100px;</p>
+<p><code>p</code> 表示%</p>
+<p><code>e</code> 表示 em</p>
+<p><code>x</code> 表示 ex</p>
+<p><code>h10p+m5e</code> 生成  <code>height: 10%;   margin: 5em;</code></p>
+<p><code>@f</code> 生成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@font-face &#123;</div><div class="line"></div><div class="line">font-family:;</div><div class="line"></div><div class="line">src:url();</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>模糊匹配</p>
+<p><code>ov:h</code>、<code>ov-h</code>、<code>ovh</code>和<code>oh</code></p>
+<p>供应商前缀</p>
+<p>如果输入非W3C标准的CSS属性，Emmet会自动加上供应商前缀</p>
+<p>你也可以在任意属性前加上“-”符号，也可以为该属性加上前缀。比如输入<code>-super-foo</code></p>
+<p>如果不希望加上所有前缀，可以使用缩写来指定，比如<code>-wm-trf</code>表示只加上-webkit和-moz前缀</p>
+<p>渐变</p>
+<p>输入<code>lg(left, #fff 50%, #000)</code></p>
+<h1 id="VS-code"><a href="#VS-code" class="headerlink" title="VS code"></a>VS code</h1><h2 id="待整理"><a href="#待整理" class="headerlink" title="待整理"></a>待整理</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/sublime-text/" rel="tag"># sublime text</a>
+          
+            <a href="/tags/VS-code/" rel="tag"># VS code</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/22/运用flex布局技巧/" rel="next" title="运用flex布局技巧">
+                <i class="fa fa-chevron-left"></i> 运用flex布局技巧
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/22/我的前端开发笔记整理/" rel="prev" title="我的前端开发笔记整理【Javascript篇】">
+                我的前端开发笔记整理【Javascript篇】 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image"
+              src="/images/avatar.gif"
+              alt="LiuBin" />
+          
+            <p class="site-author-name" itemprop="name">LiuBin</p>
+            <p class="site-description motion-element" itemprop="description">不慢不快 不好不坏 专心而澎湃</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Kevin031" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2122637140" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>微博</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#sublime-text-3"><span class="nav-number">1.</span> <span class="nav-text">sublime text 3</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#选择类"><span class="nav-number">1.1.</span> <span class="nav-text">选择类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编辑类"><span class="nav-number">1.2.</span> <span class="nav-text">编辑类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搜索类"><span class="nav-number">1.3.</span> <span class="nav-text">搜索类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#显示类"><span class="nav-number">1.4.</span> <span class="nav-text">显示类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#emmet快速编辑"><span class="nav-number">1.5.</span> <span class="nav-text">emmet快速编辑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#输入“-”或“html-5”，然后按Tab键生成html5格式的代码"><span class="nav-number">1.5.1.</span> <span class="nav-text">输入“!”或“html:5”，然后按Tab键生成html5格式的代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#轻松添加类、id、文本和属性"><span class="nav-number">1.5.2.</span> <span class="nav-text">轻松添加类、id、文本和属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#嵌套"><span class="nav-number">1.5.3.</span> <span class="nav-text">嵌套</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分组"><span class="nav-number">1.5.4.</span> <span class="nav-text">分组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义多个元素"><span class="nav-number">1.5.5.</span> <span class="nav-text">定义多个元素 *</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义多个带属性的元素"><span class="nav-number">1.5.6.</span> <span class="nav-text">定义多个带属性的元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Css快捷"><span class="nav-number">1.5.7.</span> <span class="nav-text">Css快捷</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#VS-code"><span class="nav-number">2.</span> <span class="nav-text">VS code</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#待整理"><span class="nav-number">2.1.</span> <span class="nav-text">待整理</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 &mdash; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LiuBin</span>
+
+  
+</div>
+
+
+  <!--<div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>-->
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
