@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-hk">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="JavaScript,饿了么.vue,Vue.js,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="前言最近学了一个多月Vue，可以独立写一些实例页面了，决定仿一个大一点的项目，为下一步自己开发项目做准备，综合考虑还是选择了网上比较火的饿了么，有些地方也做了技术改良。在这里对里面的技术进行一个简单的总结。 技术栈：vue2   vue-router2   vue-cli2   vuex   axios   vue-resource   less   flex布局   es6   webpack">
+<meta name="keywords" content="JavaScript,饿了么.vue,Vue.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="实战总结：Vue2.x仿饿了么SPA商家页">
+<meta property="og:url" content="Kevin031.github.io/2017/09/24/实战总结：Vue2.x仿饿了么SPA商家页/index.html">
+<meta property="og:site_name" content="PeanutButter">
+<meta property="og:description" content="前言最近学了一个多月Vue，可以独立写一些实例页面了，决定仿一个大一点的项目，为下一步自己开发项目做准备，综合考虑还是选择了网上比较火的饿了么，有些地方也做了技术改良。在这里对里面的技术进行一个简单的总结。 技术栈：vue2   vue-router2   vue-cli2   vuex   axios   vue-resource   less   flex布局   es6   webpack">
+<meta property="og:locale" content="zh-hk">
+<meta property="og:image" content="https://github.com/Kevin031/VueDemo-Eleme">
+<meta property="og:image" content="http://liub.site/VueDemo-Eleme-Production/index.html">
+<meta property="og:image" content="http://liub.site/2017/09/22/%E8%BF%90%E7%94%A8flex%E5%B8%83%E5%B1%80%E6%8A%80%E5%B7%A7/">
+<meta property="og:updated_time" content="2020-04-02T11:35:36.392Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="实战总结：Vue2.x仿饿了么SPA商家页">
+<meta name="twitter:description" content="前言最近学了一个多月Vue，可以独立写一些实例页面了，决定仿一个大一点的项目，为下一步自己开发项目做准备，综合考虑还是选择了网上比较火的饿了么，有些地方也做了技术改良。在这里对里面的技术进行一个简单的总结。 技术栈：vue2   vue-router2   vue-cli2   vuex   axios   vue-resource   less   flex布局   es6   webpack">
+<meta name="twitter:image" content="https://github.com/Kevin031/VueDemo-Eleme">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="Kevin031.github.io/2017/09/24/实战总结：Vue2.x仿饿了么SPA商家页/">
+
+
+
+
+
+  <title>实战总结：Vue2.x仿饿了么SPA商家页 | PeanutButter</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-hk">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">PeanutButter</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">一个技术博客</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            關於
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分類
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="Kevin031.github.io/2017/09/24/实战总结：Vue2.x仿饿了么SPA商家页/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KevinLau">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PeanutButter">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">实战总结：Vue2.x仿饿了么SPA商家页</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-09-24T13:36:45+08:00">
+                2017-09-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近学了一个多月Vue，可以独立写一些实例页面了，决定仿一个大一点的项目，为下一步自己开发项目做准备，综合考虑还是选择了网上比较火的饿了么，有些地方也做了技术改良。在这里对里面的技术进行一个简单的总结。</p>
+<h3 id="技术栈："><a href="#技术栈：" class="headerlink" title="技术栈："></a>技术栈：</h3><p><code>vue2   vue-router2   vue-cli2   vuex   axios   vue-resource   less   flex布局   es6   webpack</code></p>
+<h3 id="用到的库"><a href="#用到的库" class="headerlink" title="用到的库"></a>用到的库</h3><p><code>better-scroll</code></p>
+<h3 id="实现功能"><a href="#实现功能" class="headerlink" title="实现功能"></a>实现功能</h3><p>· 页面按压（鼠标点按）滑动实现上下滚动的效果，采用了移动端的交互逻辑<br>· 商品页、评论页和商家页分别采用不同的路由模块，点击tab区实现跳转<br>· 商品页左侧Menu导航条样式指向对应板块，点击滚动到相应位置<br>· 评论内容可以筛选查看<br>· 购物车组件包含了展示商品，添加及删除商品，计算总价，非父子组件通信等功能<br>· 商家实景页面可以左右滑动</p>
+<p>项目地址：<img src="https://github.com/Kevin031/VueDemo-Eleme" alt="https://github.com/Kevin031/VueDemo-Eleme"><br>Demo： <img src="http://liub.site/VueDemo-Eleme-Production/index.html" alt="http://liub.site/VueDemo-Eleme-Production/index.html"><br><em>如果觉得对您有帮助，您可以给我个star支持一下，谢谢~</em></p>
+<a id="more"></a>
+<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><ol>
+<li>seller页面的better-scroll不生效</li>
+</ol>
+<p>问题分析：better-scroll插件是严格基于DOM的，数据是采用异步传输的，页面刚打开，DOM并没有被渲染，所以，要确保DOM被渲染了，才能试用better-scroll</p>
+<p>解决方案：用到mounted钩子函数，搭配this.$nextTick()</p>
+<p>ps:mounted的作用是将编译好的html挂载到页面完成后执行的钩子函数，此时可以进行发送ajax请求获取数据的操作，进行数据初始化。mounted在整个实例生命周期内只执行一次</p>
+<ol start="2">
+<li>goods,ratings,seller组件之间切换时会重新渲染</li>
+</ol>
+<p>解决方案：在app.vue内使用keep-alive，保留各组件状态，避免重新渲染</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;keep-alive&gt;</span><br><span class="line">    &lt;router-view :seller=&quot;seller&quot;&gt;&lt;/router-view&gt;</span><br><span class="line">&lt;/keep-alive&gt;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>border-1px的实现</li>
+</ol>
+<p>当样式像素一定时,因手机有320px,640px等.各自的缩放比差异,所以设备显示像素就会有1Npx，2Npx.为保设计稿还原度,解决就是用media + scale</p>
+<p>公式：<code>设备上像素 = 样式像素 * 设备像素比</code></p>
+<p>屏幕宽度： 320px 480px 640px<br>设备像素比： 1    1.5    2</p>
+<p>通过查询它的设备像素比<code>devicePixelRatio</code></p>
+<p>在设备像素比为1.5倍时, <code>round(1px 1.5 / 0.7) = 1px</code><br>在设备像素比为2倍时, <code>round(1px 2 / 0.5) = 1px</code></p>
+<p>所以less代码如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">.border-1px (@color) &#123;</span><br><span class="line">    position: relative;</span><br><span class="line">    &amp;:after &#123;</span><br><span class="line">        display: block;</span><br><span class="line">        position: absolute;</span><br><span class="line">        left: 0;</span><br><span class="line">        bottom: 0;</span><br><span class="line">        width: 100%;</span><br><span class="line">        border-top: 1px solid @color;</span><br><span class="line">        content: &apos;&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@media(-webkit-min-devcie-pixel-ratio:1.5),(min-device-pixel-ratio:1.5) &#123;</span><br><span class="line">    .border-1px &#123;</span><br><span class="line">        &amp;:after &#123;</span><br><span class="line">            -webkit-transform: scaleY(0.7);</span><br><span class="line">            transform: scaleY(0.7);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@media(-webkit-min-devcie-pixel-ratio:2),(min-device-pixel-ratio:2) &#123;</span><br><span class="line">    .border-1px &#123;</span><br><span class="line">        &amp;:after &#123;</span><br><span class="line">            -webkit-transform: scaleY(0.5);</span><br><span class="line">            transform: scaleY(0.5);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>一侧定宽，一侧自适应的双栏布局</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//左侧固定width: 80px, 右侧自适应</span><br><span class="line">parent: &#123;</span><br><span class="line">    display: flex;</span><br><span class="line">&#125;</span><br><span class="line">child-left: &#123;</span><br><span class="line">    flex: 0 0 80px; //放大比例为0 空间不足时也不缩小 占据80px的固定宽度</span><br><span class="line">&#125;</span><br><span class="line">child-right: &#123;</span><br><span class="line">    flex: 1; //占据剩余空间</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>关于flex布局，具体可以看我的另一篇笔记 <img src="http://liub.site/2017/09/22/%E8%BF%90%E7%94%A8flex%E5%B8%83%E5%B1%80%E6%8A%80%E5%B7%A7/" alt="运用flex布局技巧"></p>
+<ol start="5">
+<li>背景模糊效果</li>
+</ol>
+<p><code>filter: blur(10px);</code></p>
+<p>注意，在内的子元素包括文字也会被模糊，所以需要设置单独一个层</p>
+<ol start="6">
+<li>transition过渡动画</li>
+</ol>
+<p><code>&lt;transition&gt;</code>是Vue提供的标签，vue2.x定义了transition的过渡状态<code>name-string</code>用于自动生成css过渡类名</p>
+<p>例如<code>fade</code>将自动扩展为<code>.fade-enter .fade-enter-active</code>等，默认类名为”v”</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fade-enter</span><br><span class="line">fade-enter-active</span><br><span class="line">fade-leave</span><br><span class="line">fade-leave-active</span><br></pre></td></tr></table></figure>
+<p>包含transition过渡的钩子函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">before-enter</span><br><span class="line">before-leave</span><br><span class="line">before-appear</span><br><span class="line">enter</span><br><span class="line">leave</span><br><span class="line">appear</span><br><span class="line">after-enter</span><br><span class="line">after-leave</span><br><span class="line">after-appear</span><br><span class="line">enter-cancelled</span><br><span class="line">leave-cancelled (v-show only)</span><br><span class="line">appear-cancelled</span><br></pre></td></tr></table></figure>
+<h1 id="项目结构分析"><a href="#项目结构分析" class="headerlink" title="项目结构分析"></a>项目结构分析</h1><h2 id="整体结构"><a href="#整体结构" class="headerlink" title="整体结构"></a>整体结构</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">VueDemo-Eleme</span><br><span class="line">    ├─dist               //打包输出路径,npm run build后才会产出</span><br><span class="line">        ├─img            //图片存放路径</span><br><span class="line">            ├─..</span><br><span class="line">        ├─static         </span><br><span class="line">            ├─data.json  //数据文件</span><br><span class="line">        ├─build.js</span><br><span class="line">        ├─index.html</span><br><span class="line">        ├─style.css</span><br><span class="line">    =============================</span><br><span class="line">    =============================</span><br><span class="line">    ├─node_modules       //项目依赖</span><br><span class="line">    ├─src                //源码路径</span><br><span class="line">        ├─assets         //静态资源</span><br><span class="line">        ├─common         //通用的font文件和css文件</span><br><span class="line">            ├─base.less</span><br><span class="line">            ├─icon.less</span><br><span class="line">            ├─mixin.less</span><br><span class="line">            ├─index.less //css唯一入口</span><br><span class="line">            ├─sell-icon.eot</span><br><span class="line">            ├─sell-icon.svg</span><br><span class="line">            ├─sell.icon.ttf</span><br><span class="line">            ├─sell.icon.woff                        </span><br><span class="line">        ├─components     //组件路径，以下组件文件夹忽略具体vue文件</span><br><span class="line">            ├─cartcontrol</span><br><span class="line">            ├─goods</span><br><span class="line">            ├─header</span><br><span class="line">            ├─iconMap</span><br><span class="line">            ├─myFood</span><br><span class="line">            ├─ratings</span><br><span class="line">            ├─seller</span><br><span class="line">            ├─shopCart</span><br><span class="line">            ├─star</span><br><span class="line">            ├─App.vue    //根组件</span><br><span class="line">            ├─main.js    //入口文件的js逻辑，打包之后被注入到index.html中</span><br><span class="line">    ├─static</span><br><span class="line">        ├─data.json</span><br><span class="line">    ├─.babelrc                      //babel配置</span><br><span class="line">    ├─.gitignore                    //版本文件</span><br><span class="line">    ├─index.html                    //项目预览入口</span><br><span class="line">    ├─index.tmpl.html               //打包用的index模版</span><br><span class="line">    ├─package.json                  //项目信息</span><br><span class="line">    ├─webpack.config.js             //开发阶段打包文件配置</span><br><span class="line">    ├─webpack.production.config.js  //产品阶段打包文件配置</span><br></pre></td></tr></table></figure>
+<h2 id="组件功能-忽略CSS"><a href="#组件功能-忽略CSS" class="headerlink" title="组件功能 (忽略CSS)"></a>组件功能 (忽略CSS)</h2><h3 id="App"><a href="#App" class="headerlink" title="App"></a>App</h3><p>项目入口，根文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;v-header v-bind:seller=&quot;seller&quot;&gt;&lt;/v-header&gt;</span><br><span class="line">    &lt;div class=&quot;tab&quot;&gt;</span><br><span class="line">      &lt;div class=&quot;tab-item&quot;&gt;</span><br><span class="line">        &lt;router-link to=&quot;/goods&quot;&gt;商品&lt;/router-link&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">      &lt;div class=&quot;tab-item&quot;&gt;</span><br><span class="line">        &lt;router-link to=&quot;/ratings&quot;&gt;评论&lt;/router-link&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">      &lt;div class=&quot;tab-item&quot;&gt;</span><br><span class="line">        &lt;router-link to=&quot;/seller&quot;&gt;商家&lt;/router-link&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;keep-alive&gt;</span><br><span class="line">      &lt;router-view v-bind:seller=&quot;seller&quot;&gt;&lt;/router-view&gt;</span><br><span class="line">    &lt;/keep-alive&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import header from &apos;./components/header/header.vue&apos;</span><br><span class="line">import axios from &apos;axios&apos;</span><br><span class="line"></span><br><span class="line">const ERR_OK = 0</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  data () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      seller: &#123;&#125;,</span><br><span class="line">      title: &apos;123&apos;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  created() &#123;</span><br><span class="line">    axios.get(&apos;./static/data.json&apos;).then((response) =&gt; &#123;</span><br><span class="line">      this.seller = response.data.seller;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;,</span><br><span class="line">  components: &#123;</span><br><span class="line">    &apos;v-header&apos;: header</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="cartcontrol"><a href="#cartcontrol" class="headerlink" title="cartcontrol"></a>cartcontrol</h3><p>实现添加、删除商品功能</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&lt;template lang=&quot;html&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;cartcontrol&quot;&gt;</span><br><span class="line">        &lt;transition name=&quot;move&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;cart-decrease&quot; v-show=&quot;food.count&gt;0&quot; v-on:click.stop.prevent=&quot;decreaseCart($event)&quot;&gt;</span><br><span class="line">                &lt;span class=&quot;icon-remove_circle_outline inner&quot;&gt;&lt;/span&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/transition&gt;</span><br><span class="line">        &lt;div class=&quot;cart-count&quot; v-show=&quot;food.count&gt;0&quot;&gt;&#123;&#123;food.count&#125;&#125;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;cart-add&quot; v-on:click.stop.prevent=&quot;addCart($event)&quot;&gt;</span><br><span class="line">            &lt;i class=&quot;icon-add_circle&quot;&gt;&lt;/i&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"></span><br><span class="line">import Vue from &apos;vue&apos;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">    props: &#123;</span><br><span class="line">        food: Object</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">        addCart (event) &#123;</span><br><span class="line">            if (!event._constructed) &#123;   //阻止非Vue事件</span><br><span class="line">                return;</span><br><span class="line">            &#125;</span><br><span class="line">            if (!this.food.count) &#123;</span><br><span class="line">                Vue.set(this.food, &apos;count&apos;, 0);</span><br><span class="line">            &#125;</span><br><span class="line">            this.food.count++;</span><br><span class="line">            // console.log(this.$root.eventHub);</span><br><span class="line">            this.$root.eventHub.$emit(&apos;cart.add&apos;, event.target); //触发小球动画</span><br><span class="line">        &#125;,</span><br><span class="line">        decreaseCart () &#123;</span><br><span class="line">            if (!event._constructed) &#123;   //阻止非Vue事件</span><br><span class="line">                return;</span><br><span class="line">            &#125;</span><br><span class="line">            this.food.count--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="goods"><a href="#goods" class="headerlink" title="goods"></a>goods</h3><p>实现商品界面的显示，和左侧导航功能</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div class=&quot;goods&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;menu-wrapper&quot; ref=&quot;menuWrapper&quot;&gt;</span><br><span class="line">            &lt;ul&gt;</span><br><span class="line">                &lt;li v-for=&quot;(item,index) in goods&quot; v-on:click=&quot;menuClick(index,$event)&quot; v-bind:class=&quot;index==menuCurrentIndex?&apos;menu-item-selected&apos;:&apos;menu-item&apos;&quot;&gt;</span><br><span class="line">                    &lt;span class=&quot;text&quot;&gt;</span><br><span class="line">                        &lt;iconMap v-show=&quot;item.type&gt;0&quot; v-bind:iconType=&quot;item.type&quot;&gt;&lt;/iconMap&gt;</span><br><span class="line">                        &#123;&#123;item.name&#125;&#125;</span><br><span class="line">                    &lt;/span&gt;</span><br><span class="line">                &lt;/li&gt;</span><br><span class="line">            &lt;/ul&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;foods-wrapper&quot; id=&quot;foods-wrapper&quot; ref=&quot;foodsWrapper&quot;&gt;</span><br><span class="line">            &lt;ul&gt;</span><br><span class="line">                &lt;li v-for=&quot;item in goods&quot; class=&quot;food-list food-list-hook&quot;&gt;</span><br><span class="line">                    &lt;h1&gt;&#123;&#123;item.name&#125;&#125;&lt;/h1&gt;</span><br><span class="line">                    &lt;ul&gt;</span><br><span class="line">                        &lt;li v-for=&quot;food in item.foods&quot; class=&quot;food-item&quot; v-on:click=&quot;foodDetail(food)&quot;&gt;</span><br><span class="line">                            &lt;div class=&quot;icon&quot;&gt;</span><br><span class="line">                                &lt;img  width=&quot;57&quot; height=&quot;57&quot; v-bind:src=&quot;food.icon&quot;/&gt;</span><br><span class="line">                            &lt;/div&gt;</span><br><span class="line">                            &lt;div class=&quot;content&quot;&gt;</span><br><span class="line">                                &lt;h2&gt;&#123;&#123;food.name&#125;&#125;&lt;/h2&gt;</span><br><span class="line">                                &lt;p class=&quot;description&quot;&gt;&#123;&#123;food.description&#125;&#125;&lt;/p&gt;</span><br><span class="line">                                &lt;div class=&quot;sell-info&quot;&gt;</span><br><span class="line">                                    &lt;span class=&quot;sellCount&quot;&gt;&#123;&#123;&apos;月售&apos;+ food.sellCount +&apos;份&apos;&#125;&#125;&lt;/span&gt;</span><br><span class="line">                                    &lt;span class=&quot;rating&quot;&gt;&#123;&#123;&apos;好评率&apos;+ food.rating +&apos;%&apos;&#125;&#125;&lt;/span&gt;</span><br><span class="line">                                &lt;/div&gt;</span><br><span class="line">                                &lt;div class=&quot;price&quot;&gt;</span><br><span class="line">                                    &lt;span class=&quot;newPrice&quot;&gt;&lt;span class=&quot;unit&quot;&gt;￥&lt;/span&gt;&#123;&#123;food.price&#125;&#125;&lt;/span&gt;</span><br><span class="line">                                    &lt;span v-if=&quot;food.oldPrice&quot; class=&quot;oldPrice&quot;&gt;&#123;&#123;&apos;￥&apos; + food.oldPrice&#125;&#125;&lt;/span&gt;</span><br><span class="line">                                &lt;/div&gt;</span><br><span class="line">                                &lt;div class=&quot;cartcontrol-wrapper&quot;&gt;</span><br><span class="line">                                    &lt;cartcontrol v-bind:food=&quot;food&quot;&gt;&lt;/cartcontrol&gt;</span><br><span class="line">                                &lt;/div&gt;</span><br><span class="line">                            &lt;/div&gt;</span><br><span class="line">                        &lt;/li&gt;</span><br><span class="line">                    &lt;/ul&gt;</span><br><span class="line">                &lt;/li&gt;</span><br><span class="line">            &lt;/ul&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;shopCart v-bind:selectedFoods=&quot;selectedFoods&quot; v-bind:minPrice=&quot;seller.minPrice&quot; v-bind:deliveryPrice=&quot;seller.deliveryPrice&quot;&gt;&lt;/shopCart&gt;</span><br><span class="line">        &lt;myFood v-if=&quot;showMyFood&quot; v-bind:food=&quot;selectedFood&quot; rel=&quot;myFood&quot;&gt;&lt;/myFood&gt;</span><br><span class="line">        &lt;transition name=&quot;fade-backdrop&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;backdrop&quot; v-show=&quot;showBackdrop&quot; v-on:click=&quot;hideBackdrop&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;/transition&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"></span><br><span class="line">import axios from &apos;axios&apos;</span><br><span class="line">import iconMap from &apos;../iconMap/iconMap.vue&apos;</span><br><span class="line">import cartcontrol from &apos;../cartcontrol/cartcontrol.vue&apos;</span><br><span class="line">import shopCart from &apos;../shopCart/shopCart.vue&apos;</span><br><span class="line">import myFood from &apos;../myFood/myFood.vue&apos;</span><br><span class="line">import Vue from &apos;vue&apos;</span><br><span class="line">import BScroll from &apos;better-scroll&apos;</span><br><span class="line"></span><br><span class="line">const ERR_OK = 0</span><br><span class="line">const eventHub = new Vue()</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">    props: &#123;</span><br><span class="line">        seller: Object</span><br><span class="line">    &#125;,</span><br><span class="line">    data () &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            goods: [],</span><br><span class="line">            listHeight: [],</span><br><span class="line">            foodsScrollY: 0,</span><br><span class="line">            selectedFood: &apos;&apos;,</span><br><span class="line">            showMyFood: false</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    created () &#123;</span><br><span class="line">        axios.get(&apos;./static/data.json&apos;).then((response) =&gt; &#123;</span><br><span class="line">            this.goods = response.data.goods;</span><br><span class="line">            this.$nextTick(() =&gt; &#123;</span><br><span class="line">                this._initScroll();</span><br><span class="line">                this._calculateHeight();</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;);</span><br><span class="line">        this.$root.eventHub.$on(&apos;detail.hide&apos;, this.hideBackdrop);</span><br><span class="line">    &#125;,</span><br><span class="line">    computed: &#123;</span><br><span class="line">        menuCurrentIndex () &#123;</span><br><span class="line">            for (let i = 0, l = this.listHeight.length; i &lt; l; i++) &#123;</span><br><span class="line">                let topHeight = this.listHeight[i];</span><br><span class="line">                let bottomHeight = this.listHeight[i + 1];</span><br><span class="line">                if(!bottomHeight || (this.foodsScrollY &gt;= topHeight &amp;&amp; this.foodsScrollY &lt; bottomHeight)) &#123;</span><br><span class="line">                    return i;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;,</span><br><span class="line">        selectedFoods () &#123;</span><br><span class="line">            let foods = [];</span><br><span class="line">            this.goods.forEach((good) =&gt; &#123;</span><br><span class="line">                good.foods.forEach((food) =&gt; &#123;</span><br><span class="line">                    if (food.count) &#123;</span><br><span class="line">                        foods.push(food);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;);</span><br><span class="line">            return foods;</span><br><span class="line">        &#125;,</span><br><span class="line">        showBackdrop () &#123;</span><br><span class="line">            if (this.showMyFood) &#123;</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line">            this.showMyFood = false;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">        _initScroll () &#123;</span><br><span class="line">            this.menuWrapper = new BScroll(this.$refs.menuWrapper, &#123;</span><br><span class="line">                click: true</span><br><span class="line">            &#125;);</span><br><span class="line">            this.foodsScroll = new BScroll(this.$refs.foodsWrapper, &#123;</span><br><span class="line">                click:true,</span><br><span class="line">                probeType: 3</span><br><span class="line">                //1：滚动的时候会派发scroll事件，会截流。2：滚动的时候实时派发scroll事件，不会截流。 3：除了实时派发scroll事件，在swipe的情况下仍然能实时派发scroll事件</span><br><span class="line">            &#125;);</span><br><span class="line">            //监听滚动事件</span><br><span class="line">            this.foodsScroll.on(&apos;scroll&apos;, (pos) =&gt; &#123;</span><br><span class="line">                this.foodsScrollY = Math.abs(Math.round(pos.y));</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;,</span><br><span class="line">        _calculateHeight () &#123;</span><br><span class="line">            let foodList = this.$refs.foodsWrapper.querySelectorAll(&apos;.food-list-hook&apos;);</span><br><span class="line">            let height = 0;</span><br><span class="line">            this.listHeight.push(height);</span><br><span class="line">            for(let i = 0, l = foodList.length; i &lt; l; i++) &#123;</span><br><span class="line">                let item = foodList[i];</span><br><span class="line">                height += item.clientHeight;</span><br><span class="line">                this.listHeight.push(height);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        menuClick (index, event) &#123;</span><br><span class="line">            if (!event._constructed) &#123;</span><br><span class="line">                return;</span><br><span class="line">            &#125;</span><br><span class="line">            this.foodsScroll.scrollTo(0, -this.listHeight[index], 300);</span><br><span class="line">        &#125;,</span><br><span class="line">        foodDetail (food) &#123;</span><br><span class="line">            this.selectedFood = food;</span><br><span class="line">            this.$nextTick(() =&gt; &#123;</span><br><span class="line">                this.showMyFood = true;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;,</span><br><span class="line">        hideBackdrop () &#123;</span><br><span class="line">            this.showMyFood = false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    components: &#123;</span><br><span class="line">        iconMap,</span><br><span class="line">        cartcontrol,</span><br><span class="line">        shopCart,</span><br><span class="line">        myFood</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="header"><a href="#header" class="headerlink" title="header"></a>header</h3><p>实现头部的商家信息样式和查看信息的功能</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line">&lt;template lang=&quot;html&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;header&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;content-wrapper&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;avatar&quot;&gt;</span><br><span class="line">                &lt;img v-bind:src=&quot;seller.avatar&quot; width=&quot;64&quot; height=&quot;64&quot; /&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;content&quot;&gt;</span><br><span class="line">                &lt;div class=&quot;title&quot;&gt;</span><br><span class="line">                    &lt;span class=&quot;brand&quot;&gt;&lt;/span&gt;</span><br><span class="line">                    &lt;span class=&quot;name&quot;&gt;&#123;&#123;seller.name&#125;&#125;&lt;/span&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">                &lt;div class=&quot;description&quot;&gt;</span><br><span class="line">                    &#123;&#123;seller.description + &apos; / &apos; + seller.deliveryTime + &apos;分钟送达&apos;&#125;&#125;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">                &lt;div class=&quot;supports&quot; v-if=&quot;seller.supports&quot;&gt;</span><br><span class="line">                    &lt;div class=&quot;supports_desc&quot;&gt;</span><br><span class="line">                        &lt;span class=&quot;icon&quot; v-bind:class=&quot;iconClassMap[seller.supports[0].type]&quot;&gt;&lt;/span&gt;</span><br><span class="line">                        &lt;span class=&quot;text&quot;&gt;&#123;&#123;seller.supports[0].description&#125;&#125;&lt;/span&gt;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;support-count&quot; v-on:click=&quot;showDetails()&quot;&gt;</span><br><span class="line">                &lt;span class=&quot;count&quot;&gt;5个&lt;/span&gt;</span><br><span class="line">                &lt;i class=&quot;icon-keyboard_arrow_right&quot;&gt;&lt;/i&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;bulletin-wrapper&quot; v-on:click=&quot;showDetails()&quot;&gt;</span><br><span class="line">            &lt;span class=&quot;bulletin-title&quot;&gt;&lt;/span&gt;</span><br><span class="line">            &lt;span class=&quot;bulletin-text&quot;&gt;&#123;&#123;seller.bulletin&#125;&#125;&lt;/span&gt;</span><br><span class="line">            &lt;i class=&quot;icon-keyboard_arrow_right&quot;&gt;&lt;/i&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;transition name=&quot;fade&quot;&gt;</span><br><span class="line">            &lt;div v-if=&quot;detailShow&quot; class=&quot;detail&quot;&gt;</span><br><span class="line">                &lt;div class=&quot;detail-wrapper clearfix&quot;&gt;</span><br><span class="line">                    &lt;div class=&quot;detail-main&quot;&gt;</span><br><span class="line">                        &lt;h1 class=&quot;name&quot;&gt;&#123;&#123;seller.name&#125;&#125;&lt;/h1&gt;</span><br><span class="line">                        &lt;div class=&quot;star-wrapper&quot;&gt;</span><br><span class="line">                            &lt;star v-bind:size=&quot;48&quot; v-bind:score=&quot;seller.score&quot;&gt;&lt;/star&gt;</span><br><span class="line">                        &lt;/div&gt;</span><br><span class="line">                        &lt;div class=&quot;title&quot;&gt;</span><br><span class="line">                            &lt;div class=&quot;line&quot;&gt;&lt;/div&gt;</span><br><span class="line">                            &lt;div class=&quot;text&quot;&gt;优惠信息&lt;/div&gt;</span><br><span class="line">                            &lt;div class=&quot;line&quot;&gt;&lt;/div&gt;</span><br><span class="line">                        &lt;/div&gt;</span><br><span class="line">                        &lt;ul class=&quot;supports&quot; v-if=&quot;seller.supports&quot;&gt;</span><br><span class="line">                            &lt;li class=&quot;support-item&quot; v-for=&quot;item in seller.supports&quot;&gt;</span><br><span class="line">                                &lt;span class=&quot;icon&quot; v-bind:class=&quot;iconClassMap[item.type]&quot;&gt;&lt;/span&gt;</span><br><span class="line">                                &lt;span class=&quot;text&quot;&gt;&#123;&#123;item.description&#125;&#125;&lt;/span&gt;</span><br><span class="line">                            &lt;/li&gt;</span><br><span class="line">                        &lt;/ul&gt;</span><br><span class="line">                        &lt;div class=&quot;title&quot;&gt;</span><br><span class="line">                            &lt;div class=&quot;line&quot;&gt;&lt;/div&gt;</span><br><span class="line">                            &lt;div class=&quot;text&quot;&gt;商家公告&lt;/div&gt;</span><br><span class="line">                            &lt;div class=&quot;line&quot;&gt;&lt;/div&gt;</span><br><span class="line">                        &lt;/div&gt;</span><br><span class="line">                        &lt;div class=&quot;bulletin&quot;&gt;&#123;&#123;seller.bulletin&#125;&#125;&lt;/div&gt;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">                &lt;div class=&quot;detail-close&quot; v-on:click=&quot;hideDetails()&quot;&gt;</span><br><span class="line">                    &lt;i class=&quot;icon-close&quot;&gt;&lt;/i&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/transition&gt;</span><br><span class="line">        &lt;div class=&quot;background&quot;&gt;</span><br><span class="line">            &lt;img v-bind:src=&quot;seller.avatar&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    </span><br><span class="line">    import star from &apos;../star/star.vue&apos;</span><br><span class="line"></span><br><span class="line">    export default &#123;</span><br><span class="line">        props: &#123;</span><br><span class="line">            seller: &#123;</span><br><span class="line">                type: Object</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        created () &#123;</span><br><span class="line">            this.iconClassMap = [&apos;decrease&apos;,&apos;discount&apos;,&apos;special&apos;,&apos;invoice&apos;,&apos;guarantee&apos;];</span><br><span class="line">        &#125;,</span><br><span class="line">        components: &#123;</span><br><span class="line">            star</span><br><span class="line">        &#125;,</span><br><span class="line">        data () &#123;</span><br><span class="line">            return &#123;</span><br><span class="line">                detailShow: false</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            showDetails() &#123;</span><br><span class="line">                this.detailShow = true;</span><br><span class="line">            &#125;,</span><br><span class="line">            hideDetails() &#123;</span><br><span class="line">                this.detailShow = false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="iconMap"><a href="#iconMap" class="headerlink" title="iconMap"></a>iconMap</h3><p>活动图标组件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;template lang=&quot;html&quot;&gt;</span><br><span class="line">  &lt;span class=&quot;iconMap&quot; v-bind:class=&quot;iconClassMap[iconType]&quot;&gt;&lt;/span&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">    props: &#123;</span><br><span class="line">        iconType: Number</span><br><span class="line">    &#125;,</span><br><span class="line">    created () &#123;</span><br><span class="line">        this.iconClassMap = [&apos;decrease&apos;,&apos;discount&apos;,&apos;special&apos;,&apos;invoice&apos;,&apos;guarantee&apos;]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="myFood"><a href="#myFood" class="headerlink" title="myFood"></a>myFood</h3><p>点击食物时的详情页</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;template lang=&quot;html&quot;&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;transition name=&quot;myFood&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;my-food&quot;&gt;</span><br><span class="line">                &lt;img height=&quot;350&quot; width=&quot;100%&quot; v-bind:src=&quot;food.image&quot;&gt;</span><br><span class="line">                &lt;div class=&quot;title&quot;&gt;</span><br><span class="line">                    &#123;&#123;food.name&#125;&#125;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">                &lt;div class=&quot;info&quot;&gt;</span><br><span class="line">                    &#123;&#123;&apos;月售&apos;+food.sellCount+&apos;份&amp;nbsp;&amp;nbsp;好评率&apos;+food.rating+&apos;%&apos;&#125;&#125;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">                &lt;div class=&quot;price&quot;&gt;</span><br><span class="line">                    &#123;&#123;&apos;￥&apos;+food.price&#125;&#125;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">                &lt;div class=&quot;add&quot; v-on:click=&quot;foodAddCart($event)&quot;&gt;</span><br><span class="line">                    &lt;span&gt;加入购物车&lt;/span&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/transition&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    export default &#123;</span><br><span class="line">        props: &#123;</span><br><span class="line">            food: Object</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            foodAddCart (event) &#123;</span><br><span class="line">                this.$root.eventHub.$emit(&apos;detail.hide&apos;, event.target);</span><br><span class="line">                this.$set(this.food, &apos;count&apos;, 1);</span><br><span class="line">                this.$root.eventHub.$emit(&apos;cart.add&apos;, event.target);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="ratings"><a href="#ratings" class="headerlink" title="ratings"></a>ratings</h3><p>评论页，还有选择查看对应评论的功能</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br></pre></td><td class="code"><pre><span class="line">&lt;template lang=&quot;html&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;ratingsWrapper&quot; ref=&quot;ratingsWrapper&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;ratings-content&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;info&quot;&gt;</span><br><span class="line">                &lt;div class=&quot;mark&quot;&gt;</span><br><span class="line">                    &lt;div class=&quot;num&quot;&gt;</span><br><span class="line">                        &#123;&#123;seller.score&#125;&#125;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                    &lt;div class=&quot;text&quot;&gt;综合评分&lt;/div&gt;</span><br><span class="line">                    &lt;div class=&quot;contrast&quot;&gt;高于周边商家&#123;&#123;seller.rankRate&#125;&#125;%&lt;/div&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">                &lt;div class=&quot;stars&quot;&gt;</span><br><span class="line">                    &lt;div class=&quot;stars&quot;&gt;</span><br><span class="line">                        &lt;div class=&quot;serviceScore&quot;&gt;</span><br><span class="line">                            &lt;span class=&quot;text&quot;&gt;服务态度&lt;/span&gt;</span><br><span class="line">                            &lt;star v-bind:size=&quot;36&quot; v-bind:score=&quot;seller.serviceScore&quot;&gt;&lt;/star&gt;</span><br><span class="line">                            &lt;span class=&quot;num&quot;&gt;&#123;&#123;seller.serviceScore&#125;&#125;&lt;/span&gt;</span><br><span class="line">                        &lt;/div&gt;</span><br><span class="line">                        &lt;div class=&quot;foodScore&quot;&gt;</span><br><span class="line">                            &lt;span class=&quot;text&quot;&gt;服务态度&lt;/span&gt;</span><br><span class="line">                            &lt;star v-bind:size=&quot;36&quot; v-bind:score=&quot;seller.foodScore&quot;&gt;&lt;/star&gt;</span><br><span class="line">                            &lt;span class=&quot;num&quot;&gt;&#123;&#123;seller.foodScore&#125;&#125;&lt;/span&gt;</span><br><span class="line">                        &lt;/div&gt;</span><br><span class="line">                        &lt;div class=&quot;deliveryTime&quot;&gt;</span><br><span class="line">                            &lt;span class=&quot;text&quot;&gt;送达时间&lt;/span&gt;</span><br><span class="line">                            &lt;span class=&quot;time&quot;&gt;&#123;&#123;seller.deliveryTime&#125;&#125;分钟&lt;/span&gt;</span><br><span class="line">                        &lt;/div&gt;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;divider&quot;&gt;&lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;evaluation&quot;&gt;</span><br><span class="line">                &lt;div class=&quot;classify&quot;&gt;</span><br><span class="line">                    &lt;span v-for=&quot;(item, index) in classifyArr&quot; v-bind:class=&quot;&#123;&apos;active&apos;:item.active, &apos;bad&apos;:index==2, &apos;badActive&apos;:item.active&amp;&amp;index==2&#125;&quot; class=&quot;item&quot; v-on:click=&quot;filterEvel(item)&quot;&gt;&#123;&#123;item.name&#125;&#125; &lt;span class=&quot;count&quot;&gt;&#123;&#123;item.count&#125;&#125;&lt;/span&gt;&lt;/span&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">                &lt;div class=&quot;switch&quot; v-on:click=&quot;evelflag=!evelflag&quot;&gt;</span><br><span class="line">                    &lt;span class=&quot;icon-check_circle&quot; v-bind:class=&quot;&#123;&apos;on&apos;:evelflag&#125;&quot;&gt;&lt;/span&gt;</span><br><span class="line">                    &lt;span class=&quot;text&quot;&gt;只看有内容的评价&lt;/span&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">                &lt;div class=&quot;evel-list&quot;&gt;</span><br><span class="line">                    &lt;ul&gt;</span><br><span class="line">                        &lt;li class=&quot;evel&quot; v-for=&quot;evel in evelArr&quot;&gt;</span><br><span class="line">                            &lt;div class=&quot;avatar&quot;&gt;</span><br><span class="line">                                &lt;img v-bind:src=&quot;evel.avatar&quot; width=&quot;28&quot; height=&quot;28&quot; /&gt;</span><br><span class="line">                            &lt;/div&gt;</span><br><span class="line">                            &lt;div class=&quot;content&quot;&gt;</span><br><span class="line">                                &lt;div class=&quot;user&quot;&gt;</span><br><span class="line">                                    &lt;span class=&quot;name&quot;&gt;&#123;&#123;evel.username&#125;&#125;&lt;/span&gt;</span><br><span class="line">                                    &lt;span class=&quot;rateTime&quot;&gt;&#123;&#123;evel.rateTime | time&#125;&#125;&lt;/span&gt;</span><br><span class="line">                                &lt;/div&gt;</span><br><span class="line">                                &lt;div class=&quot;star-wrapper&quot;&gt;</span><br><span class="line">                                    &lt;star v-bind:size=&quot;24&quot; v-bind:score=&quot;evel.score&quot;&gt;&lt;/star&gt;</span><br><span class="line">                                    &lt;span class=&quot;deliveryTime&quot; v-show=&quot;evel.deliveryTime&quot;&gt;&#123;&#123;evel.deliveryTime&#125;&#125;分钟送达&lt;/span&gt;</span><br><span class="line">                                &lt;/div&gt;</span><br><span class="line">                                &lt;div class=&quot;text&quot;&gt;</span><br><span class="line">                                    &#123;&#123;evel.text&#125;&#125;</span><br><span class="line">                                &lt;/div&gt;</span><br><span class="line">                                &lt;div class=&quot;recommend&quot;&gt;</span><br><span class="line">                                    &lt;span class=&quot;icon icon-thumb_up&quot; v-show=&quot;evel.recommend.length&quot;&gt;&lt;/span&gt;</span><br><span class="line">                                    &lt;span class=&quot;dish&quot; v-for=&quot;dish in evel.recommend&quot;&gt;&#123;&#123;dish&#125;&#125;&lt;/span&gt;</span><br><span class="line">                                &lt;/div&gt;</span><br><span class="line">                            &lt;/div&gt;</span><br><span class="line">                        &lt;/li&gt;</span><br><span class="line">                    &lt;/ul&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"></span><br><span class="line">import star from &apos;../star/star.vue&apos;</span><br><span class="line">import axios from &apos;axios&apos;</span><br><span class="line">import BScroll from &apos;better-scroll&apos;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">    components: &#123;</span><br><span class="line">        star</span><br><span class="line">    &#125;,</span><br><span class="line">    data () &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            ratings: [],</span><br><span class="line">            seller: &#123;&#125;,</span><br><span class="line">            classifyArr: [&#123;</span><br><span class="line">                name: &apos;全部&apos;,</span><br><span class="line">                count: 0,</span><br><span class="line">                active: true</span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                name: &apos;推荐&apos;,</span><br><span class="line">                count: 0,</span><br><span class="line">                active: false</span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                name: &apos;吐槽&apos;,</span><br><span class="line">                count: 0,</span><br><span class="line">                active: false</span><br><span class="line">            &#125;],</span><br><span class="line">            evelflag: true</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    created () &#123;</span><br><span class="line">        this._initRatings()</span><br><span class="line">    &#125;,</span><br><span class="line">    computed: &#123;</span><br><span class="line">        evelArr () &#123;</span><br><span class="line">            let selectIndex = 0;</span><br><span class="line">            this.classifyArr.forEach((data, index) =&gt; &#123;</span><br><span class="line">                if (data.active) &#123;</span><br><span class="line">                    selectIndex = index;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">            if (this.scroll) &#123;</span><br><span class="line">                this.$nextTick(() =&gt; &#123;</span><br><span class="line">                    this.scroll.refresh;</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">            return selectIndex ? this.ratings.filter((data) =&gt; this.evelflag ? data.rateType === selectIndex - 1 &amp;&amp; data.text : data.rateType === selectIndex - 1) :this.ratings.filter((data) =&gt; this.evelflag ? data.text : true); //*</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">        _initRatings () &#123;</span><br><span class="line">            axios.get(&apos;./static/data.json&apos;).then((res) =&gt; &#123;</span><br><span class="line">                this.ratings = res.data.ratings;</span><br><span class="line">                this.seller = res.data.seller;</span><br><span class="line">                this._initClassifyArr();</span><br><span class="line">                this.$nextTick(() =&gt; &#123;</span><br><span class="line">                    if (!this.scroll) &#123;</span><br><span class="line">                        this.scroll = new BScroll(this.$refs.ratingsWrapper, &#123;</span><br><span class="line">                            click: true</span><br><span class="line">                        &#125;);</span><br><span class="line">                    &#125; else &#123;</span><br><span class="line">                        this.scroll.refresh();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;,</span><br><span class="line">        _initClassifyArr () &#123;</span><br><span class="line">            this.classifyArr.forEach((data,index) =&gt; &#123;</span><br><span class="line">                if (index) &#123;</span><br><span class="line">                    data.count = this.ratings.filter((temp) =&gt; temp.rateType === index - 1).length;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    data.count = this.ratings.length;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;,</span><br><span class="line">        filterEvel (item) &#123;</span><br><span class="line">            this.classifyArr.forEach((data) =&gt; &#123;</span><br><span class="line">                data.active = false;</span><br><span class="line">            &#125;);</span><br><span class="line">            item.active = true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    filters: &#123;</span><br><span class="line">        time: function (value) &#123;</span><br><span class="line">            let year = (new Date(value)).toLocaleDateString();</span><br><span class="line">            let month = year.match(/\d&#123;4&#125;\/&#123;1&#125;(\d+)/)[1];</span><br><span class="line">            if (month.length === 1) &#123;</span><br><span class="line">                year = year.replace(/\//,&quot;/0&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            let time = year + &quot; &quot; + (new Date(value)).getHours() + &quot;:&quot; + (new Date(value)).getMinutes();</span><br><span class="line">            time = time.replace(/\//g, &quot;-&quot;);</span><br><span class="line">            return time;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="seller"><a href="#seller" class="headerlink" title="seller"></a>seller</h3><p>商家信息页</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br></pre></td><td class="code"><pre><span class="line">&lt;template lang=&quot;html&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;seller-wrapper&quot; ref=&quot;sellerWrapper&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;seller-content&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;info&quot;&gt;</span><br><span class="line">                &lt;div class=&quot;title&quot;&gt;</span><br><span class="line">                    &lt;div class=&quot;text&quot;&gt;&#123;&#123;seller.name&#125;&#125;&lt;/div&gt;</span><br><span class="line">                    &lt;div class=&quot;star-wrapper&quot;&gt;</span><br><span class="line">                    &lt;star v-bind:size=&quot;36&quot; v-bind:score=&quot;seller.score&quot;&gt;&lt;/star&gt;</span><br><span class="line">                        &lt;span class=&quot;rate-count&quot;&gt;&#123;&#123;seller.ratingCount&#125;&#125;&lt;/span&gt;</span><br><span class="line">                        &lt;span class=&quot;sell-count&quot;&gt;月售&#123;&#123;seller.sellCount&#125;&#125;单&lt;/span&gt;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                    &lt;div class=&quot;collect&quot; v-on:click=&quot;collectflag=!collectflag&quot;&gt;</span><br><span class="line">                        &lt;span class=&quot;icon-favorite&quot; v-bind:class=&quot;&#123;&apos;active&apos;:collectflag&#125;&quot;&gt;&lt;/span&gt;</span><br><span class="line">                        &lt;span class=&quot;text&quot;&gt;&#123;&#123;collectflag?&apos;已收藏&apos;:&apos;收藏&apos;&#125;&#125;&lt;/span&gt;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">                &lt;div class=&quot;remark&quot;&gt;</span><br><span class="line">                    &lt;div class=&quot;block&quot;&gt;</span><br><span class="line">                        &lt;h2&gt;起送价&lt;/h2&gt;</span><br><span class="line">                        &lt;div class=&quot;content&quot;&gt;</span><br><span class="line">                            &lt;span class=&quot;num&quot;&gt;&#123;&#123;seller.minPrice&#125;&#125;&lt;/span&gt;元</span><br><span class="line">                        &lt;/div&gt;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                    &lt;div class=&quot;block&quot;&gt;</span><br><span class="line">                        &lt;h2&gt;商家配送&lt;/h2&gt;</span><br><span class="line">                        &lt;div class=&quot;content&quot;&gt;</span><br><span class="line">                            &lt;span class=&quot;num&quot;&gt;&#123;&#123;seller.deliveryPrice&#125;&#125;&lt;/span&gt;元</span><br><span class="line">                        &lt;/div&gt;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                    &lt;div class=&quot;block&quot;&gt;</span><br><span class="line">                        &lt;h2&gt;平均配送时间&lt;/h2&gt;</span><br><span class="line">                        &lt;div class=&quot;content&quot;&gt;</span><br><span class="line">                            &lt;span class=&quot;num&quot;&gt;&#123;&#123;seller.deliveryTime&#125;&#125;&lt;/span&gt;分钟</span><br><span class="line">                        &lt;/div&gt;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;divider&quot;&gt;&lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;activities&quot;&gt;</span><br><span class="line">                &lt;div class=&quot;bulletin&quot;&gt;</span><br><span class="line">                    &lt;h1&gt;公告与活动&lt;/h1&gt;</span><br><span class="line">                    &lt;div class=&quot;content&quot;&gt;&#123;&#123;seller.bulletin&#125;&#125;&lt;/div&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;supports&quot;&gt;</span><br><span class="line">                &lt;ul&gt;</span><br><span class="line">                    &lt;li class=&quot;item&quot; v-for=&quot;item in seller.supports&quot;&gt;</span><br><span class="line">                        &lt;iconMap v-bind:iconType=&quot;item.type&quot;&gt;&lt;/iconMap&gt;</span><br><span class="line">                        &lt;span class=&quot;text&quot;&gt;&#123;&#123;item.description&#125;&#125;&lt;/span&gt;</span><br><span class="line">                    &lt;/li&gt;</span><br><span class="line">                &lt;/ul&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;divider&quot;&gt;&lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;seller-imgs&quot;&gt;</span><br><span class="line">                &lt;h1&gt;商家实景&lt;/h1&gt;</span><br><span class="line">                &lt;div class=&quot;img-wrapper&quot; ref=&quot;picsWrapper&quot;&gt;</span><br><span class="line">                    &lt;div class=&quot;picList&quot; ref=&quot;picList&quot;&gt;</span><br><span class="line">                        &lt;img v-for=&quot;pic in seller.pics&quot; v-bind:src=&quot;pic&quot; width=&quot;120&quot; height=&quot;90&quot;&gt;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;divider&quot;&gt;&lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;seller-info&quot;&gt;</span><br><span class="line">                &lt;h1&gt;商家信息&lt;/h1&gt;</span><br><span class="line">                &lt;ul class=&quot;info-list&quot;&gt;</span><br><span class="line">                    &lt;li class=&quot;info&quot; v-for=&quot;info in seller.infos&quot;&gt;&#123;&#123;info&#125;&#125;&lt;/li&gt;</span><br><span class="line">                &lt;/ul&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"></span><br><span class="line">import axios from &apos;axios&apos;</span><br><span class="line">import BScroll from &apos;better-scroll&apos;</span><br><span class="line">import star from &apos;../star/star.vue&apos;</span><br><span class="line">import iconMap from &apos;../iconMap/iconMap.vue&apos;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">    components: &#123;</span><br><span class="line">        star: star,</span><br><span class="line">        iconMap: iconMap</span><br><span class="line">    &#125;,</span><br><span class="line">    props: &#123;</span><br><span class="line">        seller: &#123;</span><br><span class="line">            type: Object</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    data () &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            collectflag: false</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    mounted () &#123;</span><br><span class="line">        this.$nextTick(() =&gt; &#123;</span><br><span class="line">            this._initSellerScroll();</span><br><span class="line">            this._initPicScroll();</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">        _initSellerScroll () &#123;</span><br><span class="line">            if (!this.sellerScroll) &#123;</span><br><span class="line">                this.sellerScroll = new BScroll(this.$refs.sellerWrapper, &#123;</span><br><span class="line">                    click: true</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                this.sellerScroll.refresh();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        _initPicScroll () &#123;</span><br><span class="line">            if (this.seller.pics) &#123;</span><br><span class="line">                let picW = 120;</span><br><span class="line">                let margin = 6;</span><br><span class="line">                let w = (picW + margin) * this.seller.pics.length - margin;</span><br><span class="line">                this.$refs.picList.style.width = w + &quot;px&quot;;</span><br><span class="line">                this.$nextTick(() =&gt; &#123;</span><br><span class="line">                    if (!this.picScroll) &#123;</span><br><span class="line">                        this.picScroll = new BScroll(this.$refs.picsWrapper, &#123;</span><br><span class="line">                            scrollX: true,</span><br><span class="line">                            eventPassthrough: &apos;vertical&apos;,</span><br><span class="line">                            click: true</span><br><span class="line">                        &#125;)</span><br><span class="line">                    &#125; else &#123;</span><br><span class="line">                        this.picScroll.refresh();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="shopCart"><a href="#shopCart" class="headerlink" title="shopCart"></a>shopCart</h3><p>底部购物车样式组件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br></pre></td><td class="code"><pre><span class="line">&lt;template lang=&quot;html&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;shopCart&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;content&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;content-left&quot; v-on:click=&quot;listToggle&quot;&gt;</span><br><span class="line">                &lt;div class=&quot;logo-wrapper&quot; ref=&quot;carIcon&quot;&gt;</span><br><span class="line">                    &lt;div class=&quot;badge&quot; v-show=&quot;totalCount&quot;&gt;</span><br><span class="line">                        &#123;&#123;totalCount&#125;&#125;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                    &lt;div class=&quot;logo&quot; v-bind:class=&quot;&#123;&apos;active&apos;:totalPrice&#125;&quot;&gt;</span><br><span class="line">                        &lt;i class=&quot;icon-shopping_cart&quot;&gt;&lt;/i&gt;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">                &lt;div class=&quot;price&quot; v-bind:class=&quot;&#123;&apos;active&apos;:totalPrice&#125;&quot;&gt;</span><br><span class="line">                    ￥&#123;&#123;totalPrice&#125;&#125;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">                &lt;div class=&quot;desc&quot;&gt;</span><br><span class="line">                    另需要配送费￥&#123;&#123;deliveryPrice&#125;&#125;元</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;content-right&quot; v-bind:class=&quot;&#123;&apos;enough&apos;:totalPrice &gt;= minPrice&#125;&quot;&gt;</span><br><span class="line">                &#123;&#123;payDesc&#125;&#125;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;ball-container&quot;&gt;</span><br><span class="line">            &lt;div v-for=&quot;ball in balls&quot;&gt;</span><br><span class="line">                &lt;transition name=&quot;drop&quot; v-on:before-enter=&quot;beforeEnter&quot; v-on:enter=&quot;enter&quot; v-on:after-enter=&quot;afterEnter&quot;&gt;</span><br><span class="line">                    &lt;div class=&quot;ball&quot; v-show=&quot;ball.show&quot;&gt;</span><br><span class="line">                        &lt;div class=&quot;inner inner-hook&quot;&gt;&lt;/div&gt;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                &lt;/transition&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;transition name=&quot;transHeight&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;shopcart-list&quot; v-show=&quot;listShow&quot;&gt;</span><br><span class="line">                &lt;div class=&quot;list-header&quot;&gt;</span><br><span class="line">                    &lt;h1 class=&quot;title&quot;&gt;购物车&lt;/h1&gt;</span><br><span class="line">                    &lt;span class=&quot;empty&quot; v-on:click=&quot;setEmpty()&quot;&gt;清空&lt;/span&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">                &lt;div class=&quot;list-content&quot; ref=&quot;foodlist&quot;&gt;</span><br><span class="line">                    &lt;ul&gt;</span><br><span class="line">                        &lt;li class=&quot;food&quot; v-for=&quot;food in selectedFoods&quot;&gt;</span><br><span class="line">                            &lt;span class=&quot;name&quot;&gt;&#123;&#123;food.name&#125;&#125;&lt;/span&gt;</span><br><span class="line">                            &lt;div class=&quot;price&quot;&gt;</span><br><span class="line">                                &lt;span&gt;￥&#123;&#123;food.price * food.count&#125;&#125;&lt;/span&gt;</span><br><span class="line">                            &lt;/div&gt;</span><br><span class="line">                            &lt;div class=&quot;cartcontrol-wrapper&quot;&gt;</span><br><span class="line">                                &lt;cartcontrol :food=&quot;food&quot;&gt;&lt;/cartcontrol&gt;</span><br><span class="line">                            &lt;/div&gt;</span><br><span class="line">                        &lt;/li&gt;</span><br><span class="line">                    &lt;/ul&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/transition&gt;</span><br><span class="line">        &lt;transition name=&quot;fade-backdrop&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;backdrop&quot; v-show=&quot;showBackdrop&quot; v-on:click=&quot;hideBackdrop&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;/transition&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"></span><br><span class="line">import cartcontrol from &apos;../cartcontrol/cartcontrol.vue&apos;</span><br><span class="line">import BScroll from &apos;better-scroll&apos;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">    props: &#123;</span><br><span class="line">        selectedFoods: &#123;</span><br><span class="line">            type: Array,</span><br><span class="line">            default: []</span><br><span class="line">        &#125;,</span><br><span class="line">        deliveryPrice: &#123;</span><br><span class="line">            type: Number,</span><br><span class="line">            default: 0</span><br><span class="line">        &#125;,</span><br><span class="line">        minPrice: &#123;</span><br><span class="line">            type: Number,</span><br><span class="line">            default: 0</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    data () &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            balls: [&#123;</span><br><span class="line">                show: false</span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                show: false</span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                show: false</span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                show: false</span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                show: false</span><br><span class="line">            &#125;],</span><br><span class="line">            listShow: false, //购物车折叠状态</span><br><span class="line">            dropBalls: [], //下落的小球</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    created () &#123;</span><br><span class="line">        this.$root.eventHub.$on(&apos;cart.add&apos;, this.drop); //接收小球动画</span><br><span class="line">        this.$root.eventHub.$on(&apos;cart.add&apos;, this.cartAnimation);</span><br><span class="line">    &#125;,</span><br><span class="line">    computed: &#123;</span><br><span class="line">        totalPrice () &#123;</span><br><span class="line">            let total = 0;</span><br><span class="line">            this.selectedFoods.forEach((food) =&gt; &#123;</span><br><span class="line">                if (food.count) &#123;</span><br><span class="line">                    total += food.price * food.count;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">            return total;</span><br><span class="line">        &#125;,</span><br><span class="line">        totalCount () &#123;</span><br><span class="line">            let count = 0;</span><br><span class="line">            this.selectedFoods.forEach((food) =&gt; &#123;</span><br><span class="line">                count += food.count;</span><br><span class="line">            &#125;);</span><br><span class="line">            return count;</span><br><span class="line">        &#125;,</span><br><span class="line">        payDesc () &#123;</span><br><span class="line">            let diff = this.minPrice - this.totalPrice;</span><br><span class="line">            if (!this.totalPrice) &#123;</span><br><span class="line">                return `￥$&#123;this.minPrice&#125; 起送`;</span><br><span class="line">            &#125; else if (diff &gt; 0) &#123;</span><br><span class="line">                return `还差￥$&#123;diff&#125;元`;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                return &apos;去结算&apos;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        showBackdrop () &#123;</span><br><span class="line">            if (this.listShow &amp;&amp; this.totalPrice) &#123;</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line">            this.listShow = false;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">        cartAnimation () &#123;</span><br><span class="line">            setTimeout (() =&gt; &#123;</span><br><span class="line">                this.$refs.carIcon.classList.add(&apos;tantantan&apos;);</span><br><span class="line">                setTimeout (() =&gt; &#123;</span><br><span class="line">                    this.$refs.carIcon.classList.remove(&apos;tantantan&apos;);</span><br><span class="line">                &#125;, 800);</span><br><span class="line">            &#125;, 400);</span><br><span class="line">        &#125;,</span><br><span class="line">        _initScroll () &#123;</span><br><span class="line">            this.foodlistScroll = new BScroll(this.$refs.foodlist, &#123;</span><br><span class="line">                click: true</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;,</span><br><span class="line">        hideBackdrop () &#123;</span><br><span class="line">            this.listShow = false;</span><br><span class="line">        &#125;,</span><br><span class="line">        listToggle () &#123;</span><br><span class="line">            if (!this.selectedFoods.length) &#123;</span><br><span class="line">                return;</span><br><span class="line">            &#125;</span><br><span class="line">            this.listShow = !this.listShow;</span><br><span class="line">            this.$nextTick(() =&gt; &#123;</span><br><span class="line">                if (!this.foodlistScroll) &#123;</span><br><span class="line">                    this._initScroll();</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    this.foodlistScroll.refresh();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;,</span><br><span class="line">        drop (ele) &#123;</span><br><span class="line">            //console.log(ele); //获取点击的那个添加按钮</span><br><span class="line">            for (let i = 0; i &lt; this.balls.length; i++) &#123;</span><br><span class="line">                let ball = this.balls[i];</span><br><span class="line">                if (!ball.show) &#123;</span><br><span class="line">                    ball.show = true; //表示可以有下落动画</span><br><span class="line">                    ball.el = ele;</span><br><span class="line">                    this.dropBalls.push(ball);</span><br><span class="line">                    return; //跳出循环</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        beforeEnter(el) &#123;</span><br><span class="line">            let count = this.balls.length;</span><br><span class="line">            while (count--) &#123;</span><br><span class="line">                let ball = this.balls[count];</span><br><span class="line">                if (ball.show) &#123;</span><br><span class="line">                let rect = ball.el.getBoundingClientRect();</span><br><span class="line">                let x = rect.left - 32;</span><br><span class="line">                let y = -(window.innerHeight - rect.top - 22);</span><br><span class="line">                el.style.display = &apos;&apos;;</span><br><span class="line">                el.style.webkitTransform = `translate3d(0,$&#123;y&#125;px,0)`;</span><br><span class="line">                el.style.transform = `translate3d(0,$&#123;y&#125;px,0)`;</span><br><span class="line">                let inner = el.getElementsByClassName(&apos;inner-hook&apos;)[0];</span><br><span class="line">                inner.style.webkitTransform = `translate3d($&#123;x&#125;px,0,0)`;</span><br><span class="line">                inner.style.transform = `translate3d($&#123;x&#125;px,0,0)`;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        enter(el, done) &#123;</span><br><span class="line">            let rf = el.offsetHeight;</span><br><span class="line">            this.$nextTick(() =&gt; &#123;</span><br><span class="line">                el.style.webkitTransform = &apos;translate3d(0,0,0)&apos;;</span><br><span class="line">                el.style.transform = &apos;translate3d(0,0,0)&apos;;</span><br><span class="line">                let inner = el.getElementsByClassName(&apos;inner-hook&apos;)[0];</span><br><span class="line">                inner.style.webkitTransform = &apos;translate3d(0,0,0)&apos;;</span><br><span class="line">                inner.style.transform = &apos;translate3d(0,0,0)&apos;;</span><br><span class="line">                el.addEventListener(&apos;transitionend&apos;, done);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;,</span><br><span class="line">        afterEnter(el) &#123;</span><br><span class="line">            let ball = this.dropBalls.shift();</span><br><span class="line">            if (ball) &#123;</span><br><span class="line">                ball.show = false;</span><br><span class="line">                el.style.display = &apos;none&apos;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        setEmpty () &#123;</span><br><span class="line">            this.selectedFoods.forEach((food) =&gt; &#123;</span><br><span class="line">                food.count = 0;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    components: &#123;</span><br><span class="line">        cartcontrol</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="star"><a href="#star" class="headerlink" title="star"></a>star</h3><p>评分的星星组件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=&quot;star&quot; v-bind:class=&quot;starType&quot;&gt;</span><br><span class="line">    &lt;span v-for=&quot;itemClass in itemClasses&quot; v-bind:class=&quot;itemClass&quot; class=&quot;star-item&quot;&gt;&lt;/span&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"></span><br><span class="line">const LENGTH = 5;</span><br><span class="line">const CLS_ON = &apos;on&apos;;</span><br><span class="line">const CLS_HALF = &apos;half&apos;;</span><br><span class="line">const CLS_OFF = &apos;off&apos;;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">    props: &#123;</span><br><span class="line">        size: &#123;</span><br><span class="line">            type: Number</span><br><span class="line">        &#125;,</span><br><span class="line">        score: &#123;</span><br><span class="line">            type: Number</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    computed: &#123;</span><br><span class="line">        starType () &#123;</span><br><span class="line">            return &apos;star-&apos; + this.size;</span><br><span class="line">        &#125;,</span><br><span class="line">        itemClasses () &#123;</span><br><span class="line">            let result = [];</span><br><span class="line">            let score = Math.floor(this.score * 2) / 2;</span><br><span class="line">            let hasDecimal = score % 1 !== 0;</span><br><span class="line">            let integer = Math.floor(score);</span><br><span class="line">            for (let i = 0; i &lt; integer; i++) &#123;</span><br><span class="line">                result.push(CLS_ON);</span><br><span class="line">            &#125;</span><br><span class="line">            if (hasDecimal) &#123;</span><br><span class="line">                result.push(CLS_HALF); </span><br><span class="line">            &#125;</span><br><span class="line">            while (result.length &lt; LENGTH) &#123;</span><br><span class="line">                result.push(CLS_OFF);</span><br><span class="line">            &#125;</span><br><span class="line">            return result;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="产品阶段打包配置"><a href="#产品阶段打包配置" class="headerlink" title="产品阶段打包配置"></a>产品阶段打包配置</h2><p>新建了一个<code>webpack.production.config.js</code>文件来进行产品阶段的打包配置</p>
+<p>然后在<code>package.json</code>的<code>scripts</code>字段设置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    ...</span><br><span class="line">    &quot;build&quot;: &quot;cross-env NODE_ENV=production webpack --config ./webpack.production.config.js --progress --hide-modules&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>webpack.production.config.js</code>的配置如下</p>
+<p>输出文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, &apos;./dist&apos;), //path = require(&apos;path&apos;)</span><br><span class="line">    filename: &apos;build.js&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>各模块打包：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    test: /\.vue$/,</span><br><span class="line">    loader: &apos;vue-loader&apos;,</span><br><span class="line">    options: &#123;</span><br><span class="line">        loaders: &#123;</span><br><span class="line">            less:ExtractTextPlugin.extract(&#123; //提取vue文件中的css编码</span><br><span class="line">                use: [&quot;css-loader&quot;, &quot;less-loader&quot;],</span><br><span class="line">                fallback: &quot;vue-style-loader&quot;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">    test: /\.(png|jpg|gif|svg)$/,</span><br><span class="line">    loader: &apos;file-loader?limit=8192&amp;name=img/[hash:8].[name].[ext]&apos; //定义了文件大小最大为8192kb，过大的图片以base64编码表示</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">    test: /\.less$/,</span><br><span class="line">    use: ExtractTextPlugin.extract(&#123; //提取less编码，关于ExtractTextPlugin这里的写法有些版本是不一样的，具体参考当前版本</span><br><span class="line">        fallback: &quot;style-loader&quot;,</span><br><span class="line">        use: [&quot;less-loader&quot;, &quot;css-loader&quot;]</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">    text: /\.(eot|svg|ttf|woff|woff2)$/,</span><br><span class="line">    loader: &quot;url-loader&quot;,</span><br><span class="line">    options: &#123;</span><br><span class="line">        name: &apos;[name].[ext]?[hash]&apos;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>插件配置</p>
+<p>引用以下插件,需要另行安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const HtmlWebpackPlugin = require(&apos;html-webpack-plugin&apos;);</span><br><span class="line">const ExtractTextPlugin = require(&apos;extract-text-webpack-plugin&apos;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">plugins: [</span><br><span class="line">    new HtmlWebpackPlugin(&#123;</span><br><span class="line">        template: __dirname + &quot;/index.tmpl.html&quot;</span><br><span class="line">    &#125;),</span><br><span class="line">    new ExtractTextPlugin(&#123;</span><br><span class="line">        filename: &quot;style.css&quot;,</span><br><span class="line">        allChunks: true</span><br><span class="line">    &#125;)</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/饿了么-vue/" rel="tag"># 饿了么.vue</a>
+          
+            <a href="/tags/Vue-js/" rel="tag"># Vue.js</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/23/前端面试常见问题整理 (2017-09-23)/" rel="next" title="前端面试常见问题整理 (2017-09-23)">
+                <i class="fa fa-chevron-left"></i> 前端面试常见问题整理 (2017-09-23)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/13/一个静态网站压缩中文字体的解决方案/" rel="prev" title="一个静态网站压缩中文字体的解决方案">
+                一个静态网站压缩中文字体的解决方案 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="KevinLau">
+          
+            <p class="site-author-name" itemprop="name">KevinLau</p>
+            <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Kevin031" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2122637140" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>微博</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#技术栈："><span class="nav-number">1.0.1.</span> <span class="nav-text">技术栈：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用到的库"><span class="nav-number">1.0.2.</span> <span class="nav-text">用到的库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现功能"><span class="nav-number">1.0.3.</span> <span class="nav-text">实现功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#遇到的问题"><span class="nav-number">1.0.4.</span> <span class="nav-text">遇到的问题</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#项目结构分析"><span class="nav-number">2.</span> <span class="nav-text">项目结构分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#整体结构"><span class="nav-number">2.1.</span> <span class="nav-text">整体结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件功能-忽略CSS"><span class="nav-number">2.2.</span> <span class="nav-text">组件功能 (忽略CSS)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#App"><span class="nav-number">2.2.1.</span> <span class="nav-text">App</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cartcontrol"><span class="nav-number">2.2.2.</span> <span class="nav-text">cartcontrol</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#goods"><span class="nav-number">2.2.3.</span> <span class="nav-text">goods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#header"><span class="nav-number">2.2.4.</span> <span class="nav-text">header</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iconMap"><span class="nav-number">2.2.5.</span> <span class="nav-text">iconMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#myFood"><span class="nav-number">2.2.6.</span> <span class="nav-text">myFood</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ratings"><span class="nav-number">2.2.7.</span> <span class="nav-text">ratings</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#seller"><span class="nav-number">2.2.8.</span> <span class="nav-text">seller</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shopCart"><span class="nav-number">2.2.9.</span> <span class="nav-text">shopCart</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#star"><span class="nav-number">2.2.10.</span> <span class="nav-text">star</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#产品阶段打包配置"><span class="nav-number">2.3.</span> <span class="nav-text">产品阶段打包配置</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2016 &mdash; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KevinLau</span>
+
+  
+</div>
+
+
+  <!--<div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>-->
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
