@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-hk">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="JavaScript,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="算法数组中第 k 个最大元素(详见leetcode) 二叉树中的所有路径(详见leetcode) 对JS的了解 是基于原型的动态语言，主要特性有this、原型和原型链。 JS的组成严格来说分为语言标准部分（ECMAScript）和宿主环境部分（浏览器/nodejs）  0.1+0.2为什么不等于0.3（JS遵循IEEE754标准通过64位来表示一个数字，最大安全数字是Math.pow(2, 53)">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="怒刷前端100题(答题方向)">
+<meta property="og:url" content="Kevin031.github.io/2021/04/18/怒刷前端100题/index.html">
+<meta property="og:site_name" content="PeanutButter">
+<meta property="og:description" content="算法数组中第 k 个最大元素(详见leetcode) 二叉树中的所有路径(详见leetcode) 对JS的了解 是基于原型的动态语言，主要特性有this、原型和原型链。 JS的组成严格来说分为语言标准部分（ECMAScript）和宿主环境部分（浏览器/nodejs）  0.1+0.2为什么不等于0.3（JS遵循IEEE754标准通过64位来表示一个数字，最大安全数字是Math.pow(2, 53)">
+<meta property="og:locale" content="zh-hk">
+<meta property="og:updated_time" content="2021-05-23T16:25:29.191Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="怒刷前端100题(答题方向)">
+<meta name="twitter:description" content="算法数组中第 k 个最大元素(详见leetcode) 二叉树中的所有路径(详见leetcode) 对JS的了解 是基于原型的动态语言，主要特性有this、原型和原型链。 JS的组成严格来说分为语言标准部分（ECMAScript）和宿主环境部分（浏览器/nodejs）  0.1+0.2为什么不等于0.3（JS遵循IEEE754标准通过64位来表示一个数字，最大安全数字是Math.pow(2, 53)">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="Kevin031.github.io/2021/04/18/怒刷前端100题/">
+
+
+
+
+
+  <title>怒刷前端100题(答题方向) | PeanutButter</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-hk">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">PeanutButter</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">一个技术博客</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            關於
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分類
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="Kevin031.github.io/2021/04/18/怒刷前端100题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KevinLau">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PeanutButter">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">怒刷前端100题(答题方向)</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2021-04-18T10:35:59+08:00">
+                2021-04-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h1><h2 id="数组中第-k-个最大元素"><a href="#数组中第-k-个最大元素" class="headerlink" title="数组中第 k 个最大元素"></a>数组中第 k 个最大元素</h2><p>(详见leetcode)</p>
+<h2 id="二叉树中的所有路径"><a href="#二叉树中的所有路径" class="headerlink" title="二叉树中的所有路径"></a>二叉树中的所有路径</h2><p>(详见leetcode)</p>
+<h2 id="对JS的了解"><a href="#对JS的了解" class="headerlink" title="对JS的了解"></a>对JS的了解</h2><ol>
+<li>是基于原型的动态语言，主要特性有this、原型和原型链。</li>
+<li>JS的组成严格来说分为语言标准部分（ECMAScript）和宿主环境部分（浏览器/nodejs）</li>
+</ol>
+<h2 id="0-1-0-2为什么不等于0-3"><a href="#0-1-0-2为什么不等于0-3" class="headerlink" title="0.1+0.2为什么不等于0.3"></a>0.1+0.2为什么不等于0.3</h2><p>（JS遵循IEEE754标准通过64位来表示一个数字，最大安全数字是Math.pow(2, 53)-1，超过这个数位的会发生截断）</p>
+<p>将数字类型按双精度浮点型来存储，在进行数字运算的时候会进行进制转换并截取52位，而0.1和0.2转换后是无限循环的，从而造成精度丢失，二进制对阶运算的时候会造成二次精度丢失，从而导致计算出来的结果有误差。<br>解决方案：</p>
+<ol>
+<li>小数位数确定的情况下可以各自先乘以10或者100，转换成整数去相加（Math.pow(10, n)）</li>
+<li>通过Math.abs(a - b) &lt; Number.EPSILON判断0.1+0.2和0.3是否小于最小精度，如果是则认为相等</li>
+</ol>
+<h2 id="JS数据类型"><a href="#JS数据类型" class="headerlink" title="JS数据类型"></a>JS数据类型</h2><p>基本类型：String,Number,Boolean,Undefine,Null,Symbol(ES6),BigInt(ES2020)<br>引用类型：Object -&gt; (Array,Function)</p>
+<h2 id="Symbol有什么用处"><a href="#Symbol有什么用处" class="headerlink" title="Symbol有什么用处"></a>Symbol有什么用处</h2><p>可以用来表示一个独一无二的变量防止命名冲突，也可以作为一个私有属性防止被遍历到。</p>
+<h2 id="DOM事件流"><a href="#DOM事件流" class="headerlink" title="DOM事件流"></a>DOM事件流</h2><p>事件捕获-&gt;处于目标-&gt;事件冒泡</p>
+<p>具体：父级捕获-&gt;子级捕获-&gt;子级冒泡-&gt;父级冒泡</p>
+<h2 id="事件是如何实现的"><a href="#事件是如何实现的" class="headerlink" title="事件是如何实现的"></a>事件是如何实现的</h2><p>由一组事件类型和事件处理程序构成，一个事件可以触发多个处理程序。<br>基于发布订阅模式，js运行的时候浏览器会读取事件相关的代码，到具体事件触发的时候去执行。</p>
+<p>DOM0级：直接在html元素上on*绑定事件处理函数，后面的会覆盖前面的。<br>DOM2级：通过element.addEventListener添加事件处理函数，可以绑定多个，按顺序执行。<br>DOM3级：在DOM2级的标准上定义了事件类型，添加了自定义事件</p>
+<h2 id="new一个函数的时候发生了什么"><a href="#new一个函数的时候发生了什么" class="headerlink" title="new一个函数的时候发生了什么"></a>new一个函数的时候发生了什么</h2><p>函数内部有两个方法：call和construct</p>
+<ol>
+<li>在通过new来调用时会执行construct方法创建一个实例对象，将this绑定到新的示例对象上，再调用call执行函数体</li>
+<li><p>直接调用时，调用call直接执行函数体</p>
+</li>
+<li><p>创建一个新的对象</p>
+</li>
+<li>这个新对象的<strong>proto</strong>指向构造函数的prototype</li>
+<li>如果这个函数没有返回其他对象，则自动返回新对象</li>
+</ol>
+<p>用代码表示：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span> (<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> xiaoming = <span class="keyword">new</span> Person(<span class="string">'xiaoming'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(xiaoming.__proto__ = Person.prototype) <span class="comment">// true</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="原型链和原型链的继承"><a href="#原型链和原型链的继承" class="headerlink" title="原型链和原型链的继承"></a>原型链和原型链的继承</h2><p>所有函数都有一个不可枚举的prototype属性，指向它的原型对象。<br>对象上有一个<strong>proto</strong>的属性指向它的构造器的prototype也就是它的原型对象。<br>当对象读取属性的时候，如果没有在自身找到，就会查找自身的原型对象属性，原型对象也会继续查找自身的原型，直到找到Object.prototype时，原型为null，停止查找。这种通过原型链接逐级向上查找的机制成为原型链。</p>
+<p>ES5借助prototype实现继承<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span> (<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Foo.prototype.getName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.name</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Bar</span> (<span class="params">name, label</span>) </span>&#123;</span><br><span class="line">    Foo.call(<span class="keyword">this</span>, name)</span><br><span class="line">    <span class="keyword">this</span>.label = label</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Bar.prototype = <span class="built_in">Object</span>.create(Foo.prototype)</span><br><span class="line">Bar.prototype.constructor = Bar</span><br><span class="line"></span><br><span class="line">Bar.protoype.constructor = Bar</span><br><span class="line"></span><br><span class="line">Bar.prototype.getLabel = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.label</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> Bar(<span class="string">'a'</span>, <span class="string">'obj'</span>)</span><br><span class="line">a.getName() <span class="comment">// a</span></span><br><span class="line">a.getLabel() <span class="comment">// obj</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="this指向和bind、call、apply的实现"><a href="#this指向和bind、call、apply的实现" class="headerlink" title="this指向和bind、call、apply的实现"></a>this指向和bind、call、apply的实现</h2><p>this指向规则：</p>
+<ol>
+<li>默认绑定：没有其他修饰（bind, apply, call），在非严格模式下定义指向全局对象，严格模式下定义指向undefined</li>
+<li>隐式绑定：调用位置有上下文对象，或者函数作为某个对象的属性，this指向上下文对象。</li>
+<li>显式绑定：通过call和apply来绑定this</li>
+<li>New绑定：new调用函数会创建一个全新的对象， 并将函数的this指向新对象。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 手写call</span></span><br><span class="line"><span class="built_in">Function</span>.prototype.call = <span class="function"><span class="keyword">function</span> (<span class="params">context, ...args</span>) </span>&#123;</span><br><span class="line">    context = context || <span class="built_in">window</span></span><br><span class="line">    <span class="keyword">const</span> fnSymbol = <span class="built_in">Symbol</span>(<span class="string">'fn'</span>)</span><br><span class="line">    context[fnSymbol] = <span class="keyword">this</span></span><br><span class="line">    context[fnSymbol](...args)</span><br><span class="line">    <span class="keyword">delete</span> context[fnSymbol]</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 手写bind</span></span><br><span class="line"><span class="built_in">Function</span>.prototype.bind = <span class="function"><span class="keyword">function</span> (<span class="params">context, ...args</span>) </span>&#123;</span><br><span class="line">    context = context || <span class="built_in">window</span></span><br><span class="line">    <span class="keyword">const</span> fnSymbol = <span class="built_in">Symbol</span>(<span class="string">'fn'</span>)</span><br><span class="line">    context[fnSymbol] = <span class="keyword">this</span></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">..._args</span>) </span>&#123;</span><br><span class="line">        args = args.concat(_args)</span><br><span class="line">        context[fnSymbol](..._args)</span><br><span class="line">        <span class="keyword">delete</span> context[fnSymbol]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Eventloop机制"><a href="#Eventloop机制" class="headerlink" title="Eventloop机制"></a>Eventloop机制</h2><p>V8引擎的事件循环机制，主要用来解决异步处理程序的问题，在识别到setTimeout/setInterval/setImmediate/I/O/UI rendering的时候创建宏任务，在识别到Promise/process.nextTick的时候创建微任务，在等待当前js调用栈清空后，将下一个循环的操作入栈按顺序执行。</p>
+<p>假如是setTimeout(fn, 0), 具体执行的时间与当前js调用栈的执行时间有关。</p>
+<p>每个循环先执行宏任务，再执行微任务。</p>
+<h2 id="闭包是什么"><a href="#闭包是什么" class="headerlink" title="闭包是什么"></a>闭包是什么</h2><p>闭包是有权访问另一个函数作用域变量的函数，本质是这个函数中存在指向父级作用域的引用，一般通过函数返回对象也是函数，或者将函数作为参数传递到另一个函数中来产生。主要用于模块化和函数柯里化。</p>
+<p>JS在执行过程中有两个阶段，代码编译阶段和代码执行阶段。编译阶段由编译器完成，这个阶段作用域规则会确定。执行阶段由js引擎完成，执行上下文在这个阶段创建。</p>
+<p>作用域：全局作用域和局部作用域，用于变量或函数查找<br>作用域链：当前作用域中没找到变量，会到父作用域查找，直到全局作用域为止</p>
+<h2 id="数组有哪些方法"><a href="#数组有哪些方法" class="headerlink" title="数组有哪些方法"></a>数组有哪些方法</h2><p>push<br>shift<br>pop<br>unshift<br>sort<br>reduce<br>slice<br>splice<br>forEach<br>map<br>find<br>findIndex<br>toString<br>valueOf</p>
+<h2 id="arguments转数组"><a href="#arguments转数组" class="headerlink" title="arguments转数组"></a>arguments转数组</h2><p>[…arguments]<br>Array.from<br>Array.prototype.slice.apply(arguments)</p>
+<h2 id="箭头函数和普通函数的区别"><a href="#箭头函数和普通函数的区别" class="headerlink" title="箭头函数和普通函数的区别"></a>箭头函数和普通函数的区别</h2><ol>
+<li>箭头函数的this由外层（函数或全局作用域）来决定</li>
+<li>箭头函数没有原型、自身this、super、auguments，也不能通过new来调用</li>
+</ol>
+<p>箭头函数内部由于没有construct方法，不能作为构造函数调用</p>
+<h2 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h2><p>函数在运行的时候会先创建执行上下文</p>
+<ol>
+<li>为argument创建属性</li>
+<li>为function的函数名创建属性</li>
+<li>扫描函数体中var的变量，创建同名属性，值为undefined</li>
+</ol>
+<h2 id="Promise的实现原理"><a href="#Promise的实现原理" class="headerlink" title="Promise的实现原理"></a>Promise的实现原理</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyPromise</span> (<span class="params">fn</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.resolvedCallbacks = []</span><br><span class="line">  <span class="keyword">this</span>.rejectedCallbacks = []</span><br><span class="line"></span><br><span class="line">  <span class="keyword">this</span>.state = <span class="string">'PENDING'</span></span><br><span class="line">  <span class="keyword">this</span>.value = <span class="string">''</span></span><br><span class="line"></span><br><span class="line">  fn(<span class="keyword">this</span>.resolve.bind(<span class="keyword">this</span>), <span class="keyword">this</span>.reject.bind(<span class="keyword">this</span>))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MyPromise.prototype.resolve = <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 实际上需要用MutationObserver实现微任务</span></span><br><span class="line">  <span class="keyword">var</span> _this = <span class="keyword">this</span></span><br><span class="line">  setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (_this.state === <span class="string">'PENDING'</span>) &#123;</span><br><span class="line">      _this.state = <span class="string">'RESOLVED'</span></span><br><span class="line">      _this.value = value</span><br><span class="line">  </span><br><span class="line">      _this.resolvedCallbacks.map(<span class="function"><span class="params">cb</span> =&gt;</span> cb(value))</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, <span class="number">0</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MyPromise.prototype.reject = <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.state === <span class="string">'PENDING'</span>) &#123;</span><br><span class="line">      <span class="keyword">this</span>.state = <span class="string">'REJECTED'</span></span><br><span class="line">      <span class="keyword">this</span>.value = value</span><br><span class="line"></span><br><span class="line">      <span class="keyword">this</span>.rejectedCallbacks.map(<span class="function"><span class="params">cb</span> =&gt;</span> cb(value))</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MyPromise.prototype.then = <span class="function"><span class="keyword">function</span> (<span class="params">onFullfilled, onRejected</span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">resolvePromise</span> (<span class="params">promise2, result, resolve, reject</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (result === promise2) &#123;</span><br><span class="line">      reject(<span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'error due to circular reference'</span>))</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (result <span class="keyword">instanceof</span> <span class="built_in">Promise</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (result.status === <span class="string">'PENDING'</span>) &#123;</span><br><span class="line">        result.then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">          resolvePromise(promise2, data, resolve, reject)</span><br><span class="line">        &#125;, reject)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        result.then(resolve, reject)</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>.state === <span class="string">'PENDING'</span>) &#123;</span><br><span class="line">    <span class="keyword">typeof</span> onFullfilled === <span class="string">'function'</span> &amp;&amp; <span class="keyword">this</span>.resolvedCallbacks.push(onFullfilled)</span><br><span class="line">    <span class="keyword">typeof</span> onRejected === <span class="string">'function'</span> &amp;&amp; <span class="keyword">this</span>.rejectedCallbacks.push(onRejected)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>.state === <span class="string">'RESOLVED'</span>) &#123;</span><br><span class="line">    <span class="keyword">typeof</span> onFullfilled === <span class="string">'function'</span> &amp;&amp; onFullfilled(<span class="keyword">this</span>.value)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>.state === <span class="string">'REJECTED'</span>) &#123;</span><br><span class="line">    <span class="keyword">typeof</span> onRejected === <span class="string">'function'</span> &amp;&amp; onRejected(<span class="keyword">this</span>.value)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MyPromise.prototype.catch = <span class="function"><span class="keyword">function</span> (<span class="params">onRejected</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>.state === <span class="string">'PENDING'</span>) &#123;</span><br><span class="line">    <span class="keyword">typeof</span> onRejected === <span class="string">'function'</span> &amp;&amp; <span class="keyword">this</span>.rejectedCallbacks.push(onRejected)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>.state === <span class="string">'REJECTED'</span>) &#123;</span><br><span class="line">    onRejected(<span class="keyword">this</span>.value)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="描述从输入url到网页渲染的过程"><a href="#描述从输入url到网页渲染的过程" class="headerlink" title="描述从输入url到网页渲染的过程"></a>描述从输入url到网页渲染的过程</h2><ol>
+<li>进行url解析，向dns服务器请求ip地址</li>
+</ol>
+<ul>
+<li>解析：网络标准规定url只能是字母、数字和一些特殊符号，内容本身的特殊符号和非标准字符则需要转义</li>
+<li>编码规则：utf8</li>
+<li>encodeURI：只转码location.origin</li>
+<li>encodeURIComponent: 转码整个href</li>
+<li>dns解析流程：hosts文件记录-&gt;本地dns解析器缓存-&gt;系统配置的dns服务器的缓存-&gt;根DNS服务器（全球13台，固定ip地址）（非转发模式）</li>
+<li>前端dns优化：<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"x-dns-prefetch-control"</span> <span class="attr">content</span>=<span class="string">"on"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"dns-prefetch"</span> <span class="attr">href</span>=<span class="string">"http://bdimg.share.baidu.com"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol start="2">
+<li>访问IP地址，TCP三次握手</li>
+</ol>
+<ul>
+<li>第一次握手：客户端发送syn=1和seq=x并进入SYN_SEND状态，服务端收到syn码知道客户端要建立连接</li>
+<li>第二次握手：服务端发送syn=1,确认号ack=x+1, seq=y，进入SYN_SEND状态</li>
+<li><p>第三次握手：客户端检查ack是否正确，发送ack=y+1(可以携带数据), seq=x+1，双方进入ESTABLISHED状态</p>
+</li>
+<li><p>为什么要三次握手：确保双方的发送、接收能力都是正常的，避免浪费资源</p>
+</li>
+<li>半连接队列：服务端发送完SYN-ACK包后，将客户端添加到半连接队列中，等待客户端消息，如果未收到，则定时重传</li>
+<li>为什么前两次握手不能携带数据：防止浪费资源去处理未建立的连接</li>
+<li><p>SYN攻击：SYN攻击就是Client在短时间内伪造大量不存在的IP地址，并向Server不断地发送SYN包，Server则回复确认包，并等待Client确认，由于源地址不存在，因此Server需要不断重发直至超时，这些伪造的SYN包将长时间占用未连接队列，导致正常的SYN请求因为队列满而被丢弃，从而引起网络拥塞甚至系统瘫痪。SYN 攻击是一种典型的 DoS/DDoS 攻击。</p>
+</li>
+<li><p>第一次挥手：客户端发送fin=1, seq=u，进入FIN_WAIT1状态</p>
+</li>
+<li>第二次挥手：服务端接收到fin后，发送ack=u+1,seq=v，进入CLOSE_WAIT状态，客户端收到后进入FIN_WAIT2状态</li>
+<li>第三次挥手：服务端发送fin=1,ack=u+1,seq=w</li>
+<li>第四次挥手：客户端发送ack=w+1,seq=u+1,等待2s后进入CLOSED状态</li>
+<li>挥手为什么需要四次：服务端先发送ACK报文告诉客户端已收到报文，但是有未处理完的报文，只有等服务端的所有报文都发送出去了，才能发送FIN报文</li>
+<li>网卡数据包发送到服务器发生了什么：发送到交换机（隔离冲突域，CSMA/CD协议规定网线上同一时刻只能有一台机器发送数据）-&gt;发送到路由器（网关）（物理层-&gt;链路层-&gt;网络层)-&gt;路由器发送到外网-&gt;服务器上层协议传输层分配服务-&gt;服务器应用层（http）-&gt;后端逻辑</li>
+</ul>
+<ol start="3">
+<li><p>请求html文件，如果有缓存则浏览器直接返回，没有就去后台拿</p>
+</li>
+<li><p>解析html，渲染视图</p>
+</li>
+</ol>
+<ul>
+<li><p>流程：构建DOM树-&gt;读取到script文件的时候，获取javascript并执行-&gt;构建CSSOM树-&gt;根据DOM和CSSOM构建渲染树</p>
+</li>
+<li><p>页面渲染优化：dom层次, 图片压缩、雪碧图，交互相关js异步加载，移除sourceMap</p>
+</li>
+</ul>
+<h2 id="setTimeout和setInterval执行时间不够准确的问题（红绿灯问题）"><a href="#setTimeout和setInterval执行时间不够准确的问题（红绿灯问题）" class="headerlink" title="setTimeout和setInterval执行时间不够准确的问题（红绿灯问题）"></a>setTimeout和setInterval执行时间不够准确的问题（红绿灯问题）</h2><p>采用其它时间调度方法</p>
+<p>requestAnimationFrame<br>requestIdleCallback<br>web worker<br>IntersectionObserver</p>
+<h1 id="HTTP相关"><a href="#HTTP相关" class="headerlink" title="HTTP相关"></a>HTTP相关</h1><h2 id="浏览器的缓存机制"><a href="#浏览器的缓存机制" class="headerlink" title="浏览器的缓存机制"></a>浏览器的缓存机制</h2><ol>
+<li>浏览器首次加载资源成功时，服务器返回200，浏览器将资源下载下来，并且把response的header一并缓存</li>
+<li>浏览器再次加载资源时，首先经过强缓存的处理，cache-control优先级最高，如果没有cache-control，会看expires的值，对比是否过期，过期的话则进入协商缓存的处理</li>
+<li>如果cache-control是private或public，命中强缓存</li>
+<li>如果cache-control是max-age=xxx，会比较当前时间和上次200的时间差，没有超过max-age，命中强缓存</li>
+<li>如果cache-control是no-store，则不读取缓存</li>
+<li>如果cache-control是no-cache，则进入协商缓存的处理</li>
+<li>协商缓存阶段，向服务器发送带有if-none-match或if-modified-since的字段，服务器会比较etag，如果相同，命中协商缓存，返回304；如果不一致，则返回新的资源、etag字段和200</li>
+<li>如果发送的是if-modified-since，服务器获取文件最近改动的时间，如果一致则返回304；如果不一致则返回新的资源，last-modified字段和200</li>
+</ol>
+<h2 id="HTTP状态码"><a href="#HTTP状态码" class="headerlink" title="HTTP状态码"></a>HTTP状态码</h2><p>100：客户端必须继续发起请求<br>101：客户端需要转换协议版本<br>200：成功处理请求<br>201：已创建资源<br>202：服务器已接受请求，但尚未处理<br>301：永久重定向<br>302：临时重定向<br>304：客户端可以使用缓存<br>400：客户端参数错误<br>403：请求被拒绝<br>404：未找到资源<br>500：服务器遇到错误<br>503：服务器暂时不可用</p>
+<h2 id="HTTP1-1、2-0增加了哪些特性"><a href="#HTTP1-1、2-0增加了哪些特性" class="headerlink" title="HTTP1.1、2.0增加了哪些特性"></a>HTTP1.1、2.0增加了哪些特性</h2><p>http1.1:<br>增加持久性连接keep-alive<br>增加管道机制，请求可以同时发出<br>响应数据分块传输<br>增加host字段<br>新增24个响应状态码<br>带宽优化<br>缺点：队头阻塞、冗余头信息浪费带宽</p>
+<p>http2.0:<br>增加二进制分帧层，改善性能<br>连接共享，允许单一HTTP请求发起多重请求-响应信息<br>header压缩，降低延迟<br>服务器推送，一次请求，多次响应</p>
+<h2 id="HTTPS和HTTP的区别"><a href="#HTTPS和HTTP的区别" class="headerlink" title="HTTPS和HTTP的区别"></a>HTTPS和HTTP的区别</h2><ol>
+<li>https需要申请ca证书，需要一定费用</li>
+<li>http是明文传输，而https是对称加密传输，更安全</li>
+<li>http端口是80，https是443</li>
+</ol>
+<h2 id="前端安全防御"><a href="#前端安全防御" class="headerlink" title="前端安全防御"></a>前端安全防御</h2><ol>
+<li>XSS跨站脚本攻击<br>cookie使用httpOnly，禁止页面js访问cookie<br>输入检查，过滤特殊字符<br>输出检查，变量输出到html时进行编码和转义</li>
+<li>CSRF<br>请求信息加入随机token进行校验<br>服务端校验referer，此项无法通过浏览器js篡改<br>重要操作加入验证码和滑块强制真实用户进行交互</li>
+</ol>
+<h2 id="怎么判断变量类型"><a href="#怎么判断变量类型" class="headerlink" title="怎么判断变量类型"></a>怎么判断变量类型</h2><h1 id="Vue相关"><a href="#Vue相关" class="headerlink" title="Vue相关"></a>Vue相关</h1><h2 id="data为什么是函数"><a href="#data为什么是函数" class="headerlink" title="data为什么是函数"></a>data为什么是函数</h2><p>由于js对象是引用类型的特性，如果直接赋值给类定义，多次实例化的时候可能会相互污染<br>因此需要通过函数返回值的方式构造确保每次实例化的时候都能拿到初始值</p>
+<h2 id="vue-keep-alive-常用属性"><a href="#vue-keep-alive-常用属性" class="headerlink" title="vue keep-alive 常用属性"></a>vue keep-alive 常用属性</h2><ol>
+<li>router加入scrollBehavior方法</li>
+<li>keep-alive标签include、max属性</li>
+<li>组件中的activated、deactivated钩子</li>
+</ol>
+<h2 id="如果只想要router-view里面的某个组件被缓存，怎么做"><a href="#如果只想要router-view里面的某个组件被缓存，怎么做" class="headerlink" title="如果只想要router-view里面的某个组件被缓存，怎么做"></a>如果只想要router-view里面的某个组件被缓存，怎么做</h2><p>include属性</p>
+<h2 id="vue-运行机制，依赖收集"><a href="#vue-运行机制，依赖收集" class="headerlink" title="vue 运行机制，依赖收集"></a>vue 运行机制，依赖收集</h2><p>订阅者/观察者模式，在数据劫持的时候进行订阅，建立视图和数据的关联，在属性setter触发的时候，通知相应的订阅者触发视图更新</p>
+<h2 id="watch-和-computed"><a href="#watch-和-computed" class="headerlink" title="watch 和 computed"></a>watch 和 computed</h2><p>watch是数据改变的时候就会触发相应的逻辑，而computed则是缓存了最后一次的数据，只有数据发生变化的时候才会触发逻辑</p>
+<h2 id="vue-diff简单讲讲"><a href="#vue-diff简单讲讲" class="headerlink" title="vue diff简单讲讲"></a>vue diff简单讲讲</h2><p>比较只会在同层级进行, 不会跨层级比较。</p>
+<ol>
+<li>触发属性setter</li>
+<li>触发Dep.notify()</li>
+<li>patch(oldVNode, VNode)</li>
+<li>是否为同一个VNode，不是则替换并重新生成VNode</li>
+<li>分情况处理：只有文本节点、一方没有子节点、都有子节点</li>
+<li>都有子节点的情况：没有key的情况只比较头尾，有key的情况下会匹配key</li>
+</ol>
+<h2 id="nextTick的实现原理"><a href="#nextTick的实现原理" class="headerlink" title="nextTick的实现原理"></a>nextTick的实现原理</h2><ol>
+<li>Vue异步执行DOM更新，用队列维护同一个事件循环中的所有数据改变，同一个Watch多次触发只会在队列中保存最后一次的记录，在下一个事件循环中执行DOM更新并刷新队列。</li>
+<li>异步更新的逻辑会先尝试Promise.then和MessageChannel，如果不支持则用setTimeout。</li>
+<li>通过MutationObserver监听DOM变化，完成后触发nextTick回调</li>
+</ol>
+<h1 id="React相关"><a href="#React相关" class="headerlink" title="React相关"></a>React相关</h1><h2 id="Fiber架构"><a href="#Fiber架构" class="headerlink" title="Fiber架构"></a>Fiber架构</h2><p>浏览器的渲染线程和js线程交替运行，互相阻塞，因此分批次操作节点的性能是比一次性操作节点要好的。<br>而JSX递归的结构下过程是不好控制的，所以React16设法将组件的递归栈更新改为链表的依次执行，从而优化渲染性能。<br>具体做法是将内部组件层改成Fiber的链表结构，Fiber节点有三个属性:<br>return 父节点<br>child 第一个子节点(长子)<br>sibing 相邻的下一个节点(兄弟)</p>
+<p>更新逻辑分两个阶段</p>
+<ol>
+<li>虚拟DOM转换为Fiber</li>
+<li>Fiber转换为组件实例或真实DOM</li>
+</ol>
+<p>这一过程规定了一个时间，如果时间不够则把没处理完的节点扔进队列<br>另外使用requestIdleCallback解决时间分片的问题</p>
+<h1 id="Taro相关"><a href="#Taro相关" class="headerlink" title="Taro相关"></a>Taro相关</h1><h2 id="Taro跨平台原理"><a href="#Taro跨平台原理" class="headerlink" title="Taro跨平台原理"></a>Taro跨平台原理</h2><p>通过babel转换ast生成对应的小程序格式文件<br>在小程序上实现DOM api，从而可以复用web技术栈，但是由于运行时的存在可能导致性能问题</p>
+<h1 id="Node相关"><a href="#Node相关" class="headerlink" title="Node相关"></a>Node相关</h1><h2 id="为什么要使用koa-express-，直接用node不能写吗"><a href="#为什么要使用koa-express-，直接用node不能写吗" class="headerlink" title="为什么要使用koa(express)，直接用node不能写吗"></a>为什么要使用koa(express)，直接用node不能写吗</h2><p>代码结构更清晰、中间件机制</p>
+<h1 id="Webpack相关"><a href="#Webpack相关" class="headerlink" title="Webpack相关"></a>Webpack相关</h1><h2 id="loader，plugin的区别，怎么实现loader，plugin"><a href="#loader，plugin的区别，怎么实现loader，plugin" class="headerlink" title="loader，plugin的区别，怎么实现loader，plugin"></a>loader，plugin的区别，怎么实现loader，plugin</h2><p>loader字面意思是加载器，可以加载并转换模块内容，以及加载非javascript的内容<br>plugin字面意思是插件，主要是通过webpack生命周期钩子触发，获取到webpack提供的参数改变输出结果，或者触发其他事件</p>
+<h2 id="webpack打包优化"><a href="#webpack打包优化" class="headerlink" title="webpack打包优化"></a>webpack打包优化</h2><p>分析打包速度，<code>speed-measure-webpack-plugin</code></p>
+<ol>
+<li><p>优化搜索时间、解析时间、压缩时间、二次打包时间<br><code>thread-loader</code>webpack4推荐，开启多个线程池处理任务；线程池的预热<code>thredLoader.warmup(pool, [loader])</code><br><code>happy-pack</code>可利用多进程对文件进行打包（默认cpu核数-1），将任务分配给多个子进程处理，处理完后将结果发送给主进程</p>
+</li>
+<li><p>合理利用缓存，缩短二次构建的时间<br><code>cache-loader</code>, <code>HardSourceWebpackPlugin</code>, <code>babel-loader</code>, <code>cacheDirectory</code></p>
+</li>
+</ol>
+<h1 id="项目相关"><a href="#项目相关" class="headerlink" title="项目相关"></a>项目相关</h1><h2 id="项目中遇到最困难的事是什么"><a href="#项目中遇到最困难的事是什么" class="headerlink" title="项目中遇到最困难的事是什么"></a>项目中遇到最困难的事是什么</h2><p>（临时增加需求怎么处理？产品方案明显错误，技术怎么推进？）</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/17/Koa2后端开发个人实践指南/" rel="next" title="Koa2后端开发个人实践指南">
+                <i class="fa fa-chevron-left"></i> Koa2后端开发个人实践指南
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/07/12/快速搭起一个TypeScript项目脚手架/" rel="prev" title="从零开始实现React基本功能">
+                从零开始实现React基本功能 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="KevinLau">
+          
+            <p class="site-author-name" itemprop="name">KevinLau</p>
+            <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Kevin031" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2122637140" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>微博</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#算法"><span class="nav-number">1.</span> <span class="nav-text">算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数组中第-k-个最大元素"><span class="nav-number">1.1.</span> <span class="nav-text">数组中第 k 个最大元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉树中的所有路径"><span class="nav-number">1.2.</span> <span class="nav-text">二叉树中的所有路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对JS的了解"><span class="nav-number">1.3.</span> <span class="nav-text">对JS的了解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0-1-0-2为什么不等于0-3"><span class="nav-number">1.4.</span> <span class="nav-text">0.1+0.2为什么不等于0.3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS数据类型"><span class="nav-number">1.5.</span> <span class="nav-text">JS数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Symbol有什么用处"><span class="nav-number">1.6.</span> <span class="nav-text">Symbol有什么用处</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM事件流"><span class="nav-number">1.7.</span> <span class="nav-text">DOM事件流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件是如何实现的"><span class="nav-number">1.8.</span> <span class="nav-text">事件是如何实现的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#new一个函数的时候发生了什么"><span class="nav-number">1.9.</span> <span class="nav-text">new一个函数的时候发生了什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型链和原型链的继承"><span class="nav-number">1.10.</span> <span class="nav-text">原型链和原型链的继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#this指向和bind、call、apply的实现"><span class="nav-number">1.11.</span> <span class="nav-text">this指向和bind、call、apply的实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Eventloop机制"><span class="nav-number">1.12.</span> <span class="nav-text">Eventloop机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闭包是什么"><span class="nav-number">1.13.</span> <span class="nav-text">闭包是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组有哪些方法"><span class="nav-number">1.14.</span> <span class="nav-text">数组有哪些方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#arguments转数组"><span class="nav-number">1.15.</span> <span class="nav-text">arguments转数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#箭头函数和普通函数的区别"><span class="nav-number">1.16.</span> <span class="nav-text">箭头函数和普通函数的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量提升"><span class="nav-number">1.17.</span> <span class="nav-text">变量提升</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Promise的实现原理"><span class="nav-number">1.18.</span> <span class="nav-text">Promise的实现原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#描述从输入url到网页渲染的过程"><span class="nav-number">1.19.</span> <span class="nav-text">描述从输入url到网页渲染的过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#setTimeout和setInterval执行时间不够准确的问题（红绿灯问题）"><span class="nav-number">1.20.</span> <span class="nav-text">setTimeout和setInterval执行时间不够准确的问题（红绿灯问题）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP相关"><span class="nav-number">2.</span> <span class="nav-text">HTTP相关</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器的缓存机制"><span class="nav-number">2.1.</span> <span class="nav-text">浏览器的缓存机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP状态码"><span class="nav-number">2.2.</span> <span class="nav-text">HTTP状态码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP1-1、2-0增加了哪些特性"><span class="nav-number">2.3.</span> <span class="nav-text">HTTP1.1、2.0增加了哪些特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTPS和HTTP的区别"><span class="nav-number">2.4.</span> <span class="nav-text">HTTPS和HTTP的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前端安全防御"><span class="nav-number">2.5.</span> <span class="nav-text">前端安全防御</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#怎么判断变量类型"><span class="nav-number">2.6.</span> <span class="nav-text">怎么判断变量类型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vue相关"><span class="nav-number">3.</span> <span class="nav-text">Vue相关</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#data为什么是函数"><span class="nav-number">3.1.</span> <span class="nav-text">data为什么是函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-keep-alive-常用属性"><span class="nav-number">3.2.</span> <span class="nav-text">vue keep-alive 常用属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如果只想要router-view里面的某个组件被缓存，怎么做"><span class="nav-number">3.3.</span> <span class="nav-text">如果只想要router-view里面的某个组件被缓存，怎么做</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-运行机制，依赖收集"><span class="nav-number">3.4.</span> <span class="nav-text">vue 运行机制，依赖收集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#watch-和-computed"><span class="nav-number">3.5.</span> <span class="nav-text">watch 和 computed</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-diff简单讲讲"><span class="nav-number">3.6.</span> <span class="nav-text">vue diff简单讲讲</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nextTick的实现原理"><span class="nav-number">3.7.</span> <span class="nav-text">nextTick的实现原理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#React相关"><span class="nav-number">4.</span> <span class="nav-text">React相关</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Fiber架构"><span class="nav-number">4.1.</span> <span class="nav-text">Fiber架构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Taro相关"><span class="nav-number">5.</span> <span class="nav-text">Taro相关</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Taro跨平台原理"><span class="nav-number">5.1.</span> <span class="nav-text">Taro跨平台原理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Node相关"><span class="nav-number">6.</span> <span class="nav-text">Node相关</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要使用koa-express-，直接用node不能写吗"><span class="nav-number">6.1.</span> <span class="nav-text">为什么要使用koa(express)，直接用node不能写吗</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Webpack相关"><span class="nav-number">7.</span> <span class="nav-text">Webpack相关</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#loader，plugin的区别，怎么实现loader，plugin"><span class="nav-number">7.1.</span> <span class="nav-text">loader，plugin的区别，怎么实现loader，plugin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack打包优化"><span class="nav-number">7.2.</span> <span class="nav-text">webpack打包优化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#项目相关"><span class="nav-number">8.</span> <span class="nav-text">项目相关</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#项目中遇到最困难的事是什么"><span class="nav-number">8.1.</span> <span class="nav-text">项目中遇到最困难的事是什么</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2016 &mdash; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KevinLau</span>
+
+  
+</div>
+
+
+  <!--<div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>-->
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
