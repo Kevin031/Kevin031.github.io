@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-hk">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="参考资料：  https://developer.mozilla.org/zh-CN/docs/Web/JavaScript JavaScript高级程序设计  1. New操作符到底做了什么new操作符是面向对象编程的基础 123456789function Car (make, model, year) &amp;#123;  this.make = make  this.model = model">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript底层原理「不定期更新」">
+<meta property="og:url" content="Kevin031.github.io/2020/03/30/JavaScript底层原理「不定期更新」/index.html">
+<meta property="og:site_name" content="PeanutButter">
+<meta property="og:description" content="参考资料：  https://developer.mozilla.org/zh-CN/docs/Web/JavaScript JavaScript高级程序设计  1. New操作符到底做了什么new操作符是面向对象编程的基础 123456789function Car (make, model, year) &amp;#123;  this.make = make  this.model = model">
+<meta property="og:locale" content="zh-hk">
+<meta property="og:updated_time" content="2022-03-04T09:55:37.993Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript底层原理「不定期更新」">
+<meta name="twitter:description" content="参考资料：  https://developer.mozilla.org/zh-CN/docs/Web/JavaScript JavaScript高级程序设计  1. New操作符到底做了什么new操作符是面向对象编程的基础 123456789function Car (make, model, year) &amp;#123;  this.make = make  this.model = model">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="Kevin031.github.io/2020/03/30/JavaScript底层原理「不定期更新」/"/>
+
+
+
+
+
+  <title>JavaScript底层原理「不定期更新」 | PeanutButter</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-hk">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">PeanutButter</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">一个技术博客</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="Kevin031.github.io/2020/03/30/JavaScript底层原理「不定期更新」/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KevinLau">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PeanutButter">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">JavaScript底层原理「不定期更新」</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-03-30T14:22:17+00:00">
+                2020-03-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>参考资料：</p>
+<ol>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript" target="_blank" rel="external">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript</a></li>
+<li>JavaScript高级程序设计</li>
+</ol>
+<h3 id="1-New操作符到底做了什么"><a href="#1-New操作符到底做了什么" class="headerlink" title="1. New操作符到底做了什么"></a>1. <code>New</code>操作符到底做了什么</h3><p><code>new</code>操作符是面向对象编程的基础</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function Car (make, model, year) &#123;</div><div class="line">  this.make = make</div><div class="line">  this.model = model</div><div class="line">  this.year = year</div><div class="line">&#125;</div><div class="line"></div><div class="line">const carA = new Car(&apos;Tesla&apos;, &apos;Model X&apos;, 2018)</div><div class="line"></div><div class="line">console.log(carA.make) // Tesla</div></pre></td></tr></table></figure>
+<p>MDN上对其的解释为</p>
+<ol>
+<li>创建一个空对象<code>{}</code></li>
+<li>链接该对象「本质是设置该对象的构造函数」到另一个对象</li>
+<li>将步骤<code>1</code>新创建的对象作为<code>this</code>的上下文</li>
+<li>如果该「构造函数」没有返回对象，则返回<code>this</code></li>
+</ol>
+<p>挺抽象的，面试经常问到，而我一直记不住这几个步骤，直到发现其实这一过程其实可以手动模拟，实现过程如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">function create (Constructor) &#123;</div><div class="line">  // step 1</div><div class="line">  this.obj = &#123;&#125;</div><div class="line">  // step 2</div><div class="line">  Object.setPrototypeOf(this.obj, Constructor.prototype)</div><div class="line">  // step 3</div><div class="line">  var args = Array.prototype.slice.call(arguments, 1)</div><div class="line">  this.result = Constructor.apply(obj, args)</div><div class="line">  // step 4</div><div class="line">  return result instanceof Object ? result : this.obj</div><div class="line">&#125;</div><div class="line"></div><div class="line">var carA = create(Car, &apos;Tesla&apos;, &apos;Model X&apos;, 2018)</div><div class="line"></div><div class="line">console.log(create)</div><div class="line">// Tesla</div></pre></td></tr></table></figure>
+<p>这样是不是清晰多了。</p>
+<p>上文的<code>Car</code>就是构造函数，也就是<code>ES6</code>对象语法中的<code>constructor</code>方法。</p>
+<p>需要注意的是第<code>3</code>点，改变<code>obj</code>的原型指向，涉及到了「原型链」的知识点，一个对象除了本身的属性，还包含了原型的属性和方法，因此<code>new</code>操作符做的是让新对象「属性 + 原型」都能从构造函数中获得。</p>
+<p>另外很多人容易把第<code>4</code>步忘了，这个需要注意一下。</p>
+<hr>
+<h3 id="2-bind方法的实现"><a href="#2-bind方法的实现" class="headerlink" title="2. bind方法的实现"></a>2. <code>bind</code>方法的实现</h3><p><code>React</code>开发经常出现的一个问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">class Page extends React.Component &#123;</div><div class="line">  handler () &#123;</div><div class="line">    console.log(this) // window</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render () &#123;</div><div class="line">    return &lt;div&gt;</div><div class="line">      &lt;button onClick=&#123;this.handler&#125;&gt;Click me&lt;/button&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>显然，调用<code>handler</code>方法的时候<code>this</code>丢失了，至于它为什么丢失，我猜测是由于这里有个语法糖</p>
+<p>对象中的<code>handler () {}</code>相当于<code>handler: function () {}</code></p>
+<p><code>React</code>可能在绑定事件的过程中把匿名函数<code>function () {}</code>绑上去了</p>
+<p><code>React</code>官方的建议是在构造函数中绑定一下<code>this</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">constructor () &#123;</div><div class="line">  this.handler = this.handler.bind(this)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这就是<code>bind</code>的作用，<code>bind</code>是<code>ES5</code>提出来的，此前有<code>apply</code>和<code>call</code>方法，这两者用法如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function add (c, d) &#123;</div><div class="line">  console.log(this.a + this.b + c + d)</div><div class="line">&#125;</div><div class="line"></div><div class="line">add(3, 4) // NaN</div><div class="line"></div><div class="line">var obj = &#123;</div><div class="line">  a: 1,</div><div class="line">  b: 2</div><div class="line">&#125; </div><div class="line">add.call(obj, 3, 4) // 10</div><div class="line">add.apply(obj, [3, 4]) // 10</div></pre></td></tr></table></figure>
+<p>而<code>bind</code>的用法如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var func = add.bind(obj, 3)</div><div class="line"></div><div class="line">func(4) // 10</div></pre></td></tr></table></figure>
+<p>似乎更简洁一些，显而易见，它构造了一个新的方法，并将<code>this</code>的上下文指向传进去的对象，同时设置了默认参数，这个构造出来的方法还可以接收新的参数，一并执行前者的逻辑</p>
+<p>为了更好地理解这一过程，我们可以手动实现一下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">function mybind (obj) &#123;</div><div class="line">  // 首先需要明确此方法必须由函数来调用</div><div class="line">  if (typeof this !== &apos;function&apos;) &#123;</div><div class="line">    throw new TypeError(&apos;What is trying to be bound is not callable)</div><div class="line">  &#125;</div><div class="line">  var _this = this</div><div class="line">  // 排除第一个参数，即接收的对象，剩下的是后来传进来的参数，就传到新的方法上</div><div class="line">  var args = Array.prototype.slice(arguments, 1)</div><div class="line">  var bound = function () &#123;</div><div class="line">    // 调用的时候，首先将this指向obj，接着优先用包装函数bind的参数去填充参数列表，然后填充新传入的参数</div><div class="line">    return _this.call(obj, Array.prototype.slice.call(args.concat(arguments)))</div><div class="line">  &#125;</div><div class="line">  return bound</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>bind</code>除了处理丢失<code>this</code>的情况，还常用于函数柯里化，这里顺带一提</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">function add () &#123;</div><div class="line">  var sum = 0 // 闭包</div><div class="line">  var func = function () &#123;</div><div class="line">    var args = Array.prototype.slice.call(arguments)</div><div class="line">    sum = args.reduce(function (a, b) &#123;</div><div class="line">      console.log(a, b, a + b)</div><div class="line">      return a + b</div><div class="line">    &#125;, sum)</div><div class="line">    if (args.length === 0) &#123;</div><div class="line">      return sum</div><div class="line">    &#125; else &#123;</div><div class="line">      return func</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  return func.bind(null, ...arguments)</div><div class="line">&#125;</div><div class="line"></div><div class="line">add(1)(2)(3)(4) // 10</div><div class="line">add(1, 2)(3)(4) // 10</div><div class="line">add(1, 2, 3)(4) // 10</div></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/20/PHP-MVC架构路由功能的简单实现/" rel="next" title="PHP MVC架构路由功能的简单实现">
+                <i class="fa fa-chevron-left"></i> PHP MVC架构路由功能的简单实现
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/04/02/实战总结：运用react+ts+mst实现动态化表单应用/" rel="prev" title="实战总结：运用react+ts+mst实现动态化表单应用">
+                实战总结：运用react+ts+mst实现动态化表单应用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image"
+              src="/images/avatar.gif"
+              alt="KevinLau" />
+          
+            <p class="site-author-name" itemprop="name">KevinLau</p>
+            <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Kevin031" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2122637140" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>微博</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-New操作符到底做了什么"><span class="nav-number">1.</span> <span class="nav-text">1. New操作符到底做了什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-bind方法的实现"><span class="nav-number">2.</span> <span class="nav-text">2. bind方法的实现</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 &mdash; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KevinLau</span>
+
+  
+</div>
+
+
+  <!--<div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>-->
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

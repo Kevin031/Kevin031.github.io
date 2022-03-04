@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-hk">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="CSS,rem," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="说到用rem作为尺寸单位的布局，自然会提到em，先对比一下两者有什么不同 em1.作为其他属性单位时，代表自身字体大小2.作为font-size单位时，代表父元素的字体大小 （父元素追溯到最后，是默认的html标签字体大小，为16px） 举个例子，如果我们需要基于一个960px宽的设计稿制作一个页面时，里面的元素宽度需要经过以下计算得出 1 / 16px * 元素原本像素 = 元素em值 或者可以">
+<meta name="keywords" content="CSS,rem">
+<meta property="og:type" content="article">
+<meta property="og:title" content="rem布局原理及简单实践">
+<meta property="og:url" content="Kevin031.github.io/2017/11/28/rem布局原理及简单实践/index.html">
+<meta property="og:site_name" content="PeanutButter">
+<meta property="og:description" content="说到用rem作为尺寸单位的布局，自然会提到em，先对比一下两者有什么不同 em1.作为其他属性单位时，代表自身字体大小2.作为font-size单位时，代表父元素的字体大小 （父元素追溯到最后，是默认的html标签字体大小，为16px） 举个例子，如果我们需要基于一个960px宽的设计稿制作一个页面时，里面的元素宽度需要经过以下计算得出 1 / 16px * 元素原本像素 = 元素em值 或者可以">
+<meta property="og:locale" content="zh-hk">
+<meta property="og:updated_time" content="2022-03-04T09:55:37.993Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="rem布局原理及简单实践">
+<meta name="twitter:description" content="说到用rem作为尺寸单位的布局，自然会提到em，先对比一下两者有什么不同 em1.作为其他属性单位时，代表自身字体大小2.作为font-size单位时，代表父元素的字体大小 （父元素追溯到最后，是默认的html标签字体大小，为16px） 举个例子，如果我们需要基于一个960px宽的设计稿制作一个页面时，里面的元素宽度需要经过以下计算得出 1 / 16px * 元素原本像素 = 元素em值 或者可以">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="Kevin031.github.io/2017/11/28/rem布局原理及简单实践/"/>
+
+
+
+
+
+  <title>rem布局原理及简单实践 | PeanutButter</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-hk">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">PeanutButter</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">一个技术博客</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="Kevin031.github.io/2017/11/28/rem布局原理及简单实践/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KevinLau">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PeanutButter">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">rem布局原理及简单实践</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-11-28T04:47:46+00:00">
+                2017-11-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>说到用<code>rem</code>作为尺寸单位的布局，自然会提到<code>em</code>，先对比一下两者有什么不同</p>
+<h2 id="em"><a href="#em" class="headerlink" title="em"></a>em</h2><p>1.作为其他属性单位时，代表<strong>自身</strong>字体大小<br>2.作为<code>font-size</code>单位时，代表<strong>父元素</strong>的字体大小</p>
+<p>（父元素追溯到最后，是默认的html标签字体大小，为16px）</p>
+<p>举个例子，如果我们需要基于一个960px宽的设计稿制作一个页面时，里面的元素宽度需要经过以下计算得出</p>
+<p><code>1 / 16px * 元素原本像素 = 元素em值</code></p>
+<p>或者可以这么理解</p>
+<p><code>1 / 父元素的font-size * 需要转换的元素像素 = 元素em值</code></p>
+<p>所以算出来960px就是60em，而480px就是30em</p>
+<p><strong>改变父元素的字体大小，子元素会等比例变化</strong></p>
+<p>这种做法牵一发而动全身，当我们需要整个页面等比缩放时，只需要改变根元素的字体大小就可以了，缺点是元素宽度和字体大小同时用em作为单位的时候，子元素的数值<strong>与父元素的字体大小有关</strong>，难以计算。</p>
+<h2 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h2><p>1.作为非根元素属性单位时，代表<strong>根元素</strong>字体大小<br>2.作为根元素时，代表<strong>初始</strong>字体大小</p>
+<p>由此可见，<code>rem</code>和<code>em</code>最大的不同就是rem只<strong>与根元素字体大小有关</strong>，计算简便一些。</p>
+<p>以下例子证明rem数值与根元素有关：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/* 在初始字体大小16px的前提下 */</div><div class="line">html &#123; font-size: 2rem; &#125; /*32px*/</div><div class="line">p &#123; font-size: 2rem; &#125; /*64px*/</div></pre></td></tr></table></figure>
+<h2 id="rem布局的实现"><a href="#rem布局的实现" class="headerlink" title="rem布局的实现"></a>rem布局的实现</h2><p>在实际运用中，要实现元素随页面宽高而进行等比变化，需要设置JS监听页面的宽度变化，从而改变根元素的字体大小</p>
+<p><code>document.documentElement.style.fontSize = document.documentElement.clientWidth/100 + &#39;px&#39;;</code></p>
+<p>其中<strong>100</strong>的数值是可以自己定义的，这段代码相当于把页面可视区域分成了<strong>100</strong>份，每一份的宽度都为1rem，所以如果一个元素的宽度为页面的50%，CSS只需要写成这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">p &#123; width: 50rem; &#125;</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>实际开发中可以封装成以下的兼容浏览器的代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">function remChange () &#123;</div><div class="line">    var resizeEvt = &apos;orientationchange&apos; in window ? &apos;orientationchange&apos; : &apos;resize&apos;; // 屏幕宽度改变的事件</div><div class="line">    var widthProportion = function () &#123; // 计算</div><div class="line">        var doc = document.body || document.documentElement;</div><div class="line">        var p = doc.clientWidth;</div><div class="line">        return p / 100;</div><div class="line">    &#125;;</div><div class="line">    var changePage = function () &#123; // 触发的函数</div><div class="line">        document.getElementsByTagName(&apos;html&apos;)[0].setAttribute(&apos;style&apos;, &apos;font-size:&apos; + widthProportion() + &apos;px !important&apos;);</div><div class="line">    &#125;;</div><div class="line">    changePage(); // 初始化</div><div class="line">    window.addEventListener(resizeEvt, changePage, false); // 监听事件</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>同时针对R屏可以采用这样的方案</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function setDPR () &#123;</div><div class="line">    var viewport = document.querySelector(&apos;meta[name=viewport]&apos;);</div><div class="line">    if (window.devicePixelRatio === 1) &#123;</div><div class="line">        viewport.setAttribute(&apos;content&apos;, &apos;width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no&apos;);</div><div class="line">    &#125;</div><div class="line">    if (window.devicePixelRatio === 2) &#123; // view宽度等于设备宽度，初始缩放值为0.5，允许用户最大缩放值0.5，不允许用户进行缩放</div><div class="line">        viewport.setAttribute(&apos;content&apos;, &apos;width=device-width,initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no&apos;);</div><div class="line">    &#125;</div><div class="line">    if (window.devicePixelRatio === 3) &#123;</div><div class="line">        viewport.setAttribute(&apos;content&apos;, &apos;width=device-width,initial-scale=0.3333333333333333, maximum-scale=0.3333333333333333, minimum-scale=0.3333333333333333, user-scalable=no&apos;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>而CSS也可以采用预编译语言less/sass/stylus来简化计算过程，以下是less的例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">@baseUeWidth: 640; /* 设计稿的宽度 */</div><div class="line">.px2rem (@px) &#123;</div><div class="line">    @result: @px/@baseUeWidth * 1rem;</div><div class="line">&#125;</div><div class="line">p &#123;</div><div class="line">    .px2rem(100); /* 在设计稿中的宽度为100px */</div><div class="line">    width: @result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>或采用另一种形式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@baseUeWidth: 640; /* 设计稿的宽度 */</div><div class="line">.px2rem (@name, @px) &#123;</div><div class="line">    @&#123;name&#125;: @px/@baseUeWidth * 1rem;</div><div class="line">&#125;</div><div class="line">p &#123;</div><div class="line">    .px2rem(width, 100); /* 在设计稿中的宽度为100px */</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>现在页面通常有两种布局形式：<br>一种是弹性布局，100%还原设计稿<br>另一种是响应式布局，不同的屏幕有不同的显示</p>
+<p>显然rem是为弹性布局而生的，这种布局方式更适用于一些功能型的WebApp，而内容平台则更适合采用响应式布局（媒体查询），因此rem也不是万能的，而em在字体尺寸方面也有它的优势，需要根据实际情况来选用。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CSS/" rel="tag"># CSS</a>
+          
+            <a href="/tags/rem/" rel="tag"># rem</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/25/Node-js入门笔记/" rel="next" title="Node.js入门笔记">
+                <i class="fa fa-chevron-left"></i> Node.js入门笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/28/理解BOM操作/" rel="prev" title="理解BOM操作">
+                理解BOM操作 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image"
+              src="/images/avatar.gif"
+              alt="KevinLau" />
+          
+            <p class="site-author-name" itemprop="name">KevinLau</p>
+            <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Kevin031" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2122637140" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>微博</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#em"><span class="nav-number">1.</span> <span class="nav-text">em</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rem"><span class="nav-number">2.</span> <span class="nav-text">rem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rem布局的实现"><span class="nav-number">3.</span> <span class="nav-text">rem布局的实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 &mdash; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KevinLau</span>
+
+  
+</div>
+
+
+  <!--<div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>-->
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

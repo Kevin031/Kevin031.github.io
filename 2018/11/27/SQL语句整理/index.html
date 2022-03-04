@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-hk">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="数据库," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="一些最重要的SQL命令 SELECT - 从数据库中提取数据UPDATE - 更新数据库中的数据DELETE - 从数据库中删除数据INSERT INTO - 向数据库中插入新数据CREATE DATABASE - 创建新数据库ALTER DATABASE - 修改数据库CREATE TABLE - 创建新表ALTER TABLE - 变更（改变）数据库表DROP TABLE - 删除表CREAT">
+<meta name="keywords" content="数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL语句整理">
+<meta property="og:url" content="Kevin031.github.io/2018/11/27/SQL语句整理/index.html">
+<meta property="og:site_name" content="PeanutButter">
+<meta property="og:description" content="一些最重要的SQL命令 SELECT - 从数据库中提取数据UPDATE - 更新数据库中的数据DELETE - 从数据库中删除数据INSERT INTO - 向数据库中插入新数据CREATE DATABASE - 创建新数据库ALTER DATABASE - 修改数据库CREATE TABLE - 创建新表ALTER TABLE - 变更（改变）数据库表DROP TABLE - 删除表CREAT">
+<meta property="og:locale" content="zh-hk">
+<meta property="og:updated_time" content="2022-03-04T09:55:37.993Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SQL语句整理">
+<meta name="twitter:description" content="一些最重要的SQL命令 SELECT - 从数据库中提取数据UPDATE - 更新数据库中的数据DELETE - 从数据库中删除数据INSERT INTO - 向数据库中插入新数据CREATE DATABASE - 创建新数据库ALTER DATABASE - 修改数据库CREATE TABLE - 创建新表ALTER TABLE - 变更（改变）数据库表DROP TABLE - 删除表CREAT">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="Kevin031.github.io/2018/11/27/SQL语句整理/"/>
+
+
+
+
+
+  <title>SQL语句整理 | PeanutButter</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-hk">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">PeanutButter</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">一个技术博客</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="Kevin031.github.io/2018/11/27/SQL语句整理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KevinLau">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PeanutButter">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">SQL语句整理</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2018-11-27T15:16:23+00:00">
+                2018-11-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/后端/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>一些最重要的SQL命令</p>
+<p><strong>SELECT</strong> - 从数据库中<strong>提取</strong>数据<br><strong>UPDATE</strong> - <strong>更新</strong>数据库中的数据<br><strong>DELETE</strong> - 从数据库中<strong>删除</strong>数据<br><strong>INSERT INTO</strong> - 向数据库中插入新数据<br><strong>CREATE DATABASE</strong> - 创建新数据库<br><strong>ALTER DATABASE</strong> - 修改数据库<br><strong>CREATE TABLE</strong> - 创建新表<br><strong>ALTER TABLE</strong> - 变更（改变）数据库表<br><strong>DROP TABLE</strong> - 删除表<br><strong>CREATE INDEX</strong> - 创建索引<br><strong>DROP INDEX</strong> - 删除索引</p>
+<h1 id="SELECT语句"><a href="#SELECT语句" class="headerlink" title="SELECT语句"></a>SELECT语句</h1><h2 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h2><ol>
+<li>从<code>Websites</code>表中选取所有记录</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT * FORM Websites;</div></pre></td></tr></table></figure>
+<ol>
+<li>从<code>Websites</code>表中选取<code>name</code>和<code>country</code>列</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT name, country FROM Websites;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="SELECT-DISTINCT语句"><a href="#SELECT-DISTINCT语句" class="headerlink" title="SELECT DISTINCT语句"></a>SELECT DISTINCT语句</h2><p>从<code>Websites</code>表的<code>country</code>列中选取唯一不同的值（即去掉重复值）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT DISTINCT country FROM Websites;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="WHERE子句"><a href="#WHERE子句" class="headerlink" title="WHERE子句"></a>WHERE子句</h2><ol>
+<li>从<code>Websites</code>表中选取国家为<code>CN</code>的所有纪录</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM Websites WHERE country=&apos;CN&apos;;</div></pre></td></tr></table></figure>
+<ol>
+<li>从<code>Websites</code>表中选取<code>id</code>为<code>1</code>的所有纪录</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM Websites Where id=1;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">=</div><div class="line">&lt;&gt;</div><div class="line">&gt;</div><div class="line">&lt;</div><div class="line">&gt;=</div><div class="line">&lt;=</div><div class="line">BETWEEN * AND *  // 在某个范围内</div><div class="line">LIKE             // 搜索某种模式</div><div class="line">IN               // 指定针对列的多个可能值</div></pre></td></tr></table></figure>
+<p><strong>一些逻辑运算</strong></p>
+<ol>
+<li>同时满足两个条件的值</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM emp WHERE sal &gt; 2000 AND sal &lt; 3000;</div></pre></td></tr></table></figure>
+<ol>
+<li>空值判断</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM emp WHERE sal IS NULL;</div></pre></td></tr></table></figure>
+<ol>
+<li>IN</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM exp WHERE sal IN (5000, 3000, 1500);</div></pre></td></tr></table></figure>
+<ol>
+<li>LIKE</li>
+</ol>
+<p>模糊查询</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM emp WHERE sal LIKE &apos;M%&apos;;</div></pre></td></tr></table></figure>
+<p>ps:</p>
+<p><strong>%</strong> - 表示多个字值，<code>_</code>下划线表示一个字符<br><strong>M%</strong> - 通配符，正则表达式，表示的意思是模糊查询信息为M开头的<br><strong>%M%</strong> - 表示查询包含<code>M</code>的所有内容<br><strong>%M_</strong> - 表示查询<code>M</code>在倒数第二位的所有内容</p>
+<ol>
+<li>不带比较运算符的WHERE子句</li>
+</ol>
+<p>WHERE 子句并不一定带比较运算符，当不带运算符时，会执行一个隐式转换。当 0 时转化为 false，1 转化为 true</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT studentNO FROM student WHERE 0; // 每一行纪录WHER都返回false</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="AND-amp-OR-运算符"><a href="#AND-amp-OR-运算符" class="headerlink" title="AND &amp; OR 运算符"></a>AND &amp; OR 运算符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM Websites WHERE country=&apos;CN&apos; AND alexa &gt; 50;</div><div class="line"></div><div class="line">SELECT * FROM Websites WHERE country=&apos;CN&apos; OR country = &apos;USA&apos;;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="ORDER-BY-关键字"><a href="#ORDER-BY-关键字" class="headerlink" title="ORDER BY 关键字"></a>ORDER BY 关键字</h2><p>用于对结果集按照一个列或者多个列进行排序</p>
+<p>例子：下面的 SQL 语句从<code>Websites</code>表中选取所有网站，并按照<code>alexa</code>列降序排序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM Website ORDER BY alexa DESC;</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="INSERT-INTO语句"><a href="#INSERT-INTO语句" class="headerlink" title="INSERT INTO语句"></a>INSERT INTO语句</h1><p>主要有两种编写形式</p>
+<ol>
+<li>无需指定要插入数据的列名，只需提供被插入的值即可</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">INSERT INTO table_name VALUES (value1, value2, value3, ...);</div></pre></td></tr></table></figure>
+<ol>
+<li>需要制定列名及被插入的值</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">INSERT INTO table_name (column1, column2, column3, ...) VALUES (value1, value2, value3, ...)</div></pre></td></tr></table></figure>
+<p>例子：</p>
+<ol>
+<li>插入一个新行</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">INSERT INTO Websites (name, url, alexa, country) VALUES (&apos;百度&apos;, &apos;https://www.baidu.com/&apos;, &apos;4&apos;, &apos;CN&apos;);</div></pre></td></tr></table></figure>
+<ol>
+<li>在指定的列插入数据</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">INSERT INTO Websites (name, url, country) VALUES (&apos;百度&apos;, &apos;https://www.baidu.com/&apos;, &apos;CN&apos;);</div></pre></td></tr></table></figure>
+<h1 id="UPDATE-语句"><a href="#UPDATE-语句" class="headerlink" title="UPDATE 语句"></a>UPDATE 语句</h1><p>用于更新表中已存在的纪录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">UPDATE table_name SET column1=value1, column2=value2... WHERE some_column=some_value</div></pre></td></tr></table></figure>
+<p>例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">UPDATE Websites SET alexa=&apos;5000&apos;, country=&apos;USA&apos; WHERE name=&apos;百度&apos;</div></pre></td></tr></table></figure>
+<p>ps: 注意不要省略<code>WHERE</code>子句，否则会将表中所有数据的值改写</p>
+<p>在 MySQL 中可 以通过设置 sql_safe_updates 这个自带的参数来解决，当该参数开启的情况下，你必须在update 语句后携带 where 条件，否则就会报错</p>
+<h1 id="DELETE-语句"><a href="#DELETE-语句" class="headerlink" title="DELETE 语句"></a>DELETE 语句</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DELETE FROM table_name WHERE some_column=some_value</div></pre></td></tr></table></figure>
+<p>ps: 注意不要省略<code>WHERE</code>子句，否则表中所有数据将被删除</p>
+<p>例子:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DELETE FROM Websites WHERE name=&apos;百度&apos; AND country=&apos;CN&apos;</div></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据库/" rel="tag"># 数据库</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/28/Gulp3基本配置速查/" rel="next" title="Gulp3基本配置速查">
+                <i class="fa fa-chevron-left"></i> Gulp3基本配置速查
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/28/PHP数据库操作速查/" rel="prev" title="PHP数据库操作速查">
+                PHP数据库操作速查 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image"
+              src="/images/avatar.gif"
+              alt="KevinLau" />
+          
+            <p class="site-author-name" itemprop="name">KevinLau</p>
+            <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Kevin031" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2122637140" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>微博</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SELECT语句"><span class="nav-number">1.</span> <span class="nav-text">SELECT语句</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础语法"><span class="nav-number">1.1.</span> <span class="nav-text">基础语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SELECT-DISTINCT语句"><span class="nav-number">1.2.</span> <span class="nav-text">SELECT DISTINCT语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WHERE子句"><span class="nav-number">1.3.</span> <span class="nav-text">WHERE子句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运算符"><span class="nav-number">1.4.</span> <span class="nav-text">运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AND-amp-OR-运算符"><span class="nav-number">1.5.</span> <span class="nav-text">AND & OR 运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ORDER-BY-关键字"><span class="nav-number">1.6.</span> <span class="nav-text">ORDER BY 关键字</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#INSERT-INTO语句"><span class="nav-number">2.</span> <span class="nav-text">INSERT INTO语句</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UPDATE-语句"><span class="nav-number">3.</span> <span class="nav-text">UPDATE 语句</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DELETE-语句"><span class="nav-number">4.</span> <span class="nav-text">DELETE 语句</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 &mdash; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KevinLau</span>
+
+  
+</div>
+
+
+  <!--<div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>-->
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

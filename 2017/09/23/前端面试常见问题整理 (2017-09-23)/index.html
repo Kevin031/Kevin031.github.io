@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-hk">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="HTMLHTML5新特性，语义化浏览器的标准模式和怪异模式平常编写网页的时候，一般都会见到HTML文档的头部会有文档类型声明：DOCTYPE。当浏览器遇到正确的文档声明时，浏览器就会启动标准模式，按照制定的文档类型标准解析和渲染文档。而对于旧有的网页，由于网页编写的当时标准还没有确定，所以一般是不会有文档类型声明的。 html5不基于SGML,因此不需要对DTD进行引用，但是需要doctype来规">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端面试常见问题整理 (2017-09-23)">
+<meta property="og:url" content="Kevin031.github.io/2017/09/23/前端面试常见问题整理 (2017-09-23)/index.html">
+<meta property="og:site_name" content="PeanutButter">
+<meta property="og:description" content="HTMLHTML5新特性，语义化浏览器的标准模式和怪异模式平常编写网页的时候，一般都会见到HTML文档的头部会有文档类型声明：DOCTYPE。当浏览器遇到正确的文档声明时，浏览器就会启动标准模式，按照制定的文档类型标准解析和渲染文档。而对于旧有的网页，由于网页编写的当时标准还没有确定，所以一般是不会有文档类型声明的。 html5不基于SGML,因此不需要对DTD进行引用，但是需要doctype来规">
+<meta property="og:locale" content="zh-hk">
+<meta property="og:updated_time" content="2022-03-04T09:55:37.993Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端面试常见问题整理 (2017-09-23)">
+<meta name="twitter:description" content="HTMLHTML5新特性，语义化浏览器的标准模式和怪异模式平常编写网页的时候，一般都会见到HTML文档的头部会有文档类型声明：DOCTYPE。当浏览器遇到正确的文档声明时，浏览器就会启动标准模式，按照制定的文档类型标准解析和渲染文档。而对于旧有的网页，由于网页编写的当时标准还没有确定，所以一般是不会有文档类型声明的。 html5不基于SGML,因此不需要对DTD进行引用，但是需要doctype来规">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="Kevin031.github.io/2017/09/23/前端面试常见问题整理 (2017-09-23)/"/>
+
+
+
+
+
+  <title>前端面试常见问题整理 (2017-09-23) | PeanutButter</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-hk">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">PeanutButter</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">一个技术博客</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="Kevin031.github.io/2017/09/23/前端面试常见问题整理 (2017-09-23)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KevinLau">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PeanutButter">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">前端面试常见问题整理 (2017-09-23)</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-09-23T02:35:59+00:00">
+                2017-09-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h1><h2 id="HTML5新特性，语义化"><a href="#HTML5新特性，语义化" class="headerlink" title="HTML5新特性，语义化"></a>HTML5新特性，语义化</h2><h2 id="浏览器的标准模式和怪异模式"><a href="#浏览器的标准模式和怪异模式" class="headerlink" title="浏览器的标准模式和怪异模式"></a>浏览器的标准模式和怪异模式</h2><p>平常编写网页的时候，一般都会见到HTML文档的头部会有文档类型声明：DOCTYPE。当浏览器遇到正确的文档声明时，浏览器就会启动标准模式，按照制定的文档类型标准解析和渲染文档。而对于旧有的网页，由于网页编写的当时标准还没有确定，所以一般是不会有文档类型声明的。</p>
+<p>html5不基于SGML,因此不需要对DTD进行引用，但是需要doctype来规范浏览器的行为。而HTML4.01基于SGML，所以需要对DTD进行引用，才能告知浏览器文档所使用的文档类型。</p>
+<h3 id="两个常见区别"><a href="#两个常见区别" class="headerlink" title="两个常见区别"></a>两个常见区别</h3><p><strong>盒模型的处理差异：</strong>标准CSS盒模型的宽度和高度<strong>等于</strong>内容区的高度和宽度，<strong>不包含</strong>内边距和边框，而IE6之前的浏览器实现的盒模型的宽高计算方式是包含内边距和边框的。因此，对于IE，怪异模式和标准模式下的盒模型宽高计算方式是不一样的；</p>
+<p><strong>行内元素的垂直对齐：</strong>很多早期的浏览器对齐图片至包含它们的盒子的下边框，虽然CSS的规范要求它们被对齐至盒内文本的基线。标准模式下，基于Gecko的浏览器将会对齐至基线，而在quirks模式下它们会对齐至底部。最直接的例子就是图片的显示。在标准模式下，图片并不是与父元素的下边框对齐的，如果仔细观察，你会发现图片与父元素下边框之间存在一点小空隙。那是因为标准模式下，图片是<strong>基线对齐</strong>的。而怪异模式下，则不存在这个问题。</p>
+<h2 id="xhtml和html的区别"><a href="#xhtml和html的区别" class="headerlink" title="xhtml和html的区别"></a>xhtml和html的区别</h2><p>xhtml：可扩展超文本标记语言，是一种置标语言，表现方式与超文本标记语言（HTML）类似，不过语法上更加严格。</p>
+<p><strong>最主要的不同：</strong><br>XHTML 元素必须被正确地嵌套。<br>XHTML 元素必须被关闭。<br>标签名必须用小写字母。<br>XHTML 文档必须拥有根元素。</p>
+<h2 id="使用data-的好处"><a href="#使用data-的好处" class="headerlink" title="使用data-的好处"></a>使用data-的好处</h2><p>在HTML5中添加了data-<em>的方式来自定义属性，所谓data-</em>实际上上就是data-前缀加上自定义的属性名，使用这样的结构可以进行数据存放。使用data-*可以解决自定义属性混乱无管理的现状。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;test&quot; data-my=&quot;Byron&quot;&gt;&lt;/div&gt;</div><div class="line">=&gt;document.getElementById(&quot;test&quot;).dataset.my; //Byron</div></pre></td></tr></table></figure>
+<h2 id="meta标签"><a href="#meta标签" class="headerlink" title="meta标签"></a>meta标签</h2><p><code>&lt;meta&gt;</code>元素可提供有关页面的元信息（meta-information），比如针对搜索引擎和更新频度的描述和关键词。<br><code>&lt;meta&gt;</code>标签位于文档的头部，不包含任何内容。<code>&lt;meta&gt;</code>标签的属性定义了与文档相关联的名称/值对。</p>
+<h2 id="canvas"><a href="#canvas" class="headerlink" title="canvas"></a>canvas</h2><p><code>&lt;canvas&gt;</code> 标签定义图形，比如图表和其他图像。<br><code>&lt;canvas&gt;</code> 标签只是图形容器，您必须使用脚本来绘制图形。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;canvas id=&quot;myCanvas&quot;&gt;&lt;/canvas&gt;</div><div class="line"></div><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line"></div><div class="line">var canvas=document.getElementById(&apos;myCanvas&apos;);</div><div class="line">var ctx=canvas.getContext(&apos;2d&apos;);</div><div class="line">ctx.fillStyle=&apos;#FF0000&apos;;</div><div class="line">ctx.fillRect(0,0,80,100);</div><div class="line"></div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<h2 id="HTML废弃的标签"><a href="#HTML废弃的标签" class="headerlink" title="HTML废弃的标签"></a>HTML废弃的标签</h2><h3 id="表现性元素"><a href="#表现性元素" class="headerlink" title="表现性元素"></a>表现性元素</h3><p>下面的元素被废弃的原因是用CSS处理可以更好地替代他们：</p>
+<p>basefont<br>big<br>center<br>font<br>strike<br>tt</p>
+<h3 id="框架类元素"><a href="#框架类元素" class="headerlink" title="框架类元素"></a>框架类元素</h3><p>下面的元素被废弃的原因是他们的使用破坏了可使用性和可访问性(但html5支持iframe)：</p>
+<p>frame<br>frameset<br>noframes</p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>下面的元素被废弃的原因是不经常使用他们，也会引起混乱，而且其它元素也可以很好地实现他们的功能：</p>
+<p>acronym被废弃是因为它经常使页面错乱，可以使用abbr代替<br>applet被废弃是因为可以使用object代替<br>isindex被废弃是因为使用表单控件代替<br>dir被废弃是因为使用ul代替</p>
+<h2 id="IE6-bug，和一些定位写法"><a href="#IE6-bug，和一些定位写法" class="headerlink" title="IE6 bug，和一些定位写法"></a>IE6 bug，和一些定位写法</h2><h3 id="IE6双倍边距bug"><a href="#IE6双倍边距bug" class="headerlink" title="IE6双倍边距bug"></a>IE6双倍边距bug</h3><p>当页面上的元素使用float浮动时，不管是向左还是向右浮动；只要该元素带有margin像素都会使该值乘以2，例如“margin-left:10px” 在IE6中，该值就会被解析为20px。想要解决这个BUG就需要在该元素中加入display:inline 或 display:block 明确其元素类型即可解决双倍边距的BUG</p>
+<h3 id="IE6中3像素问题及解决办法"><a href="#IE6中3像素问题及解决办法" class="headerlink" title="IE6中3像素问题及解决办法"></a>IE6中3像素问题及解决办法</h3><p>当元素使用float浮动后，元素与相邻的元素之间会产生3px的间隙。诡异的是如果右侧的容器没设置高度时3px的间隙在相邻容器的内部，当设定高度后又跑到容器的相反侧了。要解决这类BUG的话，需要使布局在同一行的元素都加上float浮动。</p>
+<h3 id="IE6中奇数宽高的BUG"><a href="#IE6中奇数宽高的BUG" class="headerlink" title="IE6中奇数宽高的BUG"></a>IE6中奇数宽高的BUG</h3><p>IE6中奇数的高宽显示大小与偶数高宽显示大小存在一定的不同。其中要问题是出在奇数高宽上。要解决此类问题，只需要尽量将外部定位的div高宽写成偶数即可。</p>
+<h3 id="IE6中图片链接的下方有间隙"><a href="#IE6中图片链接的下方有间隙" class="headerlink" title="IE6中图片链接的下方有间隙"></a>IE6中图片链接的下方有间隙</h3><p>IE6中图片的下方会存在一定的间隙，尤其在图片垂直挨着图片的时候，即可看到这样的间隙。要解决此类问题，需要将img标签定义为display:block 或定义vertical-align对应的属性。也可以为img对应的样式写入font-size:0</p>
+<h3 id="IE6下空元素的高度BUG"><a href="#IE6下空元素的高度BUG" class="headerlink" title="IE6下空元素的高度BUG"></a>IE6下空元素的高度BUG</h3><p>如果一个元素中没有任何内容，当在样式中为这个元素设置了0-19px之间的高度时。此元素的高度始终为19px。</p>
+<p>解决的方法有四种:</p>
+<p>1.在元素的css中加入：<code>overflow:hidden</code></p>
+<p>2.在元素中插入html注释：<code>&lt;!– &gt;</code></p>
+<p>3.在元素中插入html的空白符：<code>&amp;nbsp;</code></p>
+<p>4.在元素的css中加入：<code>font-size:0</code></p>
+<h3 id="重复文字的BUG"><a href="#重复文字的BUG" class="headerlink" title="重复文字的BUG"></a>重复文字的BUG</h3><p>在某些比较复杂的排版中，有时候浮动元素的最后一些字符会出现在clear清除元素的下面。</p>
+<p>解决方法如下：</p>
+<p>1.确保元素都带有<code>display:inline</code></p>
+<p>2.在最后一个元素上使用<code>margin-right:-3px</code></p>
+<p>3.为浮动元素的最后一个条目加上条件注释，<code>&lt;!–[if !IE]&gt;xxx&lt;![endif]–&gt;</code></p>
+<p>4.在容器的最后元素使用一个空白的<code>div</code>，为这个div指定不超过容器的宽度。</p>
+<h3 id="IE6中-z-index失效"><a href="#IE6中-z-index失效" class="headerlink" title="IE6中 z-index失效"></a>IE6中 z-index失效</h3><p>具体BUG为，元素的父级元素设置的z-index为1，那么其子级元素再设置z-index时会失效，其层级会继承父级元素的设置，造成某些层级调整上的BUG。详细解释可以阅读IE6中部分情况下z-index无效的原因，以及解决办法</p>
+<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>实际上IE6中，很多BUG的解决方法都可以使用<code>display:inline</code>、<code>font-size:0</code>、<code>float</code>解决。因此我们在书写代码时要记住，一旦使用了<code>float</code>浮动，就为元素增加一个<code>display:inline</code>样式，可以有效的避免浮动造成的样式错乱问题。使用空DIV时，为了避免其高度影响布局美观，也可以为其加上<code>font-size:0</code>这样就很容易避免一些兼容上的问题。</p>
+<h2 id="什么是渐进式渲染"><a href="#什么是渐进式渲染" class="headerlink" title="什么是渐进式渲染"></a>什么是渐进式渲染</h2><p>下载静态片段 + Max(应用资源加载 + 应用初始化，请求首屏数据) + 首屏初始化 + 首屏渲染</p>
+<h2 id="html模板语言"><a href="#html模板语言" class="headerlink" title="html模板语言"></a>html模板语言</h2><p>js -&gt; ajax -&gt; 后台 -&gt; json -&gt; 模版 -&gt; html</p>
+<h2 id="meta-viewport原理"><a href="#meta-viewport原理" class="headerlink" title="meta viewport原理"></a>meta viewport原理</h2><p>layout viewport: 默认值，较宽。可通过document.documentElement.clientWidth获取<br>visual viewport: 可视区域的大小。可通过document.documentElement.innerWidth获取<br>ideal viewport: 完美适配移动设备的viewport,iphone为320px</p>
+<p><code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width initial-scale=1.0, maximum-scale=1.0, user-scalable=0&quot;</code></p>
+<h1 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h1><h2 id="盒模型，box-sizing"><a href="#盒模型，box-sizing" class="headerlink" title="盒模型，box-sizing"></a>盒模型，box-sizing</h2><p>border-box，宽度包括了border<br>此外还有content-box</p>
+<h2 id="CSS3新特性，伪类，伪元素，锚伪类"><a href="#CSS3新特性，伪类，伪元素，锚伪类" class="headerlink" title="CSS3新特性，伪类，伪元素，锚伪类"></a>CSS3新特性，伪类，伪元素，锚伪类</h2><h3 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h3><p>E:nth-child(n)</p>
+<h3 id="Font-face"><a href="#Font-face" class="headerlink" title="@Font-face"></a>@Font-face</h3><p>可以加载服务端的字体</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@font-face &#123;</div><div class="line">font-family: BorderWeb;</div><div class="line">src:url(BORDERW0.eot);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="圆角"><a href="#圆角" class="headerlink" title="圆角"></a>圆角</h3><p>border-radius: 5px;</p>
+<h3 id="多列布局"><a href="#多列布局" class="headerlink" title="多列布局"></a>多列布局</h3><p>mul-col{<br>    column-count: 3;<br>    column-gap: 5px;<br>    column-rule: 1px solid gray;<br>    border-radius: 5px;<br>    border:1px solid gray;<br>    padding: 10px ;<br>}</p>
+<p>兼容性不好，还不能应用到实际项目</p>
+<h3 id="阴影"><a href="#阴影" class="headerlink" title="阴影"></a>阴影</h3><p>text-shadow:5px 2px 6px rgba(64, 64, 64, 0.5);</p>
+<h3 id="渐变效果"><a href="#渐变效果" class="headerlink" title="渐变效果"></a>渐变效果</h3><p>background-image:-webkit-gradient(linear,0% 0%,100% 0%,from(#2A8BBE),to(#FE280E));</p>
+<p>linear为线性渐变</p>
+<h3 id="css弹性盒子模型"><a href="#css弹性盒子模型" class="headerlink" title="css弹性盒子模型"></a>css弹性盒子模型</h3><p>.parent {<br>    display: -webkit-box;<br>    display: -moz-box;<br>    -webkit-box-orient: horizontal;<br>    -moz-box-orient: horizontal;<br>}</p>
+<h3 id="过渡效果"><a href="#过渡效果" class="headerlink" title="过渡效果"></a>过渡效果</h3><p>transition: all time;</p>
+<h3 id="转换"><a href="#转换" class="headerlink" title="转换"></a>转换</h3><p>transform</p>
+<h3 id="动画特效"><a href="#动画特效" class="headerlink" title="动画特效"></a>动画特效</h3><p>animation</p>
+<p>@keyframes</p>
+<h2 id="CSS实现隐藏页面的方式"><a href="#CSS实现隐藏页面的方式" class="headerlink" title="CSS实现隐藏页面的方式"></a>CSS实现隐藏页面的方式</h2><p>opacity: 0;<br>display: none;<br>visibility: hidden;</p>
+<h2 id="如何实现水平居中和垂直居中。"><a href="#如何实现水平居中和垂直居中。" class="headerlink" title="如何实现水平居中和垂直居中。"></a>如何实现水平居中和垂直居中。</h2><h3 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h3><h4 id="行级元素水平居中对齐（父元素设置-text-align-center）"><a href="#行级元素水平居中对齐（父元素设置-text-align-center）" class="headerlink" title="行级元素水平居中对齐（父元素设置 text-align:center）"></a>行级元素水平居中对齐（父元素设置 text-align:center）</h4><h4 id="块级元素水平居中对齐（margin-0-auto）"><a href="#块级元素水平居中对齐（margin-0-auto）" class="headerlink" title="块级元素水平居中对齐（margin: 0 auto）"></a>块级元素水平居中对齐（margin: 0 auto）</h4><h4 id="浮动元素水平居中"><a href="#浮动元素水平居中" class="headerlink" title="浮动元素水平居中"></a>浮动元素水平居中</h4><h5 id="宽度不固定"><a href="#宽度不固定" class="headerlink" title="宽度不固定"></a>宽度不固定</h5><ol>
+<li><p>position: relative;<br>left: 50%</p>
+</li>
+<li><p>position: absolute<br>margin: 0 auto;<br>left: 0;<br>right: 0;</p>
+</li>
+</ol>
+<h5 id="宽度固定"><a href="#宽度固定" class="headerlink" title="宽度固定"></a>宽度固定</h5><p>position: absolute;<br>left: 50%;<br>margin-left: -width/2;</p>
+<h3 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h3><h4 id="对行级元素垂直居中（heiht与line-height的值一样）"><a href="#对行级元素垂直居中（heiht与line-height的值一样）" class="headerlink" title="对行级元素垂直居中（heiht与line-height的值一样）"></a>对行级元素垂直居中（heiht与line-height的值一样）</h4><h4 id="对块级元素"><a href="#对块级元素" class="headerlink" title="对块级元素"></a>对块级元素</h4><h5 id="父元素高度固定的情况"><a href="#父元素高度固定的情况" class="headerlink" title="父元素高度固定的情况"></a>父元素高度固定的情况</h5><p>vertical-align:middle;// 父元素设置垂直居中对齐</p>
+<p>display:inline|inline-block 子元素块级元素转行级元素</p>
+<h5 id="父元素高度不固定的情况"><a href="#父元素高度不固定的情况" class="headerlink" title="父元素高度不固定的情况"></a>父元素高度不固定的情况</h5><p>父元素的padding-top和padding-bottom一样</p>
+<h2 id="说说position，display"><a href="#说说position，display" class="headerlink" title="说说position，display"></a>说说position，display</h2><h2 id="请解释-box-sizing-border-box-的作用，并说明使用它的好处"><a href="#请解释-box-sizing-border-box-的作用，并说明使用它的好处" class="headerlink" title="请解释*{box-sizing:border-box;}的作用，并说明使用它的好处"></a>请解释*{box-sizing:border-box;}的作用，并说明使用它的好处</h2><p>盒子宽度、高度包括了border，content自动计算，这样就省去了添加border后需要计算添加后宽度的麻烦</p>
+<h2 id="浮动元素引起的问题和解决办法？绝对定位和相对定位，元素浮动后的display值"><a href="#浮动元素引起的问题和解决办法？绝对定位和相对定位，元素浮动后的display值" class="headerlink" title="浮动元素引起的问题和解决办法？绝对定位和相对定位，元素浮动后的display值"></a>浮动元素引起的问题和解决办法？绝对定位和相对定位，元素浮动后的display值</h2><p>可能使父元素的高度无法被撑开</p>
+<p>给父元素添加</p>
+<p>.clearfix:after {<br>    content: “.”;<br>    display: block;<br>    height: 0;<br>    clear: both;<br>    visibility: hidden;<br>}</p>
+<p>.clearfix {<br>    display: inline-block; /<em>for IE</em>/<br>}</p>
+<h2 id="link和-import引入css的区别"><a href="#link和-import引入css的区别" class="headerlink" title="link和@import引入css的区别"></a>link和@import引入css的区别</h2><p>link是html标签，在引入css的同时还可以添加其他属性、目录和rss</p>
+<p>而@import是css标签，只能调用css</p>
+<h2 id="解释一下css3的flexbox，以及适用场景"><a href="#解释一下css3的flexbox，以及适用场景" class="headerlink" title="解释一下css3的flexbox，以及适用场景"></a>解释一下css3的flexbox，以及适用场景</h2><h2 id="inline和inline-block的区别"><a href="#inline和inline-block的区别" class="headerlink" title="inline和inline-block的区别"></a>inline和inline-block的区别</h2><p>inline没有宽度和高度</p>
+<h2 id="哪些是块级元素那些是行级元素，各有什么特点"><a href="#哪些是块级元素那些是行级元素，各有什么特点" class="headerlink" title="哪些是块级元素那些是行级元素，各有什么特点"></a>哪些是块级元素那些是行级元素，各有什么特点</h2><p>块元素</p>
+<p>　　<em> address - 地址   
+　　</em> blockquote - 块引用<br>　　<em> center - 举中对齐块   
+　　</em> dir - 目录列表<br>　　<em> div - 常用块级容易，也是css layout的主要标签   
+　　</em> dl - 定义列表<br>　　<em> fieldset - form控制组   
+　　</em> form - 交互表单<br>　　<em> h1 - 大标题   
+　　</em> h2 - 副标题<br>　　<em> h3 - 3级标题   
+　　</em> h4 - 4级标题<br>　　<em> h5 - 5级标题   
+　　</em> h6 - 6级标题<br>　　<em> hr - 水平分隔线   
+　　</em> menu - 菜单列表<br>　　<em> noframes - frames可选内容，（对于不支持frame的浏览器显示此区块内容   
+　　</em> noscript - 可选脚本内容（对于不支持script的浏览器显示此内容）<br>　　<em> ol - 排序表单   
+　　</em> p - 段落<br>　　<em> pre - 格式化文本   
+　　</em> table - 表格<br>　　* ul - 非排序列表   </p>
+<p>内联元素</p>
+<p>　　<em> a - 锚点   
+　　</em> abbr - 缩写<br>　　<em> acronym - 首字   
+　　</em> b - 粗体(不推荐)<br>　　<em> bdo - bidi override   
+　　</em> big - 大字体<br>　　<em> br - 换行   
+　　</em> cite - 引用<br>　　<em> code - 计算机代码(在引用源码的时候需要)   
+　　</em> dfn - 定义字段<br>　　<em> em - 强调   
+　　</em> font - 字体设定(不推荐)<br>　　<em> i - 斜体   
+　　</em> img - 图片<br>　　<em> input - 输入框   
+　　</em> kbd - 定义键盘文本<br>　　<em> label - 表格标签   
+　　</em> q - 短引用<br>　　<em> s - 中划线(不推荐)   
+　　</em> samp - 定义范例计算机代码<br>　　<em> select - 项目选择   
+　　</em> small - 小字体文本<br>　　<em> span - 常用内联容器，定义文本内区块   
+　　</em> strike - 中划线<br>　　<em> strong - 粗体强调   
+　　</em> sub - 下标<br>　　<em> sup - 上标   
+　　</em> textarea - 多行文本输入框<br>　　<em> tt - 电传文本   
+　　</em> u - 下划线</p>
+<h2 id="grid布局-table布局的作用"><a href="#grid布局-table布局的作用" class="headerlink" title="grid布局 table布局的作用"></a>grid布局 table布局的作用</h2><h2 id="实现两栏布局有哪些方法？"><a href="#实现两栏布局有哪些方法？" class="headerlink" title="实现两栏布局有哪些方法？"></a>实现两栏布局有哪些方法？</h2><h2 id="css-dpi"><a href="#css-dpi" class="headerlink" title="css dpi"></a>css dpi</h2><h2 id="你知道attribute和property的区别么"><a href="#你知道attribute和property的区别么" class="headerlink" title="你知道attribute和property的区别么"></a>你知道attribute和property的区别么</h2><h2 id="css布局问题？css实现三列布局怎么做？如果中间是自适应又怎么做？"><a href="#css布局问题？css实现三列布局怎么做？如果中间是自适应又怎么做？" class="headerlink" title="css布局问题？css实现三列布局怎么做？如果中间是自适应又怎么做？"></a>css布局问题？css实现三列布局怎么做？如果中间是自适应又怎么做？</h2><h2 id="流式布局如何实现，响应式布局如何实现"><a href="#流式布局如何实现，响应式布局如何实现" class="headerlink" title="流式布局如何实现，响应式布局如何实现"></a>流式布局如何实现，响应式布局如何实现</h2><p>固定布局：所有元素一律采用px作为单位，缺点是不能根据屏幕作出不同的表现<br>流式布局：主要划分区域采用百分数，缺点是文字仍用px表示，不够协调<br>弹性布局：包裹文字的各元素采用em做单位，而主要划分区域仍使用百分数或px做单位</p>
+<h2 id="移动端布局方案"><a href="#移动端布局方案" class="headerlink" title="移动端布局方案"></a>移动端布局方案</h2><h2 id="实现三栏布局（圣杯布局，双飞翼布局，flex布局）"><a href="#实现三栏布局（圣杯布局，双飞翼布局，flex布局）" class="headerlink" title="实现三栏布局（圣杯布局，双飞翼布局，flex布局）"></a>实现三栏布局（圣杯布局，双飞翼布局，flex布局）</h2><h2 id="清除浮动的原理"><a href="#清除浮动的原理" class="headerlink" title="清除浮动的原理"></a>清除浮动的原理</h2><h2 id="overflow-hidden有什么缺点？"><a href="#overflow-hidden有什么缺点？" class="headerlink" title="overflow:hidden有什么缺点？"></a>overflow:hidden有什么缺点？</h2><p>内容会被修剪，并且其余内容是不可见的。</p>
+<h2 id="padding百分比是相对于父级宽度还是自身的宽度"><a href="#padding百分比是相对于父级宽度还是自身的宽度" class="headerlink" title="padding百分比是相对于父级宽度还是自身的宽度"></a>padding百分比是相对于父级宽度还是自身的宽度</h2><p>相对于父元素宽度的：[max/min-]width、left、right、padding、margin 等；</p>
+<p>相对于父元素高度的：[max/min-]height、top、bottom 等；</p>
+<p>相对于继承字号的：font-size 等；</p>
+<p>相对于自身字号的：line-height 等；</p>
+<p>相对于自身宽高的：border-radius、background-size、transform: translate()、transform-origin、zoom、clip-path 等；</p>
+<p>特殊算法的：background-position（方向长度 / 该方向除背景图之外部分总长度 * 100）、filter 系列函数等；</p>
+<h2 id="css3动画，transition和animation的区别，animation的属性，加速度，重力的模拟实现"><a href="#css3动画，transition和animation的区别，animation的属性，加速度，重力的模拟实现" class="headerlink" title="css3动画，transition和animation的区别，animation的属性，加速度，重力的模拟实现"></a>css3动画，transition和animation的区别，animation的属性，加速度，重力的模拟实现</h2><h2 id="CSS-3-如何实现旋转图片（transform-rotate）"><a href="#CSS-3-如何实现旋转图片（transform-rotate）" class="headerlink" title="CSS 3 如何实现旋转图片（transform: rotate）"></a>CSS 3 如何实现旋转图片（transform: rotate）</h2><h2 id="sass-less"><a href="#sass-less" class="headerlink" title="sass less"></a>sass less</h2><h2 id="对移动端开发了解多少？（响应式设计、Zepto；-media、viewport、JavaScript-正则表达式判断平台。）"><a href="#对移动端开发了解多少？（响应式设计、Zepto；-media、viewport、JavaScript-正则表达式判断平台。）" class="headerlink" title="对移动端开发了解多少？（响应式设计、Zepto；@media、viewport、JavaScript 正则表达式判断平台。）"></a>对移动端开发了解多少？（响应式设计、Zepto；@media、viewport、JavaScript 正则表达式判断平台。）</h2><h2 id="什么是bfc，如何创建bfc？解决什么问题？"><a href="#什么是bfc，如何创建bfc？解决什么问题？" class="headerlink" title="什么是bfc，如何创建bfc？解决什么问题？"></a>什么是bfc，如何创建bfc？解决什么问题？</h2><h2 id="CSS中的长度单位（px-pt-rem-em-ex-vw-vh-vh-vmin-vmax）"><a href="#CSS中的长度单位（px-pt-rem-em-ex-vw-vh-vh-vmin-vmax）" class="headerlink" title="CSS中的长度单位（px,pt,rem,em,ex,vw,vh,vh,vmin,vmax）"></a>CSS中的长度单位（px,pt,rem,em,ex,vw,vh,vh,vmin,vmax）</h2><h2 id="CSS-选择器的优先级是怎样的？"><a href="#CSS-选择器的优先级是怎样的？" class="headerlink" title="CSS 选择器的优先级是怎样的？"></a>CSS 选择器的优先级是怎样的？</h2><p>标签 1<br>class 10<br>id 100<br>内联 1000</p>
+<h2 id="雪碧图"><a href="#雪碧图" class="headerlink" title="雪碧图"></a>雪碧图</h2><h2 id="svg"><a href="#svg" class="headerlink" title="svg"></a>svg</h2><p>SVG 是使用 XML 来描述二维图形和绘图程序的语言。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; standalone=&quot;no&quot;?&gt; // XML 声明</div><div class="line"></div><div class="line">&lt;!DOCTYPE svg PUBLIC &quot;-//W3C//DTD SVG 1.1//EN&quot; </div><div class="line">&quot;http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd&quot;&gt; //引用了这个外部的 SVG DTD</div><div class="line"></div><div class="line">&lt;svg width=&quot;100%&quot; height=&quot;100%&quot; version=&quot;1.1&quot;</div><div class="line">xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;</div><div class="line"></div><div class="line">&lt;circle cx=&quot;100&quot; cy=&quot;50&quot; r=&quot;40&quot; stroke=&quot;black&quot;</div><div class="line">stroke-width=&quot;2&quot; fill=&quot;red&quot;/&gt; //创建一个圆</div><div class="line"></div><div class="line">&lt;/svg&gt; //SVG 代码</div></pre></td></tr></table></figure>
+<h2 id="媒体查询的原理是什么？"><a href="#媒体查询的原理是什么？" class="headerlink" title="媒体查询的原理是什么？"></a>媒体查询的原理是什么？</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">var mql = window.matchMedia(&quot;(max-width: 700px)&quot;);</div><div class="line"></div><div class="line">// 指定回调函数</div><div class="line">mql.addListener(mqCallback);</div><div class="line"></div><div class="line">// 撤销回调函数</div><div class="line">mql.removeListener(mqCallback);</div><div class="line"></div><div class="line">function mqCallback(mql) &#123;</div><div class="line">  if (mql.matches) &#123;</div><div class="line">    // 宽度小于等于700像素</div><div class="line">  &#125; else &#123;</div><div class="line">    // 宽度大于700像素</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="CSS-的加载是异步的吗？表现在什么地方？"><a href="#CSS-的加载是异步的吗？表现在什么地方？" class="headerlink" title="CSS 的加载是异步的吗？表现在什么地方？"></a>CSS 的加载是异步的吗？表现在什么地方？</h2><p>不是。</p>
+<p>css加载不会阻塞DOM树的解析<br>css加载会阻塞DOM树的渲染<br>css加载会阻塞后面js语句的执行、<br>因此，为了避免让用户看到长时间的白屏时间，我们应该尽可能的提高css加载速度，比如可以使用以下几种方法:</p>
+<p>使用CDN(因为CDN会根据你的网络状况，替你挑选最近的一个具有缓存内容的节点为你提供资源，因此可以减少加载时间)<br>对css进行压缩(可以用很多打包工具，比如webpack,gulp等，也可以通过开启gzip压缩)<br>合理的使用缓存(设置cache-control,expires,以及E-tag都是不错的，不过要注意一个问题，就是文件更新后，你要避免缓存而带来的影响。其中一个解决防范是在文件名字后面加一个版本号)<br>减少http请求数，将多个css文件合并，或者是干脆直接写成内联样式(内联样式的一个缺点就是不能缓存)</p>
+<h2 id="常遇到的浏览器兼容性问题有哪些？常用的hack的技巧"><a href="#常遇到的浏览器兼容性问题有哪些？常用的hack的技巧" class="headerlink" title="常遇到的浏览器兼容性问题有哪些？常用的hack的技巧"></a>常遇到的浏览器兼容性问题有哪些？常用的hack的技巧</h2><h2 id="外边距合并"><a href="#外边距合并" class="headerlink" title="外边距合并"></a>外边距合并</h2><h2 id="解释一下“-before”和“-after”中的双冒号和单冒号的区别"><a href="#解释一下“-before”和“-after”中的双冒号和单冒号的区别" class="headerlink" title="解释一下“::before”和“:after”中的双冒号和单冒号的区别"></a>解释一下“::before”和“:after”中的双冒号和单冒号的区别</h2><p>JS</p>
+<h2 id="js的基本类型有哪些？引用类型有哪些？null和undefined的区别。"><a href="#js的基本类型有哪些？引用类型有哪些？null和undefined的区别。" class="headerlink" title="js的基本类型有哪些？引用类型有哪些？null和undefined的区别。"></a>js的基本类型有哪些？引用类型有哪些？null和undefined的区别。</h2><p>基本类型 String Number Boolean Undefined Null<br>对象类型 Function Array Object Symbol(ES6)</p>
+<p>Undefined类型只有一个值，即undefined。当声明的变量还未被初始化时，变量的默认值为undefined。</p>
+<p>Null类型也只有一个值，即null。null用来表示尚未存在的对象，常用来表示函数企图返回一个不存在的对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">alert(typeof undefined); //output &quot;undefined&quot;  </div><div class="line">alert(typeof null); //output &quot;object&quot;</div></pre></td></tr></table></figure>
+<h2 id="如何判断一个变量是Array类型？如何判断一个变量是Number类型？（都不止一种）"><a href="#如何判断一个变量是Array类型？如何判断一个变量是Number类型？（都不止一种）" class="headerlink" title="如何判断一个变量是Array类型？如何判断一个变量是Number类型？（都不止一种）"></a>如何判断一个变量是Array类型？如何判断一个变量是Number类型？（都不止一种）</h2><ol>
+<li><p>typeof</p>
+</li>
+<li><p>var gettype = Object.protype.toString<br>gettpe.call(1);</p>
+</li>
+<li><p>‘’.constructor</p>
+</li>
+<li><p>isArray</p>
+</li>
+</ol>
+<h2 id="Object是引用类型嘛？引用类型和基本类型有什么区别？哪个是存在堆哪一个是存在栈上面的？"><a href="#Object是引用类型嘛？引用类型和基本类型有什么区别？哪个是存在堆哪一个是存在栈上面的？" class="headerlink" title="Object是引用类型嘛？引用类型和基本类型有什么区别？哪个是存在堆哪一个是存在栈上面的？"></a>Object是引用类型嘛？引用类型和基本类型有什么区别？哪个是存在堆哪一个是存在栈上面的？</h2><p>是滴。</p>
+<p>原始数据类型：栈，占据空间小，大小固定</p>
+<p>引用对象类型：堆，占据空间大，大小不固定（在栈中储存了指针，指向堆中的起始位置）</p>
+<h2 id="JS常见的dom操作api"><a href="#JS常见的dom操作api" class="headerlink" title="JS常见的dom操作api"></a>JS常见的dom操作api</h2><p>createDocumentFragment()<br>createElement()<br>createTextNode()</p>
+<p>appendChild()<br>removeChild()<br>replaceChild()<br>insertBefore()</p>
+<p>getElementsByTagName()<br>getElementsByName()<br>getElementById()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var para = document.createElement(&quot;p&quot;);</div><div class="line">var node = document.createTextNode(&quot;This is new.&quot;);</div><div class="line">para.appendChild(node);</div><div class="line"></div><div class="line">var element = document.getElementById(&quot;div1&quot;);</div><div class="line">var child = document.getElementById(&quot;p1);</div><div class="line">element.insertBefore(para, child);</div></pre></td></tr></table></figure>
+<h2 id="解释一下事件冒泡和事件捕获"><a href="#解释一下事件冒泡和事件捕获" class="headerlink" title="解释一下事件冒泡和事件捕获"></a>解释一下事件冒泡和事件捕获</h2><h2 id="事件委托（手写例子），事件冒泡和捕获，如何阻止冒泡？如何组织默认事件？"><a href="#事件委托（手写例子），事件冒泡和捕获，如何阻止冒泡？如何组织默认事件？" class="headerlink" title="事件委托（手写例子），事件冒泡和捕获，如何阻止冒泡？如何组织默认事件？"></a>事件委托（手写例子），事件冒泡和捕获，如何阻止冒泡？如何组织默认事件？</h2><h2 id="对闭包的理解？什么时候构成闭包？闭包的实现方法？闭包的优缺点？"><a href="#对闭包的理解？什么时候构成闭包？闭包的实现方法？闭包的优缺点？" class="headerlink" title="对闭包的理解？什么时候构成闭包？闭包的实现方法？闭包的优缺点？"></a>对闭包的理解？什么时候构成闭包？闭包的实现方法？闭包的优缺点？</h2><h2 id="this有哪些使用场景？跟C-Java中的this有什么区别？如何改变this的值？"><a href="#this有哪些使用场景？跟C-Java中的this有什么区别？如何改变this的值？" class="headerlink" title="this有哪些使用场景？跟C,Java中的this有什么区别？如何改变this的值？"></a>this有哪些使用场景？跟C,Java中的this有什么区别？如何改变this的值？</h2><h2 id="call，apply，bind"><a href="#call，apply，bind" class="headerlink" title="call，apply，bind"></a>call，apply，bind</h2><h2 id="显示原型和隐式原型，手绘原型链，原型链是什么？为什么要有原型链"><a href="#显示原型和隐式原型，手绘原型链，原型链是什么？为什么要有原型链" class="headerlink" title="显示原型和隐式原型，手绘原型链，原型链是什么？为什么要有原型链"></a>显示原型和隐式原型，手绘原型链，原型链是什么？为什么要有原型链</h2><h2 id="创建对象的多种方式"><a href="#创建对象的多种方式" class="headerlink" title="创建对象的多种方式"></a>创建对象的多种方式</h2><h2 id="实现继承的多种方式和优缺点"><a href="#实现继承的多种方式和优缺点" class="headerlink" title="实现继承的多种方式和优缺点"></a>实现继承的多种方式和优缺点</h2><h2 id="new-一个对象具体做了什么"><a href="#new-一个对象具体做了什么" class="headerlink" title="new 一个对象具体做了什么"></a>new 一个对象具体做了什么</h2><h2 id="手写Ajax，XMLHttpRequest"><a href="#手写Ajax，XMLHttpRequest" class="headerlink" title="手写Ajax，XMLHttpRequest"></a>手写Ajax，XMLHttpRequest</h2><h2 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h2><h2 id="举例说明一个匿名函数的典型用例"><a href="#举例说明一个匿名函数的典型用例" class="headerlink" title="举例说明一个匿名函数的典型用例"></a>举例说明一个匿名函数的典型用例</h2><h2 id="指出JS的宿主对象和原生对象的区别，为什么扩展JS内置对象不是好的做法？有哪些内置对象和内置函数？"><a href="#指出JS的宿主对象和原生对象的区别，为什么扩展JS内置对象不是好的做法？有哪些内置对象和内置函数？" class="headerlink" title="指出JS的宿主对象和原生对象的区别，为什么扩展JS内置对象不是好的做法？有哪些内置对象和内置函数？"></a>指出JS的宿主对象和原生对象的区别，为什么扩展JS内置对象不是好的做法？有哪些内置对象和内置函数？</h2><h2 id="attribute和property的区别"><a href="#attribute和property的区别" class="headerlink" title="attribute和property的区别"></a>attribute和property的区别</h2><h2 id="document-load和document-DOMContentLoaded两个事件的区别"><a href="#document-load和document-DOMContentLoaded两个事件的区别" class="headerlink" title="document load和document DOMContentLoaded两个事件的区别"></a>document load和document DOMContentLoaded两个事件的区别</h2><h2 id="和-undefined-undefined-undefined-undefined"><a href="#和-undefined-undefined-undefined-undefined" class="headerlink" title="=== 和 == , [] === [], undefined === undefined,[] == [], undefined == undefined"></a>=== 和 == , [] === [], undefined === undefined,[] == [], undefined == undefined</h2><h2 id="typeof能够得到哪些值"><a href="#typeof能够得到哪些值" class="headerlink" title="typeof能够得到哪些值"></a>typeof能够得到哪些值</h2><h2 id="什么是“use-strict”-好处和坏处"><a href="#什么是“use-strict”-好处和坏处" class="headerlink" title="什么是“use strict”,好处和坏处"></a>什么是“use strict”,好处和坏处</h2><ul>
+<li><p>消除Javascript语法的一些不合理、不严谨之处，减少一些怪异行为;</p>
+</li>
+<li><p>消除代码运行的一些不安全之处，保证代码运行的安全；</p>
+</li>
+<li><p>提高编译器效率，增加运行速度；</p>
+</li>
+<li><p>为未来新版本的Javascript做好铺垫。</p>
+</li>
+</ul>
+<ol>
+<li><p>全局变量显式声明</p>
+</li>
+<li><p>禁止this关键字指向全局对象</p>
+</li>
+<li><p>禁止删除变量</p>
+</li>
+<li><p>对象不能有重名的属性</p>
+</li>
+<li><p>函数不能有重名的参数</p>
+</li>
+</ol>
+<h2 id="函数的作用域是什么？js-的作用域有几种？"><a href="#函数的作用域是什么？js-的作用域有几种？" class="headerlink" title="函数的作用域是什么？js 的作用域有几种？"></a>函数的作用域是什么？js 的作用域有几种？</h2><h2 id="JS如何实现重载和多态"><a href="#JS如何实现重载和多态" class="headerlink" title="JS如何实现重载和多态"></a>JS如何实现重载和多态</h2><h2 id="常用的数组api，字符串api"><a href="#常用的数组api，字符串api" class="headerlink" title="常用的数组api，字符串api"></a>常用的数组api，字符串api</h2><p>concat<br>将两个或多个字符的文本组合起来，返回一个新的字符串。</p>
+<p>indexOf<br>返回字符串中一个子串第一处出现的索引（从左到右搜索）。如果没有匹配项，返回 -1 。</p>
+<p>lastIndexOf<br>返回字符串中一个子串最后一处出现的索引（从右到左搜索），如果没有匹配项，返回 -1 。 </p>
+<p>charAt<br>返回指定位置的字符。 </p>
+<p>match<br>检查一个字符串匹配一个正则表达式内容，如果没有匹配返回 null。  </p>
+<p>substring<br>返回字符串的一个子串，传入参数是起始位置和结束位置。</p>
+<p>substr<br>返回字符串的一个子串，传入参数是起始位置和长度。</p>
+<p>replace<br>用来查找匹配一个正则表达式的字符串，然后使用新字符串代替匹配的字符串。  </p>
+<p>search<br>执行一个正则表达式匹配查找。如果查找成功，返回字符串中匹配的索引值。否则返回 -1 。</p>
+<p>slice<br>提取字符串的一部分，并返回一个新字符串（与 substring 相同）。 </p>
+<p>split<br>通过将字符串划分成子串，将一个字符串做成一个字符串数组。</p>
+<p>length<br>返回字符串的长度，所谓字符串的长度是指其包含的字符的个数。 </p>
+<p>toLowerCase<br>将整个字符串转成小写字母。<br>var lower_string = a.toLowerCase();  </p>
+<p>toUpperCase<br>将整个字符串转成大写字母。<br>var upper_string = a.toUpperCase(); </p>
+<h2 id="原生事件绑定（跨浏览器），dom0和dom2的区别？"><a href="#原生事件绑定（跨浏览器），dom0和dom2的区别？" class="headerlink" title="原生事件绑定（跨浏览器），dom0和dom2的区别？"></a>原生事件绑定（跨浏览器），dom0和dom2的区别？</h2><p>如果定义了两个dom0级事件，dom0级事件会覆盖</p>
+<p>dom2不会覆盖，会依次执行</p>
+<p>dom0和dom2可以共存，不互相覆盖，但是dom0之间依然会覆盖</p>
+<h2 id="给定一个元素获取它相对于视图窗口的坐标"><a href="#给定一个元素获取它相对于视图窗口的坐标" class="headerlink" title="给定一个元素获取它相对于视图窗口的坐标"></a>给定一个元素获取它相对于视图窗口的坐标</h2><ol>
+<li><p>clientHeight和clientWidth用于描述元素内尺寸，是指 元素内容+内边距 大小，不包括边框（IE下实际包括）、外边距、滚动条部分</p>
+</li>
+<li><p>offsetHeight和offsetWidth用于描述元素外尺寸，是指 元素内容+内边距+边框，不包括外边距和滚动条部分</p>
+</li>
+<li><p>clientTop和clientLeft返回内边距的边缘和边框的外边缘之间的水平和垂直距离，也就是左，上边框宽度</p>
+</li>
+<li><p>offsetTop和offsetLeft表示该元素的左上角（边框外边缘）与已定位的父容器（offsetParent对象）左上角的距离</p>
+</li>
+<li><p>offsetParent对象是指元素最近的定位（relative,absolute）祖先元素，递归上溯，如果没有祖先元素是定位的话，会返回null</p>
+</li>
+<li><p>scrollWidth和scrollHeight是元素的内容区域加上内边距加上溢出尺寸，当内容正好和内容区域匹配没有溢出时，这些属性与clientWidth和clientHeight相等</p>
+</li>
+<li><p>scrollLeft和scrollTop是指元素滚动条位置，它们是可写的</p>
+</li>
+<li><p>pageXOffset:浏览器窗口的滚动条X轴的位置 pageYOffset:浏览器窗口的滚动条Y轴的位置</p>
+</li>
+<li><p>innerHeight:包括滚动条在内的窗口内容部分的高度 innerWidth:包括滚动条在内的窗口内容部分的宽度</p>
+</li>
+</ol>
+<h2 id="如何实现图片滚动懒加载"><a href="#如何实现图片滚动懒加载" class="headerlink" title="如何实现图片滚动懒加载"></a>如何实现图片滚动懒加载</h2><p>懒加载的难点在于确定某张图片是否是用户需要的资源，在浏览器中，用户需要的是可视区内的资源，因此我们只需要判断图片是否已经呈现在可视区内，当图片呈现在可视区内时，获取图片的真实地址并赋给该图片即可(图片宽高需要指定，可以利用padding处理)。</p>
+<p>判断是否存在于可视区</p>
+<p>浏览器视口高度<br>待加载资源距离视口顶端位置<br>通过以上两点即可判断图片是否位于可视区内。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var nodes = document.querySelectorAll(&apos;img[data-src]&apos;),</div><div class="line">    elem = nodes[0],</div><div class="line">    rect = elem.getBoundingClientRect(),</div><div class="line">    vpHeight = document.documentElement.clientHeight;</div><div class="line">if(rect.top &lt; vpHeight &amp;&amp; rect.bottom&gt;=0) &#123;</div><div class="line">  console.log(&apos;show&apos;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>返回值类型：TextRectangle对象，每个矩形具有四个整数性质（ 上， 右 ， 下，和左 ）表示的坐标的矩形，以像素为单位。</p>
+<p>　rectObject.top：元素上边到视窗上边的距离;</p>
+<p>　rectObject.right：元素右边到视窗左边的距离;</p>
+<p>　rectObject.bottom：元素下边到视窗上边的距离;</p>
+<p>　rectObject.left：元素左边到视窗左边的距离;</p>
+<p>之后获取图片的真实地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;img src=&quot;loading.gif&quot; alt=&quot;&quot; data-src=&apos;1.gif&apos;&gt;</div><div class="line">...</div><div class="line"> </div><div class="line">&lt;script&gt;</div><div class="line">    var src = elem.dataset.src;</div><div class="line">    var img = new Image();</div><div class="line">    img.onload = function()&#123;</div><div class="line">        elem.src = img.src;</div><div class="line">    &#125;</div><div class="line">    img.src = src;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<h2 id="js-的字符串类型有哪些方法？-正则表达式的函数怎么使用？"><a href="#js-的字符串类型有哪些方法？-正则表达式的函数怎么使用？" class="headerlink" title="js 的字符串类型有哪些方法？ 正则表达式的函数怎么使用？"></a>js 的字符串类型有哪些方法？ 正则表达式的函数怎么使用？</h2><h2 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h2><p>浅拷贝会使新对象与老对象指向同一个地址</p>
+<p>而深拷贝不仅将对象的各个属性逐个复制出去，而且将对象各个属性包含的对象依次递归复制到新对象上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">var cloneObj = function(obj)&#123;</div><div class="line">    var str, newobj = obj.constructor === Array ? [] : &#123;&#125;;</div><div class="line">    if(typeof obj !== &apos;object&apos;)&#123;</div><div class="line">        return;</div><div class="line">    &#125; else if(window.JSON)&#123;</div><div class="line">        str = JSON.stringify(obj), //系列化对象</div><div class="line">        newobj = JSON.parse(str); //还原</div><div class="line">    &#125; else &#123;</div><div class="line">        for(var i in obj)&#123;</div><div class="line">            newobj[i] = typeof obj[i] === &apos;object&apos; ? </div><div class="line">            cloneObj(obj[i]) : obj[i]; </div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return newobj;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="编写一个通用的事件监听函数"><a href="#编写一个通用的事件监听函数" class="headerlink" title="编写一个通用的事件监听函数"></a>编写一个通用的事件监听函数</h2><h2 id="web端cookie的设置和获取"><a href="#web端cookie的设置和获取" class="headerlink" title="web端cookie的设置和获取"></a>web端cookie的设置和获取</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">document.cookie=&quot;name=&quot;+username;</div><div class="line">// 加上终止时间</div><div class="line">document.cookie = name + &quot;=&quot;+ escape (value) + &quot;;expires=&quot; + exp.toGMTString();</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">// 该函数返回名称为name的cookie值，如果不存在则返回空，其实现如下： </div><div class="line">&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot;&gt; </div><div class="line">&lt;!-- </div><div class="line">function getCookie(name)&#123; </div><div class="line">var strCookie=document.cookie; </div><div class="line">var arrCookie=strCookie.split(&quot;; &quot;); </div><div class="line">for(var i=0;i&lt;arrCookie.length;i++)&#123; </div><div class="line">var arr=arrCookie[i].split(&quot;=&quot;); </div><div class="line">if(arr[0]==name)return arr[1]; </div><div class="line">&#125; </div><div class="line">return &quot;&quot;; </div><div class="line">&#125; </div><div class="line">//--&gt; </div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>为了删除一个cookie，可以将其过期时间设定为一个过去的时间，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//获取当前时间</div><div class="line">var date=new Date();</div><div class="line">//将date设置为过去的时间</div><div class="line">date.setTime(date.getTime()-10000);</div><div class="line">//将userId这个cookie删除</div><div class="line">document.cookie=&quot;userId=828; expires=&quot;+date.toGMTString();</div></pre></td></tr></table></figure></p>
+<h2 id="setTimeout和promise的执行顺序"><a href="#setTimeout和promise的执行顺序" class="headerlink" title="setTimeout和promise的执行顺序"></a>setTimeout和promise的执行顺序</h2><p>优先级关系如下：process.nextTick &gt; promise.then &gt; setTimeout &gt; setImmediate</p>
+<p>V8实现中，两个队列各包含不同的任务：<br>macrotasks: script(整体代码),setTimeout, setInterval, setImmediate, I/O, UI rendering<br>microtasks: process.nextTick, Promises, Object.observe, MutationObserver</p>
+<p>执行过程如下：<br>JavaScript引擎首先从macrotask queue中取出第一个任务，<br>执行完毕后，将microtask queue中的所有任务取出，按顺序全部执行；<br>然后再从macrotask queue中取下一个，<br>执行完毕后，再次将microtask queue中的全部取出；<br>循环往复，直到两个queue中的任务都取完。</p>
+<p>解释：<br>代码开始执行时，所有这些代码在macrotask queue中，取出来执行之。<br>后面遇到了setTimeout，又加入到macrotask queue中，<br>然后，遇到了promise.then，放入到了另一个队列microtask queue。<br>等整个execution context stack执行完后，<br>下一步该取的是microtask queue中的任务了。<br>因此promise.then的回调比setTimeout先执行。</p>
+<h2 id="JavaScript-的事件流模型都有什么？"><a href="#JavaScript-的事件流模型都有什么？" class="headerlink" title="JavaScript 的事件流模型都有什么？"></a>JavaScript 的事件流模型都有什么？</h2><p>dom0 dom2 IE</p>
+<h2 id="navigator对象，location和history"><a href="#navigator对象，location和history" class="headerlink" title="navigator对象，location和history"></a>navigator对象，location和history</h2><p>location 当前网址的URL<br>reload()<br>replace()<br>toString()</p>
+<p>history 提供最近访问过的网址列表<br>back()<br>go()<br>forward()</p>
+<h2 id="js的垃圾回收机制"><a href="#js的垃圾回收机制" class="headerlink" title="js的垃圾回收机制"></a>js的垃圾回收机制</h2><h2 id="内存泄漏的原因和场景"><a href="#内存泄漏的原因和场景" class="headerlink" title="内存泄漏的原因和场景"></a>内存泄漏的原因和场景</h2><p>全局变量引起的内存泄漏<br>闭包引起的内存泄漏<br>dom清空或删除时，事件未清除导致的内存泄漏子元素存在引用引起的内存泄漏</p>
+<h2 id="DOM事件的绑定的几种方式"><a href="#DOM事件的绑定的几种方式" class="headerlink" title="DOM事件的绑定的几种方式"></a>DOM事件的绑定的几种方式</h2><h2 id="DOM事件中target和currentTarget的区别"><a href="#DOM事件中target和currentTarget的区别" class="headerlink" title="DOM事件中target和currentTarget的区别"></a>DOM事件中target和currentTarget的区别</h2><h2 id="typeof-和-instanceof-区别，instanceof原理"><a href="#typeof-和-instanceof-区别，instanceof原理" class="headerlink" title="typeof 和 instanceof 区别，instanceof原理"></a>typeof 和 instanceof 区别，instanceof原理</h2><h2 id="js动画和css3动画比较"><a href="#js动画和css3动画比较" class="headerlink" title="js动画和css3动画比较"></a>js动画和css3动画比较</h2><h2 id="JavaScript-倒计时（setTimeout）"><a href="#JavaScript-倒计时（setTimeout）" class="headerlink" title="JavaScript 倒计时（setTimeout）"></a>JavaScript 倒计时（setTimeout）</h2><h2 id="js处理异常"><a href="#js处理异常" class="headerlink" title="js处理异常"></a>js处理异常</h2><h2 id="js的设计模式知道那些"><a href="#js的设计模式知道那些" class="headerlink" title="js的设计模式知道那些"></a>js的设计模式知道那些</h2><h2 id="轮播图的实现，以及轮播图组件开发，轮播10000张图片过程"><a href="#轮播图的实现，以及轮播图组件开发，轮播10000张图片过程" class="headerlink" title="轮播图的实现，以及轮播图组件开发，轮播10000张图片过程"></a>轮播图的实现，以及轮播图组件开发，轮播10000张图片过程</h2><h2 id="websocket的工作原理和机制。"><a href="#websocket的工作原理和机制。" class="headerlink" title="websocket的工作原理和机制。"></a>websocket的工作原理和机制。</h2><p>WebSocket看成是一种类似TCP/IP的socket技术；此socket在Web应用中实现，并获得了和TCP/IP通信一样灵活方便的全双向通信功能。<br>WebSocket协议由RFC 6455定义。协议分为两个部分： 握手阶段和数据通信阶段。<br>WebSocket为应用层协议，其定义在TCP/IP协议栈之上。WebSocket连接服务器的URI以”ws”或者”wss”开头。ws开头的默认TCP端口为80，wss开头的默认端口为443。</p>
+<p>WebSocket的结论如下：<br>基于TCP/IP协议实现<br>是一种全双向的通信, 具有底层socket的特点<br>节约带宽，节省服务器资源<br>是HTML5的技术之一，具有巨大的应用前景</p>
+<h2 id="手指点击可以触控的屏幕时，是什么事件？"><a href="#手指点击可以触控的屏幕时，是什么事件？" class="headerlink" title="手指点击可以触控的屏幕时，是什么事件？"></a>手指点击可以触控的屏幕时，是什么事件？</h2><p>touchstart:当手指触摸屏幕时触发；即使已经有一个手指放在了屏幕上也会触发。<br>touchmove:当手指在屏幕上滑动时连续的触发。在这个事件发生期间，调用preventDefault()可阻止滚动。<br>touchend:当手指从屏幕上移开时触发。<br>touchcancel:当系统停止跟踪触摸时触发。关于此事件的确切触发事件，文档中没有明确说明。</p>
+<h2 id="什么是函数柯里化？以及说一下JS的API有哪些应用到了函数柯里化的实现？-函数柯里化一些了解，以及在函数式编程的应用，最后说了一下JS中bind函数和数组的reduce方法用到了函数柯里化。"><a href="#什么是函数柯里化？以及说一下JS的API有哪些应用到了函数柯里化的实现？-函数柯里化一些了解，以及在函数式编程的应用，最后说了一下JS中bind函数和数组的reduce方法用到了函数柯里化。" class="headerlink" title="什么是函数柯里化？以及说一下JS的API有哪些应用到了函数柯里化的实现？(函数柯里化一些了解，以及在函数式编程的应用，最后说了一下JS中bind函数和数组的reduce方法用到了函数柯里化。)"></a>什么是函数柯里化？以及说一下JS的API有哪些应用到了函数柯里化的实现？(函数柯里化一些了解，以及在函数式编程的应用，最后说了一下JS中bind函数和数组的reduce方法用到了函数柯里化。)</h2><h2 id="JS代码调试"><a href="#JS代码调试" class="headerlink" title="JS代码调试"></a>JS代码调试</h2><h2 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h2><h2 id="谈一谈-promise"><a href="#谈一谈-promise" class="headerlink" title="谈一谈 promise"></a>谈一谈 promise</h2><h2 id="所有的-ES6-特性你都知道吗？如果遇到一个东西不知道是-ES6-还是-ES5-你该怎么区分它"><a href="#所有的-ES6-特性你都知道吗？如果遇到一个东西不知道是-ES6-还是-ES5-你该怎么区分它" class="headerlink" title="所有的 ES6 特性你都知道吗？如果遇到一个东西不知道是 ES6 还是 ES5, 你该怎么区分它"></a>所有的 ES6 特性你都知道吗？如果遇到一个东西不知道是 ES6 还是 ES5, 你该怎么区分它</h2><h2 id="es6的继承和es5的继承有什么区别"><a href="#es6的继承和es5的继承有什么区别" class="headerlink" title="es6的继承和es5的继承有什么区别"></a>es6的继承和es5的继承有什么区别</h2><h2 id="promise封装ajax"><a href="#promise封装ajax" class="headerlink" title="promise封装ajax"></a>promise封装ajax</h2><h2 id="let-const的优点"><a href="#let-const的优点" class="headerlink" title="let const的优点"></a>let const的优点</h2><h2 id="es6-generator-是什么，async-await-实现原理"><a href="#es6-generator-是什么，async-await-实现原理" class="headerlink" title="es6 generator 是什么，async/await 实现原理"></a>es6 generator 是什么，async/await 实现原理</h2><h2 id="ES6和node的commonjs模块化规范区别"><a href="#ES6和node的commonjs模块化规范区别" class="headerlink" title="ES6和node的commonjs模块化规范区别"></a>ES6和node的commonjs模块化规范区别</h2><h2 id="箭头函数，以及它的this"><a href="#箭头函数，以及它的this" class="headerlink" title="箭头函数，以及它的this"></a>箭头函数，以及它的this</h2><p>#计算机网络</p>
+<h2 id="HTTP协议头含有哪些重dom要的部分，HTTP状态码"><a href="#HTTP协议头含有哪些重dom要的部分，HTTP状态码" class="headerlink" title="HTTP协议头含有哪些重dom要的部分，HTTP状态码"></a>HTTP协议头含有哪些重dom要的部分，HTTP状态码</h2><h2 id="网络url输入到输出怎么做？"><a href="#网络url输入到输出怎么做？" class="headerlink" title="网络url输入到输出怎么做？"></a>网络url输入到输出怎么做？</h2><h2 id="性能优化为什么要减少-HTTP-访问次数？"><a href="#性能优化为什么要减少-HTTP-访问次数？" class="headerlink" title="性能优化为什么要减少 HTTP 访问次数？"></a>性能优化为什么要减少 HTTP 访问次数？</h2><p>频繁的请求服务器，会造成页面响应缓慢，数据加载缓慢的问题，如果并发量大的时候，很容易造成系统瘫痪。</p>
+<p>1、从网络方面而言，减少数据的交互就意味着减少了网络带宽的压力，能够提供更大并发量的服务，减少网络传输的时间。<br>2、由于减少了请求次数，服务器的资源开销得到有效减少，后台服务器不用频繁的创建线程来处理外部的请求，由于操作系统创建和销毁线程的操作是非常消耗系统CPU等资源，因此减少请求次数也就大大减少了系统开销。</p>
+<p>在一次查询中，首次请求后台时，后台一次性将所需要的信息全部返回，前台进行缓存，后续所有的操作均解析前台缓存数据，从中取出页面操作所需要的信息然后再进行展现，有效减少请求后台服务器的次数。相对于程序和网络延迟来说，网络传输所耗费的时间，要比解析数据要慢的多，即使返回的数据量大，也不会比网络延迟的影响更大。<br>具体缓存的策略，可以是一个数组对象，一个列表对象，或一个HashMap对象等，也可以是JSON数据，或XML内容。总之，只要有利于缓存的数据结构，都可以用于数据的缓存。<br>此种方法，对比较大的数据来说，非常有效，能有效缓解服务器的压力和网络压力，提高系统的整体性能。</p>
+<p>Http请求的过程与原理</p>
+<p>域名解析 –&gt; 发起TCP的3次握手 –&gt; 建立TCP连接后发起http请求 –&gt; 服务器响应http请求，浏览器得到html代码 –&gt; 浏览器解析html代码，并请求html代码中的资源（如js、css、图片等） –&gt; 浏览器对页面进行渲染呈现给用户</p>
+<p>1.域名解析</p>
+<p>首先Chrome浏览器会解析 www.linux178.com 这个域名（准确的叫法应该是主机名）对应的IP地址。怎么解析到对应的IP地址？</p>
+<p>① Chrome浏览器 会首先搜索浏览器自身的DNS缓存（缓存时间比较短，大概只有1分钟，且只能容纳1000条缓存），看自身的缓存中是否有www.linux178.com 对应的条目，而且没有过期，如果有且没有过期则解析到此结束。</p>
+<pre><code>注：我们怎么查看Chrome自身的缓存？可以使用 chrome://net-internals/#dns 来进行查看
+</code></pre><p>② 如果浏览器自身的缓存里面没有找到对应的条目，那么Chrome会搜索操作系统自身的DNS缓存,如果找到且没有过期则停止搜索解析到此结束.</p>
+<pre><code>注：怎么查看操作系统自身的DNS缓存，以Windows系统为例，可以在命令行下使用 ipconfig /displaydns 来进行查看  
+</code></pre><p>③ 如果在Windows系统的DNS缓存也没有找到，那么尝试读取hosts文件（位于C:\Windows\System32\drivers\etc），看看这里面有没有该域名对应的IP地址，如果有则解析成功。</p>
+<p>④ 如果在hosts文件中也没有找到对应的条目，浏览器就会发起一个DNS的系统调用，就会向本地配置的首选DNS服务器（一般是电信运营商提供的，也可以使用像Google提供的DNS服务器）发起域名解析请求</p>
+<p>2.发起TCP的3次握手</p>
+<p>拿到域名对应的IP地址之后，User-Agent（一般是指浏览器）会以一个随机端口（1024 &lt; 端口 &lt; 65535）向服务器的WEB程序（常用的有httpd,nginx等）80端口发起TCP的连接请求。这个连接请求（原始的http请求经过TCP/IP4层模型的层层封包）到达服务器端后（这中间通过各种路由设备，局域网内除外），进入到网卡，然后是进入到内核的TCP/IP协议栈（用于识别该连接请求，解封包，一层一层的剥开），还有可能要经过Netfilter防火墙（属于内核的模块）的过滤，最终到达WEB程序（本文就以Nginx为例），最终建立了TCP/IP的连接。</p>
+<p>2个计算机通信是靠协议（目前流行的TCP/IP协议）来实现,如果2个计算机使用的协议不一样，那是不能进行通信的，所以这个3次握手就相当于试探一下对方是否遵循TCP/IP协议，协商完成后就可以进行通信了，当然这样理解不是那么准确。</p>
+<p>为什么HTTP协议要基于TCP来实现？</p>
+<p>目前在Internet中所有的传输都是通过TCP/IP进行的，HTTP协议作为TCP/IP模型中应用层的协议也不例外，TCP是一个端到端的可靠的面向连接的协议，所以HTTP基于传输层TCP协议不用担心数据的传输的各种问题。</p>
+<p>https（对是https）有几次握手和挥手？https的原理。<br>http有几次挥手和握手？TLS的中文名？TLS在哪一网络层？<br>TCP连接的特点，TCP连接如何保证安全可靠的？<br>为什么TCP连接需要三次握手，两次不可以吗，为什么<br>为什么tcp要三次握手四次挥手？<br>tcp的三次握手和四次挥手画图（当场画写ack 和 seq的值）？<br>tcp与udp的区别<br>get和post的区别？什么情况下用到？<br>http2 与http1 的区别？<br>websocket<br>什么是tcp流，什么是http流<br>babel是如何将es6代码编译成es5的<br>http2的持久连接和管线化<br>域名解析时是tcp还是udp<br>域名发散和域名收敛<br>Post一个file的时候file放在哪的？<br>HTTP Response的Header里面都有些啥？<br>浏览器相关<br>跨域，为什么JS会对跨域做出限制<br>前端安全：xss，csrf…<br>浏览器怎么加载页面的？script脚本阻塞有什么解决方法？defer和async的区别？<br>浏览器强缓存和协商缓存<br>浏览器的全局变量有哪些<br>浏览器同一时间能够从一个域名下载多少资源<br>按需加载，不同页面的元素判断标准<br>web存储、cookies、localstroge等的使用和区别<br>浏览器的内核<br>如何实现缓存机制？（从200缓存，到cache到etag再到）<br>说一下200和304的理解和区别<br>什么是预加载、懒加载<br>一个 XMLHttpRequest 实例有多少种状态？<br>dns解析原理，输入网址后如何查找服务器<br>服务器如何知道你？<br>浏览器渲染过程<br>ie的某些兼容性问题<br>session<br>拖拽实现<br>拆解url的各部分</p>
+<h1 id="工程化"><a href="#工程化" class="headerlink" title="工程化"></a>工程化</h1><p>对webpack,gulp，grunt等有没有了解?对比。<br>webpack的入口文件怎么配置，多个入口怎么分割。<br>webpack的loader和plugins的区别<br>gulp的具体使用。<br>前端工程化的理解、如何自己实现一个文件打包，比如一个JS文件里同时又ES5 和ES6写的代码，如何编译兼容他们<br>模块化<br>对AMD,CMD,CommonJS有没有了解?<br>为什么要模块化？不用的时候和用RequireJs的时候代码大概怎么写？<br>说说有哪些模块化的库，有了解过模块化的发展的历史吗？<br>分别说说同步和异步模块化的应用场景，说下AMD异步模块化实现的原理？<br>如何将项目里面的所有的require的模块语法换成import的ES6的语法？<br>使用模块化加载时，模块加载的顺序是怎样的，如果不知道，根据已有的知识，你觉得顺序应该是怎么样的？<br>框架<br>使用过哪些框架？<br>zepto 和 jquery 是什么关系，有什么联系么？<br>jquery源码如何实现选择器的，为什么$取得的对象要设计成数组的形式，这样设计的目的是什么<br>jquery如何绑定事件，有几种类型和区别<br>什么是MVVM，MVC，MVP<br>Vue和Angular的双向数据绑定原理<br>Vue，Angular组件间通信以及路由原理<br>react和vue的生命周期<br>react和vue的虚拟dom以及diff算法<br>vue的observer，watcher，compile<br>react和angular分别用在什么样的业务吗？性能方面和MVC层面上的区别<br>jQuery对象和JS的Element有什么区别<br>jQuery对象是怎么实现的<br>jQuery除了它封装了一些方法外，还有什么值得我们去学习和使用的？<br>jQuery的$(‘xxx’)做了什么事情<br>介绍一下bootstrap的栅格系统是如何实现的<br>Nodejs<br>对nodejs有没有了解<br>Express 和 koa 有什么关系，有什么区别？<br>nodejs适合做什么样的业务？<br>nodejs与php，java有什么区别<br>Nodejs中的Stream和Buffer有什么区别？<br>node的异步问题是如何解决的？<br>node是如何实现高并发的？<br>说一下 Nodejs 的 event loop 的原理</p>
+<h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><p>基本数据结构：（数组、队列、链表、堆、二叉树、哈希表等等）<br>8种排序算法，原理，以及适用场景和复杂度<br>说出越多越好的费波拉切数列的实现方法？<br>性能优化<br>cdn的用法是什么？什么时候用到？<br>浏览器的页面优化？<br>如何优化 DOM 操作的性能<br>单页面应用有什么SEO方案？<br>单页面应用首屏显示比较慢，原因是什么？有什么解决方案？</p>
+<h1 id="其他-1"><a href="#其他-1" class="headerlink" title="其他"></a>其他</h1><p>正则表达式<br>前端渲染和后端渲染的优缺点<br>数据库的四大特性，什么是原子性，表的关系<br>你觉得前端体系应该是怎样的？<br>一个静态资源要上线，里面有各种资源依赖，你如何平稳上线<br>如果要你去实现一个前端模板引擎，你会怎么做<br>知道流媒体查询吗？<br>SEO<br>mysql 和 mongoDB 有什么区别？<br>restful的method解释<br>数据库知识、操作系统知识<br>click在ios上有300ms延迟，原因及如何解决<br>移动端的适配，rem+媒体查询/meta头设置<br>移动端的手势和事件；<br>unicode，utf8，gbk编码的了解，乱码的解决</p>
+<h1 id="三面、四面常问的开放性问题"><a href="#三面、四面常问的开放性问题" class="headerlink" title="三面、四面常问的开放性问题"></a>三面、四面常问的开放性问题</h1><p>你都看过什么书？最近在看什么书？<br>用过什么框架？有没有看过什么框架的代码？<br>有没有学过设计模式？<br>说一说观察者模式吧！能不能写出来？<br>你最大的优点是什么？那你最大的缺点呢？<br>你大学期间做过最疯狂的事情是什么？<br>你除了写博客还有什么输出？<br>现在你的领导给你了一份工作，要求你一个星期完成，但你看了需求以后估计需要3周才能完成，你该怎么办？<br>平时关注的前端<br>如何规划自己的职业生涯<br>项目过程中，有遇到什么问题吗？怎么解决的？<br>最近在研究哪方面的东西？<br>请介绍一项你最热爱、最擅长的专业领域，并且介绍的学习规划。<br>请介绍你参与的印象最深刻的一个项目，为什么？并且介绍你在项目中的角色和发挥的作用。<br>HR面<br>你为什么要学习前端？<br>你平时的是怎么学习前端的？有什么输出？<br>你觉得自己最好的项目是什么？<br>身边比较佩服的人有什么值得你学习的？你为什么没有跟他们一样？<br>同事的什么问题会让你接受不了<br>压力最大的事情是什么？<br>和同学做过的最好的项目？<br>身边的朋友通常对你的评价是什么<br>喜欢什么样的工作氛围<br>如何看待加班<br>有没有对象<br>意向城市<br>其他的offer<br>为什么要录取你？<br>大学里花费时间最多的三件事情<br>周末都会干什么？<br>未来职业规划<br>建议<br>面试的时候不要表现出自己想创业。敲黑板。<br>从来没有看过源码的话，建议从jQuery，zepto这之类的源码入手，后期可以了解Vue，React常见的功能的源码思路和实现。<br>项目经验描述的时候不用太太太详细，拣重点的讲。（因为我就一直说一直说，最后面试官评价插不上话评价减分。）<br>最后<br>我接近两个月的校招里，这里的很多知识点都是从别人的博客、面经一篇一篇的抠下来的，这是前人给后人铺好的路。前端的知识点其实说多也不多，只是太杂，所以我没有整理的特别详细。我之所以以这样的形式分享而不是以面经的形式，主要是有需要的同学们能够“拿去即用”，也是整理一下我原来的笔记。<br>呀，身边的人都好强，继续学习。[抱拳]</p>
+<p> 推荐阅读：<br>1.JavaScript 创建对象的七种方式</p>
+<p>2.非科班·零基础的自学前端之路</p>
+<p>觉得本文对你有帮助？请分享给更多人<br>关注「前端大学」，提升前端技能</p>
+<p>阅读 102720 投诉<br>写留言</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/22/hexo-next搭建个人博客的过程/" rel="next" title="hexo+next搭建个人博客的过程">
+                <i class="fa fa-chevron-left"></i> hexo+next搭建个人博客的过程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/24/实战总结：Vue2.x仿饿了么SPA商家页/" rel="prev" title="实战总结：Vue2.x仿饿了么SPA商家页">
+                实战总结：Vue2.x仿饿了么SPA商家页 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image"
+              src="/images/avatar.gif"
+              alt="KevinLau" />
+          
+            <p class="site-author-name" itemprop="name">KevinLau</p>
+            <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Kevin031" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2122637140" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>微博</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HTML"><span class="nav-number">1.</span> <span class="nav-text">HTML</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML5新特性，语义化"><span class="nav-number">1.1.</span> <span class="nav-text">HTML5新特性，语义化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器的标准模式和怪异模式"><span class="nav-number">1.2.</span> <span class="nav-text">浏览器的标准模式和怪异模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#两个常见区别"><span class="nav-number">1.2.1.</span> <span class="nav-text">两个常见区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xhtml和html的区别"><span class="nav-number">1.3.</span> <span class="nav-text">xhtml和html的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用data-的好处"><span class="nav-number">1.4.</span> <span class="nav-text">使用data-的好处</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#meta标签"><span class="nav-number">1.5.</span> <span class="nav-text">meta标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#canvas"><span class="nav-number">1.6.</span> <span class="nav-text">canvas</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML废弃的标签"><span class="nav-number">1.7.</span> <span class="nav-text">HTML废弃的标签</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#表现性元素"><span class="nav-number">1.7.1.</span> <span class="nav-text">表现性元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#框架类元素"><span class="nav-number">1.7.2.</span> <span class="nav-text">框架类元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">1.7.3.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IE6-bug，和一些定位写法"><span class="nav-number">1.8.</span> <span class="nav-text">IE6 bug，和一些定位写法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IE6双倍边距bug"><span class="nav-number">1.8.1.</span> <span class="nav-text">IE6双倍边距bug</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IE6中3像素问题及解决办法"><span class="nav-number">1.8.2.</span> <span class="nav-text">IE6中3像素问题及解决办法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IE6中奇数宽高的BUG"><span class="nav-number">1.8.3.</span> <span class="nav-text">IE6中奇数宽高的BUG</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IE6中图片链接的下方有间隙"><span class="nav-number">1.8.4.</span> <span class="nav-text">IE6中图片链接的下方有间隙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IE6下空元素的高度BUG"><span class="nav-number">1.8.5.</span> <span class="nav-text">IE6下空元素的高度BUG</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重复文字的BUG"><span class="nav-number">1.8.6.</span> <span class="nav-text">重复文字的BUG</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IE6中-z-index失效"><span class="nav-number">1.8.7.</span> <span class="nav-text">IE6中 z-index失效</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结语"><span class="nav-number">1.8.8.</span> <span class="nav-text">结语</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是渐进式渲染"><span class="nav-number">1.9.</span> <span class="nav-text">什么是渐进式渲染</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#html模板语言"><span class="nav-number">1.10.</span> <span class="nav-text">html模板语言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#meta-viewport原理"><span class="nav-number">1.11.</span> <span class="nav-text">meta viewport原理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CSS"><span class="nav-number">2.</span> <span class="nav-text">CSS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#盒模型，box-sizing"><span class="nav-number">2.1.</span> <span class="nav-text">盒模型，box-sizing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS3新特性，伪类，伪元素，锚伪类"><span class="nav-number">2.2.</span> <span class="nav-text">CSS3新特性，伪类，伪元素，锚伪类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#选择器"><span class="nav-number">2.2.1.</span> <span class="nav-text">选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Font-face"><span class="nav-number">2.2.2.</span> <span class="nav-text">@Font-face</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#圆角"><span class="nav-number">2.2.3.</span> <span class="nav-text">圆角</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多列布局"><span class="nav-number">2.2.4.</span> <span class="nav-text">多列布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#阴影"><span class="nav-number">2.2.5.</span> <span class="nav-text">阴影</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#渐变效果"><span class="nav-number">2.2.6.</span> <span class="nav-text">渐变效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#css弹性盒子模型"><span class="nav-number">2.2.7.</span> <span class="nav-text">css弹性盒子模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过渡效果"><span class="nav-number">2.2.8.</span> <span class="nav-text">过渡效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#转换"><span class="nav-number">2.2.9.</span> <span class="nav-text">转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动画特效"><span class="nav-number">2.2.10.</span> <span class="nav-text">动画特效</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS实现隐藏页面的方式"><span class="nav-number">2.3.</span> <span class="nav-text">CSS实现隐藏页面的方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何实现水平居中和垂直居中。"><span class="nav-number">2.4.</span> <span class="nav-text">如何实现水平居中和垂直居中。</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#水平居中"><span class="nav-number">2.4.1.</span> <span class="nav-text">水平居中</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#行级元素水平居中对齐（父元素设置-text-align-center）"><span class="nav-number">2.4.1.1.</span> <span class="nav-text">行级元素水平居中对齐（父元素设置 text-align:center）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#块级元素水平居中对齐（margin-0-auto）"><span class="nav-number">2.4.1.2.</span> <span class="nav-text">块级元素水平居中对齐（margin: 0 auto）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#浮动元素水平居中"><span class="nav-number">2.4.1.3.</span> <span class="nav-text">浮动元素水平居中</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#宽度不固定"><span class="nav-number">2.4.1.3.1.</span> <span class="nav-text">宽度不固定</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#宽度固定"><span class="nav-number">2.4.1.3.2.</span> <span class="nav-text">宽度固定</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#垂直居中"><span class="nav-number">2.4.2.</span> <span class="nav-text">垂直居中</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#对行级元素垂直居中（heiht与line-height的值一样）"><span class="nav-number">2.4.2.1.</span> <span class="nav-text">对行级元素垂直居中（heiht与line-height的值一样）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对块级元素"><span class="nav-number">2.4.2.2.</span> <span class="nav-text">对块级元素</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#父元素高度固定的情况"><span class="nav-number">2.4.2.2.1.</span> <span class="nav-text">父元素高度固定的情况</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#父元素高度不固定的情况"><span class="nav-number">2.4.2.2.2.</span> <span class="nav-text">父元素高度不固定的情况</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说说position，display"><span class="nav-number">2.5.</span> <span class="nav-text">说说position，display</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#请解释-box-sizing-border-box-的作用，并说明使用它的好处"><span class="nav-number">2.6.</span> <span class="nav-text">请解释*{box-sizing:border-box;}的作用，并说明使用它的好处</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浮动元素引起的问题和解决办法？绝对定位和相对定位，元素浮动后的display值"><span class="nav-number">2.7.</span> <span class="nav-text">浮动元素引起的问题和解决办法？绝对定位和相对定位，元素浮动后的display值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#link和-import引入css的区别"><span class="nav-number">2.8.</span> <span class="nav-text">link和@import引入css的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解释一下css3的flexbox，以及适用场景"><span class="nav-number">2.9.</span> <span class="nav-text">解释一下css3的flexbox，以及适用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#inline和inline-block的区别"><span class="nav-number">2.10.</span> <span class="nav-text">inline和inline-block的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#哪些是块级元素那些是行级元素，各有什么特点"><span class="nav-number">2.11.</span> <span class="nav-text">哪些是块级元素那些是行级元素，各有什么特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#grid布局-table布局的作用"><span class="nav-number">2.12.</span> <span class="nav-text">grid布局 table布局的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现两栏布局有哪些方法？"><span class="nav-number">2.13.</span> <span class="nav-text">实现两栏布局有哪些方法？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#css-dpi"><span class="nav-number">2.14.</span> <span class="nav-text">css dpi</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#你知道attribute和property的区别么"><span class="nav-number">2.15.</span> <span class="nav-text">你知道attribute和property的区别么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#css布局问题？css实现三列布局怎么做？如果中间是自适应又怎么做？"><span class="nav-number">2.16.</span> <span class="nav-text">css布局问题？css实现三列布局怎么做？如果中间是自适应又怎么做？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流式布局如何实现，响应式布局如何实现"><span class="nav-number">2.17.</span> <span class="nav-text">流式布局如何实现，响应式布局如何实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移动端布局方案"><span class="nav-number">2.18.</span> <span class="nav-text">移动端布局方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现三栏布局（圣杯布局，双飞翼布局，flex布局）"><span class="nav-number">2.19.</span> <span class="nav-text">实现三栏布局（圣杯布局，双飞翼布局，flex布局）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#清除浮动的原理"><span class="nav-number">2.20.</span> <span class="nav-text">清除浮动的原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#overflow-hidden有什么缺点？"><span class="nav-number">2.21.</span> <span class="nav-text">overflow:hidden有什么缺点？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#padding百分比是相对于父级宽度还是自身的宽度"><span class="nav-number">2.22.</span> <span class="nav-text">padding百分比是相对于父级宽度还是自身的宽度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#css3动画，transition和animation的区别，animation的属性，加速度，重力的模拟实现"><span class="nav-number">2.23.</span> <span class="nav-text">css3动画，transition和animation的区别，animation的属性，加速度，重力的模拟实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-3-如何实现旋转图片（transform-rotate）"><span class="nav-number">2.24.</span> <span class="nav-text">CSS 3 如何实现旋转图片（transform: rotate）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sass-less"><span class="nav-number">2.25.</span> <span class="nav-text">sass less</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对移动端开发了解多少？（响应式设计、Zepto；-media、viewport、JavaScript-正则表达式判断平台。）"><span class="nav-number">2.26.</span> <span class="nav-text">对移动端开发了解多少？（响应式设计、Zepto；@media、viewport、JavaScript 正则表达式判断平台。）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是bfc，如何创建bfc？解决什么问题？"><span class="nav-number">2.27.</span> <span class="nav-text">什么是bfc，如何创建bfc？解决什么问题？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS中的长度单位（px-pt-rem-em-ex-vw-vh-vh-vmin-vmax）"><span class="nav-number">2.28.</span> <span class="nav-text">CSS中的长度单位（px,pt,rem,em,ex,vw,vh,vh,vmin,vmax）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-选择器的优先级是怎样的？"><span class="nav-number">2.29.</span> <span class="nav-text">CSS 选择器的优先级是怎样的？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#雪碧图"><span class="nav-number">2.30.</span> <span class="nav-text">雪碧图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#svg"><span class="nav-number">2.31.</span> <span class="nav-text">svg</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#媒体查询的原理是什么？"><span class="nav-number">2.32.</span> <span class="nav-text">媒体查询的原理是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-的加载是异步的吗？表现在什么地方？"><span class="nav-number">2.33.</span> <span class="nav-text">CSS 的加载是异步的吗？表现在什么地方？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常遇到的浏览器兼容性问题有哪些？常用的hack的技巧"><span class="nav-number">2.34.</span> <span class="nav-text">常遇到的浏览器兼容性问题有哪些？常用的hack的技巧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#外边距合并"><span class="nav-number">2.35.</span> <span class="nav-text">外边距合并</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解释一下“-before”和“-after”中的双冒号和单冒号的区别"><span class="nav-number">2.36.</span> <span class="nav-text">解释一下“::before”和“:after”中的双冒号和单冒号的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#js的基本类型有哪些？引用类型有哪些？null和undefined的区别。"><span class="nav-number">2.37.</span> <span class="nav-text">js的基本类型有哪些？引用类型有哪些？null和undefined的区别。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何判断一个变量是Array类型？如何判断一个变量是Number类型？（都不止一种）"><span class="nav-number">2.38.</span> <span class="nav-text">如何判断一个变量是Array类型？如何判断一个变量是Number类型？（都不止一种）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Object是引用类型嘛？引用类型和基本类型有什么区别？哪个是存在堆哪一个是存在栈上面的？"><span class="nav-number">2.39.</span> <span class="nav-text">Object是引用类型嘛？引用类型和基本类型有什么区别？哪个是存在堆哪一个是存在栈上面的？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS常见的dom操作api"><span class="nav-number">2.40.</span> <span class="nav-text">JS常见的dom操作api</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解释一下事件冒泡和事件捕获"><span class="nav-number">2.41.</span> <span class="nav-text">解释一下事件冒泡和事件捕获</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件委托（手写例子），事件冒泡和捕获，如何阻止冒泡？如何组织默认事件？"><span class="nav-number">2.42.</span> <span class="nav-text">事件委托（手写例子），事件冒泡和捕获，如何阻止冒泡？如何组织默认事件？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对闭包的理解？什么时候构成闭包？闭包的实现方法？闭包的优缺点？"><span class="nav-number">2.43.</span> <span class="nav-text">对闭包的理解？什么时候构成闭包？闭包的实现方法？闭包的优缺点？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#this有哪些使用场景？跟C-Java中的this有什么区别？如何改变this的值？"><span class="nav-number">2.44.</span> <span class="nav-text">this有哪些使用场景？跟C,Java中的this有什么区别？如何改变this的值？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#call，apply，bind"><span class="nav-number">2.45.</span> <span class="nav-text">call，apply，bind</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#显示原型和隐式原型，手绘原型链，原型链是什么？为什么要有原型链"><span class="nav-number">2.46.</span> <span class="nav-text">显示原型和隐式原型，手绘原型链，原型链是什么？为什么要有原型链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建对象的多种方式"><span class="nav-number">2.47.</span> <span class="nav-text">创建对象的多种方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现继承的多种方式和优缺点"><span class="nav-number">2.48.</span> <span class="nav-text">实现继承的多种方式和优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#new-一个对象具体做了什么"><span class="nav-number">2.49.</span> <span class="nav-text">new 一个对象具体做了什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#手写Ajax，XMLHttpRequest"><span class="nav-number">2.50.</span> <span class="nav-text">手写Ajax，XMLHttpRequest</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量提升"><span class="nav-number">2.51.</span> <span class="nav-text">变量提升</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#举例说明一个匿名函数的典型用例"><span class="nav-number">2.52.</span> <span class="nav-text">举例说明一个匿名函数的典型用例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指出JS的宿主对象和原生对象的区别，为什么扩展JS内置对象不是好的做法？有哪些内置对象和内置函数？"><span class="nav-number">2.53.</span> <span class="nav-text">指出JS的宿主对象和原生对象的区别，为什么扩展JS内置对象不是好的做法？有哪些内置对象和内置函数？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#attribute和property的区别"><span class="nav-number">2.54.</span> <span class="nav-text">attribute和property的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#document-load和document-DOMContentLoaded两个事件的区别"><span class="nav-number">2.55.</span> <span class="nav-text">document load和document DOMContentLoaded两个事件的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#和-undefined-undefined-undefined-undefined"><span class="nav-number">2.56.</span> <span class="nav-text">=== 和 == , [] === [], undefined === undefined,[] == [], undefined == undefined</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#typeof能够得到哪些值"><span class="nav-number">2.57.</span> <span class="nav-text">typeof能够得到哪些值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是“use-strict”-好处和坏处"><span class="nav-number">2.58.</span> <span class="nav-text">什么是“use strict”,好处和坏处</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数的作用域是什么？js-的作用域有几种？"><span class="nav-number">2.59.</span> <span class="nav-text">函数的作用域是什么？js 的作用域有几种？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS如何实现重载和多态"><span class="nav-number">2.60.</span> <span class="nav-text">JS如何实现重载和多态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用的数组api，字符串api"><span class="nav-number">2.61.</span> <span class="nav-text">常用的数组api，字符串api</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原生事件绑定（跨浏览器），dom0和dom2的区别？"><span class="nav-number">2.62.</span> <span class="nav-text">原生事件绑定（跨浏览器），dom0和dom2的区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#给定一个元素获取它相对于视图窗口的坐标"><span class="nav-number">2.63.</span> <span class="nav-text">给定一个元素获取它相对于视图窗口的坐标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何实现图片滚动懒加载"><span class="nav-number">2.64.</span> <span class="nav-text">如何实现图片滚动懒加载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#js-的字符串类型有哪些方法？-正则表达式的函数怎么使用？"><span class="nav-number">2.65.</span> <span class="nav-text">js 的字符串类型有哪些方法？ 正则表达式的函数怎么使用？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#深拷贝"><span class="nav-number">2.66.</span> <span class="nav-text">深拷贝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编写一个通用的事件监听函数"><span class="nav-number">2.67.</span> <span class="nav-text">编写一个通用的事件监听函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web端cookie的设置和获取"><span class="nav-number">2.68.</span> <span class="nav-text">web端cookie的设置和获取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#setTimeout和promise的执行顺序"><span class="nav-number">2.69.</span> <span class="nav-text">setTimeout和promise的执行顺序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-的事件流模型都有什么？"><span class="nav-number">2.70.</span> <span class="nav-text">JavaScript 的事件流模型都有什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#navigator对象，location和history"><span class="nav-number">2.71.</span> <span class="nav-text">navigator对象，location和history</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#js的垃圾回收机制"><span class="nav-number">2.72.</span> <span class="nav-text">js的垃圾回收机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存泄漏的原因和场景"><span class="nav-number">2.73.</span> <span class="nav-text">内存泄漏的原因和场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM事件的绑定的几种方式"><span class="nav-number">2.74.</span> <span class="nav-text">DOM事件的绑定的几种方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM事件中target和currentTarget的区别"><span class="nav-number">2.75.</span> <span class="nav-text">DOM事件中target和currentTarget的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#typeof-和-instanceof-区别，instanceof原理"><span class="nav-number">2.76.</span> <span class="nav-text">typeof 和 instanceof 区别，instanceof原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#js动画和css3动画比较"><span class="nav-number">2.77.</span> <span class="nav-text">js动画和css3动画比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-倒计时（setTimeout）"><span class="nav-number">2.78.</span> <span class="nav-text">JavaScript 倒计时（setTimeout）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#js处理异常"><span class="nav-number">2.79.</span> <span class="nav-text">js处理异常</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#js的设计模式知道那些"><span class="nav-number">2.80.</span> <span class="nav-text">js的设计模式知道那些</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#轮播图的实现，以及轮播图组件开发，轮播10000张图片过程"><span class="nav-number">2.81.</span> <span class="nav-text">轮播图的实现，以及轮播图组件开发，轮播10000张图片过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#websocket的工作原理和机制。"><span class="nav-number">2.82.</span> <span class="nav-text">websocket的工作原理和机制。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#手指点击可以触控的屏幕时，是什么事件？"><span class="nav-number">2.83.</span> <span class="nav-text">手指点击可以触控的屏幕时，是什么事件？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是函数柯里化？以及说一下JS的API有哪些应用到了函数柯里化的实现？-函数柯里化一些了解，以及在函数式编程的应用，最后说了一下JS中bind函数和数组的reduce方法用到了函数柯里化。"><span class="nav-number">2.84.</span> <span class="nav-text">什么是函数柯里化？以及说一下JS的API有哪些应用到了函数柯里化的实现？(函数柯里化一些了解，以及在函数式编程的应用，最后说了一下JS中bind函数和数组的reduce方法用到了函数柯里化。)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS代码调试"><span class="nav-number">2.85.</span> <span class="nav-text">JS代码调试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6"><span class="nav-number">2.86.</span> <span class="nav-text">ES6</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#谈一谈-promise"><span class="nav-number">2.87.</span> <span class="nav-text">谈一谈 promise</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#所有的-ES6-特性你都知道吗？如果遇到一个东西不知道是-ES6-还是-ES5-你该怎么区分它"><span class="nav-number">2.88.</span> <span class="nav-text">所有的 ES6 特性你都知道吗？如果遇到一个东西不知道是 ES6 还是 ES5, 你该怎么区分它</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#es6的继承和es5的继承有什么区别"><span class="nav-number">2.89.</span> <span class="nav-text">es6的继承和es5的继承有什么区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#promise封装ajax"><span class="nav-number">2.90.</span> <span class="nav-text">promise封装ajax</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#let-const的优点"><span class="nav-number">2.91.</span> <span class="nav-text">let const的优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#es6-generator-是什么，async-await-实现原理"><span class="nav-number">2.92.</span> <span class="nav-text">es6 generator 是什么，async/await 实现原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6和node的commonjs模块化规范区别"><span class="nav-number">2.93.</span> <span class="nav-text">ES6和node的commonjs模块化规范区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#箭头函数，以及它的this"><span class="nav-number">2.94.</span> <span class="nav-text">箭头函数，以及它的this</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP协议头含有哪些重dom要的部分，HTTP状态码"><span class="nav-number">2.95.</span> <span class="nav-text">HTTP协议头含有哪些重dom要的部分，HTTP状态码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络url输入到输出怎么做？"><span class="nav-number">2.96.</span> <span class="nav-text">网络url输入到输出怎么做？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能优化为什么要减少-HTTP-访问次数？"><span class="nav-number">2.97.</span> <span class="nav-text">性能优化为什么要减少 HTTP 访问次数？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#工程化"><span class="nav-number">3.</span> <span class="nav-text">工程化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据结构"><span class="nav-number">4.</span> <span class="nav-text">数据结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他-1"><span class="nav-number">5.</span> <span class="nav-text">其他</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三面、四面常问的开放性问题"><span class="nav-number">6.</span> <span class="nav-text">三面、四面常问的开放性问题</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 &mdash; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KevinLau</span>
+
+  
+</div>
+
+
+  <!--<div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>-->
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

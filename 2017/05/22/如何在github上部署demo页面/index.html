@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-hk">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="npm,git," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="笔者学习前端设计近一年里也写了不少网站，但是苦于自己编写的网站难以展示，就算上传到github上也只能看到文件而已，后来才发现原来github上提供了把网页文件变为网站的工具，即github page，而要使用它也不仅仅是简简单单地上传。下面简单地总结了从本地的网页文件到在github服务器上展示出来即可以通过网络端打开的过程：（以下可能会出现一些难点，照着做就可以了，由于笔者是小白，也不清楚具体">
+<meta name="keywords" content="npm,git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何在github上部署demo页面">
+<meta property="og:url" content="Kevin031.github.io/2017/05/22/如何在github上部署demo页面/index.html">
+<meta property="og:site_name" content="PeanutButter">
+<meta property="og:description" content="笔者学习前端设计近一年里也写了不少网站，但是苦于自己编写的网站难以展示，就算上传到github上也只能看到文件而已，后来才发现原来github上提供了把网页文件变为网站的工具，即github page，而要使用它也不仅仅是简简单单地上传。下面简单地总结了从本地的网页文件到在github服务器上展示出来即可以通过网络端打开的过程：（以下可能会出现一些难点，照着做就可以了，由于笔者是小白，也不清楚具体">
+<meta property="og:locale" content="zh-hk">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5503852-5d17c4a594ee02ca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5503852-705f34e3ab136181.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5503852-507eceb24e25a969.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5503852-f10166b4d1d3900f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5503852-247536c508164bfa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5503852-ee8a3f1d09ff1b43.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5503852-ac37ad6ab4cb2452.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5503852-fb8408c45c9c5d64.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5503852-70bd9ccc810ad0d8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5503852-50bd103de3c56a93.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5503852-7ffddaeeb32f93c6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5503852-4d2fa2f817fd5372.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5503852-8c8a87e12a7ca487.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5503852-5d06382a6fd3fdc7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5503852-10359cde70ad90fe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2022-03-04T09:55:37.993Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何在github上部署demo页面">
+<meta name="twitter:description" content="笔者学习前端设计近一年里也写了不少网站，但是苦于自己编写的网站难以展示，就算上传到github上也只能看到文件而已，后来才发现原来github上提供了把网页文件变为网站的工具，即github page，而要使用它也不仅仅是简简单单地上传。下面简单地总结了从本地的网页文件到在github服务器上展示出来即可以通过网络端打开的过程：（以下可能会出现一些难点，照着做就可以了，由于笔者是小白，也不清楚具体">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/5503852-5d17c4a594ee02ca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="Kevin031.github.io/2017/05/22/如何在github上部署demo页面/"/>
+
+
+
+
+
+  <title>如何在github上部署demo页面 | PeanutButter</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-hk">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">PeanutButter</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">一个技术博客</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="Kevin031.github.io/2017/05/22/如何在github上部署demo页面/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KevinLau">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PeanutButter">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">如何在github上部署demo页面</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-05-22T14:20:55+00:00">
+                2017-05-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>笔者学习前端设计近一年里也写了不少网站，但是苦于自己编写的网站难以展示，就算上传到github上也只能看到文件而已，后来才发现原来github上提供了把网页文件变为网站的工具，即github page，而要使用它也不仅仅是简简单单地上传。<br>下面简单地总结了从本地的网页文件到在github服务器上展示出来即可以通过网络端打开的过程：<br>（以下可能会出现一些难点，照着做就可以了，由于笔者是小白，也不清楚具体原理是什么，希望有一天成为大神的时候能轻松驾驭）</p>
+<h1 id="进入github主页，建立新仓库"><a href="#进入github主页，建立新仓库" class="headerlink" title="进入github主页，建立新仓库"></a>进入github主页，建立新仓库</h1><p><br><img src="http://upload-images.jianshu.io/upload_images/5503852-5d17c4a594ee02ca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h1 id="为你的新仓库取一个名字"><a href="#为你的新仓库取一个名字" class="headerlink" title="为你的新仓库取一个名字"></a>为你的新仓库取一个名字</h1><p><br>在这里笔者以自己的“仿LOL官网”项目为例。<br>其中标记处添加README描述也勾选上。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/5503852-705f34e3ab136181.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<a id="more"></a>
+<h1 id="建立好仓库后，在仓库中选择settings选项，找到“github-pages”选项卡"><a href="#建立好仓库后，在仓库中选择settings选项，找到“github-pages”选项卡" class="headerlink" title="建立好仓库后，在仓库中选择settings选项，找到“github pages”选项卡"></a>建立好仓库后，在仓库中选择settings选项，找到“github pages”选项卡</h1><p><br><img src="http://upload-images.jianshu.io/upload_images/5503852-507eceb24e25a969.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h1 id="在“github-pages”选项卡中找到“source”，点击“None”，选择“master-branch”，再点击“Save”保存"><a href="#在“github-pages”选项卡中找到“source”，点击“None”，选择“master-branch”，再点击“Save”保存" class="headerlink" title="在“github pages”选项卡中找到“source”，点击“None”，选择“master branch”，再点击“Save”保存"></a>在“github pages”选项卡中找到“source”，点击“None”，选择“master branch”，再点击“Save”保存</h1><p><br><img src="http://upload-images.jianshu.io/upload_images/5503852-f10166b4d1d3900f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>在这里我们就可以看到github为我们生成了一个链接，先把它存起来。</p>
+<p><br><img src="http://upload-images.jianshu.io/upload_images/5503852-247536c508164bfa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>点击链接进去发现里面什么也没有，接下来我们在本地进行git的操作。</p>
+<p><br><img src="http://upload-images.jianshu.io/upload_images/5503852-ee8a3f1d09ff1b43.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h1 id="下载安装git"><a href="#下载安装git" class="headerlink" title="下载安装git"></a>下载安装git</h1><p>下载地址：<a href="https://git-scm.com/downloads" target="_blank" rel="external">https://git-scm.com/downloads</a><br>安装过程省略</p>
+<h1 id="在本地新建一个文件夹专门用于存放本地的代码，以上传到远程端"><a href="#在本地新建一个文件夹专门用于存放本地的代码，以上传到远程端" class="headerlink" title="在本地新建一个文件夹专门用于存放本地的代码，以上传到远程端"></a>在本地新建一个文件夹专门用于存放本地的代码，以上传到远程端</h1><p><br>在这里我选择的是在D盘github代码库文件夹中新建一个文件夹来存放我的代码<br><img src="http://upload-images.jianshu.io/upload_images/5503852-ac37ad6ab4cb2452.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h1 id="进入建好的文件夹后，右击选择“Git-Bash-Here”，出现命令行窗口"><a href="#进入建好的文件夹后，右击选择“Git-Bash-Here”，出现命令行窗口" class="headerlink" title="进入建好的文件夹后，右击选择“Git Bash Here”，出现命令行窗口"></a>进入建好的文件夹后，右击选择“Git Bash Here”，出现命令行窗口</h1><p><br><img src="http://upload-images.jianshu.io/upload_images/5503852-fb8408c45c9c5d64.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h1 id="输入如下命令，用来在当前文件夹中创建-test-文件存放你的github上的仓库文件，克隆仓库文件到当前文件夹中"><a href="#输入如下命令，用来在当前文件夹中创建-test-文件存放你的github上的仓库文件，克隆仓库文件到当前文件夹中" class="headerlink" title="输入如下命令，用来在当前文件夹中创建 test 文件存放你的github上的仓库文件，克隆仓库文件到当前文件夹中"></a>输入如下命令，用来在当前文件夹中创建 test 文件存放你的github上的仓库文件，克隆仓库文件到当前文件夹中</h1><p><br><img src="http://upload-images.jianshu.io/upload_images/5503852-70bd9ccc810ad0d8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>这时候你会发现你的文件夹中多了一个文件夹test，test中的文件就是github仓库中的文件</p>
+<h1 id="将自己的网页文件复制粘贴至仓库文件中"><a href="#将自己的网页文件复制粘贴至仓库文件中" class="headerlink" title="将自己的网页文件复制粘贴至仓库文件中"></a>将自己的网页文件复制粘贴至仓库文件中</h1><p><br><img src="http://upload-images.jianshu.io/upload_images/5503852-50bd103de3c56a93.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h1 id="依次输入如下命令"><a href="#依次输入如下命令" class="headerlink" title="依次输入如下命令"></a>依次输入如下命令</h1><p><br><img src="http://upload-images.jianshu.io/upload_images/5503852-7ffddaeeb32f93c6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>解释一下以上命令，在<strong>更新代码</strong>的时候也会用到<br>git status： 列出当前目录所有还没有被git管理的文件和被git管理且被修改但还未提交(git commit)的文件，也就是所有改动文件，红色字体标出。<br>git add .  (有个点) ：表示添加当前目录下的所有文件和子目录，<br>然后 再输入一次 git status 如果看见文件都变绿了 ，那么就代表它们已经准备好了被提交（git commit）</p>
+<h1 id="依次输入如下命令，将你的文件上传至远程-master分支"><a href="#依次输入如下命令，将你的文件上传至远程-master分支" class="headerlink" title="依次输入如下命令，将你的文件上传至远程 master分支"></a>依次输入如下命令，将你的文件上传至远程 master分支</h1><p><br><img src="http://upload-images.jianshu.io/upload_images/5503852-4d2fa2f817fd5372.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>这里要注意一下的就是在输入git push后会让你输入github的账号和密码<br><br><img src="http://upload-images.jianshu.io/upload_images/5503852-8c8a87e12a7ca487.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/5503852-5d06382a6fd3fdc7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/5503852-10359cde70ad90fe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>最后一步上传完毕后当出现以上字样的时候，说明已经大功告成了~</p>
+<h1 id="回到第4步中的链接，在后面加上-和网页文件名，即可打开自己制作的网站"><a href="#回到第4步中的链接，在后面加上-和网页文件名，即可打开自己制作的网站" class="headerlink" title="回到第4步中的链接，在后面加上/和网页文件名，即可打开自己制作的网站"></a>回到第4步中的链接，在后面加上/和网页文件名，即可打开自己制作的网站</h1><p><br>部分内容转载自：<a href="http://www.cnblogs.com/lijiayi/p/githubpages.html" target="_blank" rel="external">http://www.cnblogs.com/lijiayi/p/githubpages.html</a><br>感谢作者打开了本小白迈向新世界的又一扇大门</p>
+<h1 id="2017-12-5更新-理解git操作命令"><a href="#2017-12-5更新-理解git操作命令" class="headerlink" title="2017/12/5更新 理解git操作命令"></a>2017/12/5更新 理解git操作命令</h1><p><code>git init</code>/<code>git init &lt;filename&gt;</code> 创建新仓库，或者将当前定位的目录作为仓库</p>
+<p><code>git clone &lt;URL/PATH&gt;</code> 创建一个服务器/本地仓库的克隆版本</p>
+<p>git的管理方式主要有三部分，工作区、缓存区和HEAD(指向最近一次的提交结果)</p>
+<p>从工作目录提交到缓存区：<code>git add &lt;filename/*&gt;</code></p>
+<p>从缓存区提交到HEAD（信息）：<code>git commit -m &quot;备注&quot;</code></p>
+<p>在工作目录中获取(<code>fetch</code>)并合并(<code>merge</code>)到远端的改动：<code>git pull</code>/<code>git merge &lt;branch/&gt;master&gt;</code> 还需要<code>git add</code>将这些文件标记为合并成功</p>
+<p>从工作目录提交到HEAD（文件）：<code>git push origin master</code></p>
+<p>如果本地目录并没有远端仓库，也可以以这样的方式直接创建：<code>git remote add origin &lt;server&gt;</code></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/npm/" rel="tag"># npm</a>
+          
+            <a href="/tags/git/" rel="tag"># git</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/22/运用flex布局技巧/" rel="prev" title="运用flex布局技巧">
+                运用flex布局技巧 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image"
+              src="/images/avatar.gif"
+              alt="KevinLau" />
+          
+            <p class="site-author-name" itemprop="name">KevinLau</p>
+            <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Kevin031" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2122637140" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>微博</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#进入github主页，建立新仓库"><span class="nav-number">1.</span> <span class="nav-text">进入github主页，建立新仓库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为你的新仓库取一个名字"><span class="nav-number">2.</span> <span class="nav-text">为你的新仓库取一个名字</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#建立好仓库后，在仓库中选择settings选项，找到“github-pages”选项卡"><span class="nav-number">3.</span> <span class="nav-text">建立好仓库后，在仓库中选择settings选项，找到“github pages”选项卡</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在“github-pages”选项卡中找到“source”，点击“None”，选择“master-branch”，再点击“Save”保存"><span class="nav-number">4.</span> <span class="nav-text">在“github pages”选项卡中找到“source”，点击“None”，选择“master branch”，再点击“Save”保存</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#下载安装git"><span class="nav-number">5.</span> <span class="nav-text">下载安装git</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在本地新建一个文件夹专门用于存放本地的代码，以上传到远程端"><span class="nav-number">6.</span> <span class="nav-text">在本地新建一个文件夹专门用于存放本地的代码，以上传到远程端</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#进入建好的文件夹后，右击选择“Git-Bash-Here”，出现命令行窗口"><span class="nav-number">7.</span> <span class="nav-text">进入建好的文件夹后，右击选择“Git Bash Here”，出现命令行窗口</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输入如下命令，用来在当前文件夹中创建-test-文件存放你的github上的仓库文件，克隆仓库文件到当前文件夹中"><span class="nav-number">8.</span> <span class="nav-text">输入如下命令，用来在当前文件夹中创建 test 文件存放你的github上的仓库文件，克隆仓库文件到当前文件夹中</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#将自己的网页文件复制粘贴至仓库文件中"><span class="nav-number">9.</span> <span class="nav-text">将自己的网页文件复制粘贴至仓库文件中</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#依次输入如下命令"><span class="nav-number">10.</span> <span class="nav-text">依次输入如下命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#依次输入如下命令，将你的文件上传至远程-master分支"><span class="nav-number">11.</span> <span class="nav-text">依次输入如下命令，将你的文件上传至远程 master分支</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#回到第4步中的链接，在后面加上-和网页文件名，即可打开自己制作的网站"><span class="nav-number">12.</span> <span class="nav-text">回到第4步中的链接，在后面加上/和网页文件名，即可打开自己制作的网站</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2017-12-5更新-理解git操作命令"><span class="nav-number">13.</span> <span class="nav-text">2017/12/5更新 理解git操作命令</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 &mdash; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KevinLau</span>
+
+  
+</div>
+
+
+  <!--<div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>-->
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

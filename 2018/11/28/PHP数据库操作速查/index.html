@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-hk">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="PHP,数据库," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="mysqli - MySQLi extension只针对 MySQL 数据库 PDO - (PHP Data Objects)应用在 12 种不同数据库中  首先将数据库的一些配置赋好值 123$server = &amp;apos;localhost&amp;apos;;$username = &amp;apos;username&amp;apos;;$password = &amp;apos;password&amp;apos;;  mys">
+<meta name="keywords" content="PHP,数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP数据库操作速查">
+<meta property="og:url" content="Kevin031.github.io/2018/11/28/PHP数据库操作速查/index.html">
+<meta property="og:site_name" content="PeanutButter">
+<meta property="og:description" content="mysqli - MySQLi extension只针对 MySQL 数据库 PDO - (PHP Data Objects)应用在 12 种不同数据库中  首先将数据库的一些配置赋好值 123$server = &amp;apos;localhost&amp;apos;;$username = &amp;apos;username&amp;apos;;$password = &amp;apos;password&amp;apos;;  mys">
+<meta property="og:locale" content="zh-hk">
+<meta property="og:updated_time" content="2022-03-04T09:55:37.993Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP数据库操作速查">
+<meta name="twitter:description" content="mysqli - MySQLi extension只针对 MySQL 数据库 PDO - (PHP Data Objects)应用在 12 种不同数据库中  首先将数据库的一些配置赋好值 123$server = &amp;apos;localhost&amp;apos;;$username = &amp;apos;username&amp;apos;;$password = &amp;apos;password&amp;apos;;  mys">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="Kevin031.github.io/2018/11/28/PHP数据库操作速查/"/>
+
+
+
+
+
+  <title>PHP数据库操作速查 | PeanutButter</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-hk">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">PeanutButter</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">一个技术博客</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="Kevin031.github.io/2018/11/28/PHP数据库操作速查/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KevinLau">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PeanutButter">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">PHP数据库操作速查</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2018-11-28T15:30:06+00:00">
+                2018-11-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/后端/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>mysqli</strong> - MySQLi extension<br>只针对 MySQL 数据库</p>
+<p><strong>PDO</strong> - (PHP Data Objects)<br>应用在 12 种不同数据库中</p>
+<hr>
+<p>首先将数据库的一些配置赋好值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$server = &apos;localhost&apos;;</div><div class="line">$username = &apos;username&apos;;</div><div class="line">$password = &apos;password&apos;;</div></pre></td></tr></table></figure>
+<ol>
+<li>mysqli 面向过程</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">// 创建连接</div><div class="line">$connect = mysqli_connect($server, $username, $password);</div><div class="line"></div><div class="line">// 检测连接</div><div class="line">if (!$connect) &#123;</div><div class="line">  die(&apos;连接失败&apos; . mysqli_connect_error());</div><div class="line">&#125;</div><div class="line"></div><div class="line">echo &apos;连接成功&apos;;</div><div class="line"></div><div class="line">// 关闭连接</div><div class="line">mysqli_close($connect);</div></pre></td></tr></table></figure>
+<hr>
+<ol>
+<li>mysqli 面向对象</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// 创建连接</div><div class="line">$connect = new mysqli($server, $username, $password);</div><div class="line"></div><div class="line">// 检测连接</div><div class="line">if ($connect-&gt;connect_error) &#123;</div><div class="line">  die(&apos;连接失败&apos; . $connect-&gt;connect_error)</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 关闭连接</div><div class="line">$connect-&gt;close();</div></pre></td></tr></table></figure>
+<hr>
+<ol>
+<li>PDO</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">try &#123;</div><div class="line">  $connect = new PDO(&apos;mysql:host=$server;&apos;, $username, $password);</div><div class="line">  echo &apos;连接成功&apos;;</div><div class="line">&#125; catch (PDOException $e) &#123;</div><div class="line">  echo $e-&gt;getMessage();</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 关闭连接</div><div class="line">$connect = null</div></pre></td></tr></table></figure>
+<h2 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">try &#123;</div><div class="line">  $connect = new PDO(&apos;mysql:host=$server;&apos;, $username, $password);</div><div class="line">  echo &apos;连接成功&apos;;</div><div class="line"></div><div class="line">  // 设置PDO错误模式为异常</div><div class="line">  $connect-&gt;setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);</div><div class="line">  $sql = &apos;CREATE DATABASE myDatabase&apos;;</div><div class="line"></div><div class="line">  $connect-&gt;exec($sql);</div><div class="line"></div><div class="line">  echo &apos;数据库创建成功&lt;br&gt;&apos;</div><div class="line">&#125; catch (PDOException $e) &#123;</div><div class="line">  echo $sql . &apos;&lt;br&gt;&apos; . $e-&gt;getMessage();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>使用 PDO 的最大好处是在数据库查询过程出现问题时可以使用异常类来 处理问题。如果 try{ } 代码块出现异常，脚本会停止执行并会跳到第一个 catch(){ } 代码块执行代码。</p>
+<h2 id="创建数据表"><a href="#创建数据表" class="headerlink" title="创建数据表"></a>创建数据表</h2><p>以下代码将创建一个名为<code>MyGuests</code>的表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE MyGuests (</div><div class="line">  id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,</div><div class="line">  firstname VARCHAR(30) NOT NULL,</div><div class="line">  lastname VARCHAR(30) NOT NULL,</div><div class="line">  email VARCHAR(50),</div><div class="line">  reg_date TIMESTAMP</div><div class="line">);</div></pre></td></tr></table></figure>
+<p>每个表都应该有一个主键，包含唯一的值</p>
+<p>一些属性值备注：<br><strong>NOT NULL</strong> - 每一行都必须有值(不能为空)<br><strong>DEFAULT value</strong> - 设置默认值<br><strong>UNSIGNED</strong> - 使用无符号数值类型，0及正数<br><strong>AUTO INCREMENT</strong> - 设置mysql字段的值在新增纪录时每次自动增长1<br><strong>PRIMARY KEY</strong> - 设置数据表中每条纪录的唯一标识，通常列的PRIMARY KEY设置为ID数值，与AUTO INCREMENT一起使用</p>
+<p>接着只需要将以上代码传到<code>$connect-&gt;exec()</code>中即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$sql = &quot;CREATE TABLE MyGuests (</div><div class="line">  id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,</div><div class="line">  firstname VARCHAR(30) NOT NULL,</div><div class="line">  lastname VARCHAR(30) NOT NULL,</div><div class="line">  email VARCHAR(50),</div><div class="line">  reg_date TIMESTAMP</div><div class="line">)&quot;;</div><div class="line"></div><div class="line">$connect-exec($sql);</div></pre></td></tr></table></figure>
+<h2 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h2><p>仍然是先写SQL语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">INSERT INTO myGuests (firstname, lastname, email) VALUES (&apos;John&apos;, &apos;Doe&apos;, &apos;john@example.com&apos;);</div></pre></td></tr></table></figure>
+<p>完整代码如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">$dbname = &apos;myDatabase&apos;;</div><div class="line"></div><div class="line">try &#123;</div><div class="line">  $connect = new PDO(&apos;mysql:host=$server;dbname=$dbname&apos;, $username, $password);</div><div class="line">  // 设置PDO错误模式。用于抛出异常</div><div class="line">  $connect-&gt;setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);</div><div class="line"></div><div class="line">  // 定义SQL语句</div><div class="line">  $sql = &apos;INSERT INTO myGuests (firstname, lastname, email) VALUES (&apos;John&apos;, &apos;Doe&apos;, &apos;john@example.com&apos;)&apos;;</div><div class="line"></div><div class="line">  // 执行操作</div><div class="line">  $connect-&gt;exec($sql);</div><div class="line">  echo &apos;新记录插入成功&apos;;</div><div class="line"></div><div class="line">&#125; catch (PDOException $e) &#123;</div><div class="line">  echo $sql . &apos;&lt;br&gt;&apos; . $e-&gt;getMessage();</div><div class="line">&#125;</div><div class="line"></div><div class="line">$connect = null;</div></pre></td></tr></table></figure>
+<p>插入多条记录的情况</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">try&#123;</div><div class="line">  // 开始事务</div><div class="line">  $connect-&gt;beginTransaction();</div><div class="line"></div><div class="line">  // SQL语句</div><div class="line">  $connect-&gt;exec(&apos;INSERT INTO myGuests (firstname, lastname, email) VALUES (&apos;John&apos;, &apos;Doe&apos;, &apos;john@example.com&apos;)&apos;);</div><div class="line">  $connect-&gt;exec(&apos;INSERT INTO myGuests (firstname, lastname, email) VALUES (&apos;John&apos;, &apos;Doe&apos;, &apos;john@example.com&apos;)&apos;);</div><div class="line">  $connect-&gt;exec(&apos;INSERT INTO myGuests (firstname, lastname, email) VALUES (&apos;John&apos;, &apos;Doe&apos;, &apos;john@example.com&apos;)&apos;);</div><div class="line"></div><div class="line">  //提交事务</div><div class="line">  $connect-&gt;commit();</div><div class="line">  echo &apos;新记录插入成功&apos;;</div><div class="line">&#125; catch (PDOException $e) &#123;</div><div class="line">  // 如果执行失败回滚</div><div class="line">  $connect-&gt;rollback();</div><div class="line">  echo $sql . &apos;&lt;br&gt;&apos; . $e-&gt;getMessage();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="场景模拟"><a href="#场景模拟" class="headerlink" title="场景模拟"></a>场景模拟</h2><p>下面开始动手实战，模拟用户注册账号的场景</p>
+<p>首先我定义了一个基类</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/PHP/" rel="tag"># PHP</a>
+          
+            <a href="/tags/数据库/" rel="tag"># 数据库</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/27/SQL语句整理/" rel="next" title="SQL语句整理">
+                <i class="fa fa-chevron-left"></i> SQL语句整理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/20/PHP-MVC架构路由功能的简单实现/" rel="prev" title="PHP MVC架构路由功能的简单实现">
+                PHP MVC架构路由功能的简单实现 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image"
+              src="/images/avatar.gif"
+              alt="KevinLau" />
+          
+            <p class="site-author-name" itemprop="name">KevinLau</p>
+            <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Kevin031" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2122637140" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>微博</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建数据库"><span class="nav-number">1.</span> <span class="nav-text">创建数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建数据表"><span class="nav-number">2.</span> <span class="nav-text">创建数据表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入数据"><span class="nav-number">3.</span> <span class="nav-text">插入数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#场景模拟"><span class="nav-number">4.</span> <span class="nav-text">场景模拟</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 &mdash; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KevinLau</span>
+
+  
+</div>
+
+
+  <!--<div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>-->
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

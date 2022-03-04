@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-hk">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Javascript,Node," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="这是一篇关于Koa库的文章，这是我在学习Node.js后端开发过程中摸索出来的比较好的实践方式。 文档: https://koa.bootcss.com/实践项目: https://github.com/Kevin031/efficiency_plus/tree/master/api 为什么是Koa虽然是Express原班人马开发，也是大量使用中间件的形式，但区别还是挺大的。  Express是基">
+<meta name="keywords" content="Javascript,Node">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Koa2后端开发个人实践指南">
+<meta property="og:url" content="Kevin031.github.io/2020/05/17/Koa2后端开发个人实践指南/index.html">
+<meta property="og:site_name" content="PeanutButter">
+<meta property="og:description" content="这是一篇关于Koa库的文章，这是我在学习Node.js后端开发过程中摸索出来的比较好的实践方式。 文档: https://koa.bootcss.com/实践项目: https://github.com/Kevin031/efficiency_plus/tree/master/api 为什么是Koa虽然是Express原班人马开发，也是大量使用中间件的形式，但区别还是挺大的。  Express是基">
+<meta property="og:locale" content="zh-hk">
+<meta property="og:updated_time" content="2022-03-04T09:55:37.993Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Koa2后端开发个人实践指南">
+<meta name="twitter:description" content="这是一篇关于Koa库的文章，这是我在学习Node.js后端开发过程中摸索出来的比较好的实践方式。 文档: https://koa.bootcss.com/实践项目: https://github.com/Kevin031/efficiency_plus/tree/master/api 为什么是Koa虽然是Express原班人马开发，也是大量使用中间件的形式，但区别还是挺大的。  Express是基">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="Kevin031.github.io/2020/05/17/Koa2后端开发个人实践指南/"/>
+
+
+
+
+
+  <title>Koa2后端开发个人实践指南 | PeanutButter</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-hk">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">PeanutButter</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">一个技术博客</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="Kevin031.github.io/2020/05/17/Koa2后端开发个人实践指南/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KevinLau">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PeanutButter">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Koa2后端开发个人实践指南</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-05-17T15:04:45+00:00">
+                2020-05-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/后端/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这是一篇关于<code>Koa</code>库的文章，这是我在学习<code>Node.js</code>后端开发过程中摸索出来的比较好的实践方式。</p>
+<p>文档: <a href="https://koa.bootcss.com/" target="_blank" rel="external">https://koa.bootcss.com/</a><br>实践项目: <a href="https://github.com/Kevin031/efficiency_plus/tree/master/api" target="_blank" rel="external">https://github.com/Kevin031/efficiency_plus/tree/master/api</a></p>
+<h3 id="为什么是Koa"><a href="#为什么是Koa" class="headerlink" title="为什么是Koa"></a>为什么是Koa</h3><p>虽然是<code>Express</code>原班人马开发，也是大量使用中间件的形式，但区别还是挺大的。</p>
+<ol>
+<li><p><code>Express</code>是基于<code>callback</code>来组合业务逻辑。<code>callback</code>有两大硬伤，一是不可组合，二是异常不可捕获。<code>Express</code>的中间件模式虽然在一定程度上解决这两个问题，但没法彻底解决。</p>
+</li>
+<li><p>Koa对<code>async/await</code>的支持度非常好，代码更清晰简洁</p>
+</li>
+</ol>
+<h3 id="如何实现多路由"><a href="#如何实现多路由" class="headerlink" title="如何实现多路由"></a>如何实现多路由</h3><p>可以借助<code>koa-router</code>库</p>
+<p>基本操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">const Router = require(&apos;koa-router&apos;)</div><div class="line"></div><div class="line">const app = new Koa()</div><div class="line">const router = new Router()</div><div class="line"></div><div class="line">router.get(&apos;/&apos;, async ctx =&gt; &#123;</div><div class="line">  ctx.body = &#123;</div><div class="line">    msg: &apos;hello world&apos;</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line">app.use(router.routes())</div><div class="line"></div><div class="line">app.listen(3000)</div></pre></td></tr></table></figure>
+<p>而复杂项目一般采用MVC架构，可以作以下改造</p>
+<p>首先创建一个目录<code>/routes</code><br>不同功能的路由分别在里面创建文件就可以了，示例如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">const Router = require(&apos;koa-router&apos;)</div><div class="line">const controller = require(&apos;../controllers/user&apos;)</div><div class="line">const router = new Router(&#123; prefix: &apos;/api/user&apos; &#125;)</div><div class="line"></div><div class="line">router.post(&apos;/login&apos;, controller.wxLogin)</div><div class="line">router.get(&apos;/session&apos;, controller.session)</div><div class="line"></div><div class="line">module.exports = router</div></pre></td></tr></table></figure>
+<p>最后在入口文件<code>app.js</code>中按如下方式挂载路由</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">const route_modules = fs.readdirSync(path.join(__dirname, &apos;./routes&apos;))</div><div class="line">route_modules.forEach(name =&gt; &#123;</div><div class="line">  const router = require(path.join(__dirname, `./routes/$&#123;name.split(&apos;.&apos;)[0]&#125;`))</div><div class="line">  app.use(router.routes())</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h3 id="如何建立session会话"><a href="#如何建立session会话" class="headerlink" title="如何建立session会话"></a>如何建立session会话</h3><p>可以借助<code>koa-session</code>库，具体用法参考文档<a href="https://www.npmjs.com/package/koa-session" target="_blank" rel="external">https://www.npmjs.com/package/koa-session</a></p>
+<p>在<code>app.js</code>中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">const session = require(&apos;koa-session&apos;)</div><div class="line"></div><div class="line">app.keys = [&apos;secret&apos;]</div><div class="line">app.use(session(&#123;</div><div class="line">  key: &apos;USER_SID&apos;,</div><div class="line">  maxAge: 86400000 * 7</div><div class="line">&#125;))</div></pre></td></tr></table></figure></p>
+<p>在任意<code>controller</code>中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">let _uid = 0</div><div class="line"></div><div class="line">class UserController &#123;</div><div class="line">  login () &#123;</div><div class="line">    // 只要更改了session属性，就会在响应头中加入Set-Cookie</div><div class="line">    ctx.session.is_login = true</div><div class="line">    ctx.session.uid++</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  session () &#123;</div><div class="line">    // 客户端请求头带上Cookie，再次访问session，已经有记录</div><div class="line">    ctx.body = &#123;</div><div class="line">      is_login: ctx.session.is_login</div><div class="line">      uid: ctx.session.uid</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>由此，服务就可以根据<code>cookie</code>拿到<code>uid</code>，不需要数据库单独维护session表</p>
+<h3 id="如何连接数据库"><a href="#如何连接数据库" class="headerlink" title="如何连接数据库"></a>如何连接数据库</h3><p>这里只总结<code>mysql</code>的情况，我用的是<code>mysql</code>库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">const mysql = require(&apos;mysql&apos;)</div><div class="line">const config = require(&apos;../config&apos;)</div><div class="line"></div><div class="line">const pool = mysql.createPool(&#123;</div><div class="line">  host: config.database.host,</div><div class="line">  port: config.database.port,</div><div class="line">  user: config.database.user,</div><div class="line">  password: config.database.password,</div><div class="line">  database: config.database.database</div><div class="line">&#125;)</div><div class="line"></div><div class="line">class Database &#123;</div><div class="line">  constructor () &#123;</div><div class="line">    this.pool = pool</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  query (SQL, params) &#123;</div><div class="line">    return new Promise((resolve, reject) =&gt; &#123;</div><div class="line">      this.pool.getConnection((err, connection) =&gt; &#123;</div><div class="line">        if (err) &#123;</div><div class="line">          reject(err.message)</div><div class="line">        &#125; else &#123;</div><div class="line">          connection.query(SQL, params, (error, result) =&gt; &#123;</div><div class="line">            if (error) &#123;</div><div class="line">              reject(error.message)</div><div class="line">            &#125;</div><div class="line">            resolve(result)</div><div class="line">          &#125;)</div><div class="line">        &#125;</div><div class="line">        connection.release()</div><div class="line">      &#125;)</div><div class="line">    &#125;)  </div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">module.exports = Database</div></pre></td></tr></table></figure>
+<p>在需要连接数据库的<code>controller</code>中，实例化对象即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">const database = new Database()</div><div class="line"></div><div class="line">// select</div><div class="line">const [record] = await database.query(`SELECT * FROM users WHERE uid=&apos;1&apos;`)</div><div class="line"></div><div class="line">// insert</div><div class="line">const result = database.query(&apos;INSERT INTO users (uid, name, age) VALUES (?,?,?)&apos;, [&apos;1&apos;, &apos;Kevin&apos;, &apos;23&apos;])</div><div class="line">console.log(result.insertId)</div><div class="line"></div><div class="line">// update</div><div class="line">database.query(`UPDATE users SET age=&apos;24&apos; WHERE uid=&apos;1&apos;`)</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Javascript/" rel="tag"># Javascript</a>
+          
+            <a href="/tags/Node/" rel="tag"># Node</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/16/Javascript算法模板（持续更新中）/" rel="next" title="Javascript算法模板">
+                <i class="fa fa-chevron-left"></i> Javascript算法模板
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/04/18/前端常见面试问题整理/" rel="prev" title="前端常见面试问题整理">
+                前端常见面试问题整理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image"
+              src="/images/avatar.gif"
+              alt="KevinLau" />
+          
+            <p class="site-author-name" itemprop="name">KevinLau</p>
+            <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Kevin031" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2122637140" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>微博</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么是Koa"><span class="nav-number">1.</span> <span class="nav-text">为什么是Koa</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何实现多路由"><span class="nav-number">2.</span> <span class="nav-text">如何实现多路由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何建立session会话"><span class="nav-number">3.</span> <span class="nav-text">如何建立session会话</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何连接数据库"><span class="nav-number">4.</span> <span class="nav-text">如何连接数据库</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 &mdash; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KevinLau</span>
+
+  
+</div>
+
+
+  <!--<div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>-->
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

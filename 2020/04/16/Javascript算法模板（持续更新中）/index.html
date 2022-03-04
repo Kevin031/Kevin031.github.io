@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-hk">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="算法," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="排序冒泡排序冒泡排序时针对相邻元素之间的比较，可以将大的数慢慢沉底 123456789101112var sortArray = function(nums) &amp;#123;  for (let i = 0; i &amp;lt; nums.length; i++) &amp;#123;    for (let j = 0; j &amp;lt; nums.length; j++) &amp;#123;      if (nums">
+<meta name="keywords" content="算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript算法模板">
+<meta property="og:url" content="Kevin031.github.io/2020/04/16/Javascript算法模板（持续更新中）/index.html">
+<meta property="og:site_name" content="PeanutButter">
+<meta property="og:description" content="排序冒泡排序冒泡排序时针对相邻元素之间的比较，可以将大的数慢慢沉底 123456789101112var sortArray = function(nums) &amp;#123;  for (let i = 0; i &amp;lt; nums.length; i++) &amp;#123;    for (let j = 0; j &amp;lt; nums.length; j++) &amp;#123;      if (nums">
+<meta property="og:locale" content="zh-hk">
+<meta property="og:updated_time" content="2022-03-04T09:55:37.993Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Javascript算法模板">
+<meta name="twitter:description" content="排序冒泡排序冒泡排序时针对相邻元素之间的比较，可以将大的数慢慢沉底 123456789101112var sortArray = function(nums) &amp;#123;  for (let i = 0; i &amp;lt; nums.length; i++) &amp;#123;    for (let j = 0; j &amp;lt; nums.length; j++) &amp;#123;      if (nums">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="Kevin031.github.io/2020/04/16/Javascript算法模板（持续更新中）/"/>
+
+
+
+
+
+  <title>Javascript算法模板 | PeanutButter</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-hk">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">PeanutButter</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">一个技术博客</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="Kevin031.github.io/2020/04/16/Javascript算法模板（持续更新中）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KevinLau">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PeanutButter">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Javascript算法模板</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-04-16T07:00:39+00:00">
+                2020-04-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/后端/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h1><h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><p>冒泡排序时针对<em>相邻元素</em>之间的比较，可以将大的数慢慢沉底</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var sortArray = function(nums) &#123;</div><div class="line">  for (let i = 0; i &lt; nums.length; i++) &#123;</div><div class="line">    for (let j = 0; j &lt; nums.length; j++) &#123;</div><div class="line">      if (nums[j] &gt; nums[j + 1]) &#123;</div><div class="line">        let temp = nums[j]</div><div class="line">        nums[j] = nums[j + 1]</div><div class="line">        nums[j + 1] = temp</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  return nums</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>时间复杂度O(n^2)，击败5%的leetcode用户</p>
+<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><p>前面<em>已排序数组</em>找到插入的位置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">var sortArray = function(nums) &#123;</div><div class="line">  for (let i = 0; i &lt; nums.length; i++) &#123;</div><div class="line">    let j = i - 1</div><div class="line">    let temp = nums[i]</div><div class="line">    while (j &gt;= 0) &#123;</div><div class="line">      if (temp &gt; nums[j]) &#123;</div><div class="line">        break</div><div class="line">      &#125;</div><div class="line">      nums[j + 1] = nums[j]</div><div class="line">      j--</div><div class="line">    &#125;</div><div class="line">    nums[j + 1] = temp</div><div class="line">  &#125;</div><div class="line">  return nums</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>时间复杂度O(n^2)，击败32%的leetcode用户</p>
+<h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><p>首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。</p>
+<p><em>个人理解，类似于打斗地主的时候整理牌面，比较符合人类思维</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">var sortArray = function(nums) &#123;</div><div class="line">  for (let i = 0; i &lt; nums.length; i++) &#123;</div><div class="line">    let min = Infinity // 最小值</div><div class="line">    let minIndex = i // 最小值索引</div><div class="line">    for (let j = i; j &lt; nums.length; j++) &#123;</div><div class="line">      if (nums[j] &lt; min) &#123;</div><div class="line">        min = nums[j]</div><div class="line">        minIndex = j</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    let temp = nums[i]</div><div class="line">    nums[i] = min</div><div class="line">    nums[minIndex] = temp</div><div class="line">  &#125;</div><div class="line">  return nums</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>时间复杂度O(n^2)，击败25%的leetcode用户</p>
+<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p>快速排序是选取一个“哨兵”(pivot)，将小于pivot放在左边，把大于pivot放在右边，分割成两部分，并且可以固定pivot在数组的位置，再对左右两部分继续进行排序。</p>
+<p>步骤1：从数列中挑出一个元素，称为 “基准”（pivot ）；<br>步骤2：重新排序数列，所有元素比基准值小的摆放在基准前面，所有元素比基准值大的摆在基准的后面（相同的数可以到任一边）。在这个分区退出之后，该基准就处于数列的中间位置。这个称为分区（partition）操作；<br>步骤3：递归地（recursive）把小于基准值元素的子数列和大于基准值元素的子数列排序。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">var sortArray = function(nums) &#123;</div><div class="line">    quickSort(nums, 0, nums.length - 1)</div><div class="line">    return nums</div><div class="line">&#125;;</div><div class="line"></div><div class="line">var quickSort = function (arr, left, right) &#123;</div><div class="line">  let len = arr.length</div><div class="line">  if (left &lt; right) &#123;</div><div class="line">    let partitionIndex = partition(arr, left, right)</div><div class="line">    quickSort(arr, left, partitionIndex - 1)</div><div class="line">    quickSort(arr, partitionIndex + 1, right)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 确定基准点，并分区</div><div class="line">var partition = function (arr, left, right) &#123;</div><div class="line">  let pivot = left,</div><div class="line">      index = pivot + 1</div><div class="line">  for (let i = index; i &lt;= right; i++) &#123;</div><div class="line">    if (arr[i] &lt; arr[pivot]) &#123;</div><div class="line">      [arr[i], arr[index]] = [arr[index], arr[i]]</div><div class="line">      index++</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  [arr[pivot], arr[index - 1]] = [arr[index - 1], arr[pivot]]</div><div class="line">  return index - 1</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>时间复杂度O(nlogn)，击败55%的leetcode用户</p>
+<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><p>先将数组分成子序列，让子序列有序，再将子序列间有序，合并成有序数组。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">var sortArray = function(nums) &#123;</div><div class="line">  if (nums.length &lt;= 1) return nums</div><div class="line">  let mid = Math.floor(nums.length / 2)</div><div class="line">  let left = nums.slice(0, mid)</div><div class="line">  let right = nums.slice(mid, nums.length)</div><div class="line">  return merge(sortArray(left), sortArray(right))</div><div class="line">&#125;;</div><div class="line"></div><div class="line">var merge = function (left, right) &#123;</div><div class="line">  let temp = []</div><div class="line">  while (left.length &amp;&amp; right.length) &#123;</div><div class="line">    if (left[0] &lt; right[0]) &#123;</div><div class="line">      temp.push(left[0])</div><div class="line">      left.shift()</div><div class="line">    &#125; else &#123;</div><div class="line">      temp.push(right[0])</div><div class="line">      right.shift()</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  return temp.concat(left).concat(right)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>时间复杂度O(nlogn)，击败40%的leetcode用户</p>
+<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><p>这个不解释了，底层也是看情况选取不同的排序策略</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var sortArray = function(nums) &#123;</div><div class="line">    return nums.sort((a, b) =&gt; a - b)</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h1 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h1><h2 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">// 查找起始位置，左右闭区间</div><div class="line">var search = function(nums, target) &#123;</div><div class="line">  let left = 0, right = nums.length - 1</div><div class="line">  while (left &lt;= right) &#123;</div><div class="line">    let mid = Math.floor(left + (right - left) / 2)</div><div class="line">    if (nums[mid] &lt; target) &#123;</div><div class="line">      left = mid + 1</div><div class="line">    &#125; else if (nums[mid] &gt; target) &#123;</div><div class="line">      right = mid - 1</div><div class="line">    &#125; else if (nums[mid] === target) &#123;</div><div class="line">      right = mid - 1</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  if (left === nums.length || nums[left] !== target) &#123;</div><div class="line">    return -1</div><div class="line">  &#125;</div><div class="line">  return left</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>时间复杂度O(logN)</p>
+<h2 id="BFS广度优先搜索"><a href="#BFS广度优先搜索" class="headerlink" title="BFS广度优先搜索"></a>BFS广度优先搜索</h2><p>leetcode地址：<a href="https://leetcode-cn.com/submissions/detail/63149932/" target="_blank" rel="external">https://leetcode-cn.com/submissions/detail/63149932/</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">var updateMatrix = function(matrix) &#123;</div><div class="line">  let ans = JSON.parse( JSON.stringify( matrix ) ),</div><div class="line">      queue = [];</div><div class="line">  </div><div class="line">  for (let row = 0; row &lt; matrix.length; row++) &#123;</div><div class="line">    for (let col = 0; col &lt; matrix[0].length; col++) &#123;</div><div class="line">      if (matrix[row][col] === 0) continue;</div><div class="line">      queue.push( [row, col, 0] );</div><div class="line">      ans[row][col] = bfs();</div><div class="line">      queue = [];</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line">  </div><div class="line">  // 广度优先搜索</div><div class="line">  function bfs() &#123;</div><div class="line">    let step = 0;</div><div class="line">    while (queue.length &gt; 0) &#123;</div><div class="line">      let curr = queue.shift();</div><div class="line">      step = curr[2];</div><div class="line">      </div><div class="line">      // 四个方向</div><div class="line">      let ways = [ [-1, 0], [0, 1], [1, 0], [0, -1] ];</div><div class="line">      for (let i = 0; i &lt; 4; i++) &#123;</div><div class="line">        let r = curr[0] + ways[i][0],</div><div class="line">            c = curr[1] + ways[i][1];</div><div class="line">        // 如果越界就跳过</div><div class="line">        if (r &lt; 0 || r &gt;= matrix.length || c &lt; 0 || c &gt;= matrix[0].length) &#123;</div><div class="line">          continue;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        // 如果是 0，那么 step + 1; 返回</div><div class="line">        if (matrix[r][c] === 0) &#123;</div><div class="line">          step += 1;</div><div class="line">          queue = [];</div><div class="line">          break;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        // 记录到 queue 中，step + 1;</div><div class="line">        queue.push( [r, c, step + 1] );</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    return step;</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  return ans;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/13/从零开始实现React基本功能（持续更新中）/" rel="next" title="从零开始实现React基本功能">
+                <i class="fa fa-chevron-left"></i> 从零开始实现React基本功能
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/05/17/Koa2后端开发个人实践指南/" rel="prev" title="Koa2后端开发个人实践指南">
+                Koa2后端开发个人实践指南 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image"
+              src="/images/avatar.gif"
+              alt="KevinLau" />
+          
+            <p class="site-author-name" itemprop="name">KevinLau</p>
+            <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Kevin031" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2122637140" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>微博</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#排序"><span class="nav-number">1.</span> <span class="nav-text">排序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#冒泡排序"><span class="nav-number">1.1.</span> <span class="nav-text">冒泡排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入排序"><span class="nav-number">1.2.</span> <span class="nav-text">插入排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择排序"><span class="nav-number">1.3.</span> <span class="nav-text">选择排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速排序"><span class="nav-number">1.4.</span> <span class="nav-text">快速排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#归并排序"><span class="nav-number">1.5.</span> <span class="nav-text">归并排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#API"><span class="nav-number">1.6.</span> <span class="nav-text">API</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查找"><span class="nav-number">2.</span> <span class="nav-text">查找</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#二分查找"><span class="nav-number">2.1.</span> <span class="nav-text">二分查找</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BFS广度优先搜索"><span class="nav-number">2.2.</span> <span class="nav-text">BFS广度优先搜索</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 &mdash; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KevinLau</span>
+
+  
+</div>
+
+
+  <!--<div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>-->
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

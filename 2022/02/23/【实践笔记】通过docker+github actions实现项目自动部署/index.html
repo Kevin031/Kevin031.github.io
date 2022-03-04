@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-hk">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Docker,自动部署," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="前言之前上了一个腾讯云的轻量应用服务器用来部署一些前端项目，最初的思路是提交代码到github后，手动ssh到服务器上拉github代码，然后npm run build构建出来，项目访问则是配置nginx到项目下的dist目录实现，如果是SSR的项目，则通过nginx反向代理到对应的端口去实现。 大致流程如下： 12345graph TBA[本地] --&amp;gt; | push | B[Github">
+<meta name="keywords" content="Docker,自动部署">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【实践笔记】通过docker+github actions实现项目自动部署">
+<meta property="og:url" content="Kevin031.github.io/2022/02/23/【实践笔记】通过docker+github actions实现项目自动部署/index.html">
+<meta property="og:site_name" content="PeanutButter">
+<meta property="og:description" content="前言之前上了一个腾讯云的轻量应用服务器用来部署一些前端项目，最初的思路是提交代码到github后，手动ssh到服务器上拉github代码，然后npm run build构建出来，项目访问则是配置nginx到项目下的dist目录实现，如果是SSR的项目，则通过nginx反向代理到对应的端口去实现。 大致流程如下： 12345graph TBA[本地] --&amp;gt; | push | B[Github">
+<meta property="og:locale" content="zh-hk">
+<meta property="og:updated_time" content="2022-03-04T09:55:37.993Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【实践笔记】通过docker+github actions实现项目自动部署">
+<meta name="twitter:description" content="前言之前上了一个腾讯云的轻量应用服务器用来部署一些前端项目，最初的思路是提交代码到github后，手动ssh到服务器上拉github代码，然后npm run build构建出来，项目访问则是配置nginx到项目下的dist目录实现，如果是SSR的项目，则通过nginx反向代理到对应的端口去实现。 大致流程如下： 12345graph TBA[本地] --&amp;gt; | push | B[Github">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="Kevin031.github.io/2022/02/23/【实践笔记】通过docker+github actions实现项目自动部署/"/>
+
+
+
+
+
+  <title>【实践笔记】通过docker+github actions实现项目自动部署 | PeanutButter</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-hk">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">PeanutButter</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">一个技术博客</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="Kevin031.github.io/2022/02/23/【实践笔记】通过docker+github actions实现项目自动部署/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KevinLau">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PeanutButter">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">【实践笔记】通过docker+github actions实现项目自动部署</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2022-02-23T03:13:00+00:00">
+                2022-02-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/后端/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前上了一个腾讯云的轻量应用服务器用来部署一些前端项目，最初的思路是提交代码到github后，手动ssh到服务器上拉github代码，然后<code>npm run build</code>构建出来，项目访问则是配置<code>nginx</code>到项目下的<code>dist</code>目录实现，如果是SSR的项目，则通过<code>nginx</code>反向代理到对应的端口去实现。</p>
+<p>大致流程如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">graph TB</div><div class="line">A[本地] --&gt; | push | B[Github]</div><div class="line">B --&gt; | pull | C[生产服务器]</div><div class="line">C --&gt; | build | D[生产代码]</div><div class="line">D --&gt; | nginx | 客户端</div></pre></td></tr></table></figure>
+<p>这一流程后来遇到了4大痛点</p>
+<ol>
+<li>每个项目的部署流程不太一样，比如<code>koa</code>的项目是拉代码重新启动服务，<code>next</code>项目跑<code>next build</code>，普通的<code>react</code>项目跑<code>npm run build</code>，时间长了容易忘</li>
+<li>国内服务器访问github不稳定，经常连不上</li>
+<li>因node版本和一些环境差异导致的奇奇怪怪的错误</li>
+<li>迁移困难，所有目录的地址要对应上，也要重新拉一遍代码</li>
+</ol>
+<p>而docker基本能够解决以上痛点</p>
+<ol>
+<li>通过<code>Dockerfile</code>把运行环境和构建流程固定下来，之后可以不再关心构建过程</li>
+<li>服务器通过DockerHub直接拉取镜像，目前无网络问题</li>
+<li>由于一个服务对应一个镜像，迁移的时候只需要拉取镜像实例化，然后配一下端口反代就可以了</li>
+</ol>
+<p>大致流程如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">graph TB</div><div class="line">A[本地] --&gt; |build| B[Docker镜像] --&gt; |push| C[DockerHub]</div><div class="line">C --&gt; |pull| D[生产服务器]</div><div class="line">D --&gt; |run| E[Docker容器]</div><div class="line">E --&gt; |nginx| F[客户端]</div></pre></td></tr></table></figure>
+<p>而<code>github action</code>是github提供的持续集成服务，用于在提交代码的时候触发一些命令，具体可参考 <a href="https://www.baidu.com/link?url=Jrry1yE7RGewFEwhNqSquPxm51Gis7TNdLQsuqPrWRXfnqPfpDHQ7sUHUgUOJ4aPxibeXnyiej_PaNksaaIBqeSV_MbESi9YyFLaiLpRF-3PJ0gdf7u6DQk8r3Gvgch8&amp;wd=&amp;eqid=e307a46c00085717000000066215c97d" target="_blank" rel="external">阮一峰的GitHub Actions 入门教程</a>。</p>
+<p>我通过配置实现了以下流程，当master分支提交的时候，github会进行以下操作</p>
+<ol>
+<li>用分支最新代码构建<code>docker</code>镜像，具体按照项目中的<code>Dockerfile</code>文件去执行</li>
+<li>将新构建的镜像发布到<code>DockerHub</code></li>
+<li>ssh到生产服务器拉取刚发布的Docker镜像，重新实例化</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">graph TB</div><div class="line">A[本地] --&gt; |push| B[github]</div><div class="line">B --&gt; |github actions| C[生产服务器] --&gt; |nginx| 客户端</div></pre></td></tr></table></figure>
+<p>上了持续集成，后续可以继续加入一些操作，如代码校验、单元测试，我的hexo项目甚至写了一个node脚本把项目的markdown内容同步到数据库，而这些操作只需要通过<code>git push</code>触发，对于个人项目可以说是一劳永逸。</p>
+<h2 id="Docker构建流程"><a href="#Docker构建流程" class="headerlink" title="Docker构建流程"></a>Docker构建流程</h2><p>Docker的核心概念包含镜像和容器这两个概念，他们的关系可以类比为类和对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">graph LR</div><div class="line">镜像 --&gt; |run| 容器</div><div class="line"></div><div class="line">类 --&gt; |实例化| 对象</div></pre></td></tr></table></figure>
+<h3 id="构建镜像"><a href="#构建镜像" class="headerlink" title="构建镜像"></a>构建镜像</h3><p>可以通过Dockerfile来定义构建镜像和实例化的细节，这里以<code>nextjs</code>的项目为例</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Install dependencies only when needed</span></div><div class="line"><span class="keyword">FROM</span> node:<span class="number">14</span>-alpine AS deps</div><div class="line"><span class="comment"># Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.</span></div><div class="line"><span class="keyword">RUN</span> apk add --no-cache libc6-compat</div><div class="line">WORKDIR /kevinlau-cn</div><div class="line">COPY package.json yarn.lock ./</div><div class="line">RUN yarn config set registry https://registry.npm.taobao.org/</div><div class="line">RUN yarn install --frozen-lockfile</div><div class="line"></div><div class="line"># Rebuild the source code only when needed</div><div class="line">FROM node:14-alpine AS builder</div><div class="line">WORKDIR /kevinlau-cn</div><div class="line">COPY . .</div><div class="line">COPY --from=deps /kevinlau-cn/node_modules ./node_modules</div><div class="line">RUN npx browserslist --update-db</div><div class="line">RUN yarn build</div><div class="line"></div><div class="line"># Production image, copy all the files and run next</div><div class="line">FROM node:14-alpine AS runner</div><div class="line">WORKDIR /kevinlau-cn</div><div class="line"></div><div class="line">ENV NODE_ENV production</div><div class="line"></div><div class="line"># You only need to copy next.config.js if you are NOT using the default configuration</div><div class="line"># COPY --from=builder /kevinlau-cn/next.config.js ./</div><div class="line">COPY --from=builder /kevinlau-cn/public ./public</div><div class="line">COPY --from=builder /kevinlau-cn/.next ./.next</div><div class="line">COPY --from=builder /kevinlau-cn/node_modules ./node_modules</div><div class="line"></div><div class="line">RUN addgroup -g 1001 -S nodejs</div><div class="line">RUN adduser -S nextjs -u 1001</div><div class="line">RUN chown -R nextjs:nodejs /kevinlau-cn/.next</div><div class="line">USER nextjs</div><div class="line"></div><div class="line">EXPOSE 3000</div><div class="line"></div><div class="line"># Next.js collects completely anonymous telemetry data about general usage.</div><div class="line"># Learn more here: https://nextjs.org/telemetry</div><div class="line"># Uncomment the following line in case you want to disable telemetry.</div><div class="line"># RUN npx next telemetry disable</div><div class="line"></div><div class="line">CMD ["node_modules/.bin/next", "start"]</div></pre></td></tr></table></figure>
+<p>在项目目录下运行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker build -t kevinlau/next-blog .</div></pre></td></tr></table></figure>
+<p>其中<code>-t</code>指定了镜像名称，运行后会按照<code>Dockerfile</code>的顺序逐行执行</p>
+<p>构建完成后运行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker image ls</div></pre></td></tr></table></figure>
+<p>可以看到刚才构建好的镜像</p>
+<h3 id="实例化容器"><a href="#实例化容器" class="headerlink" title="实例化容器"></a>实例化容器</h3><p>运行以下命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -d --name next-blog-container -p 8080:3000 -v /Users/kevinlau/config:/app/config kevinlau/next-blog</div></pre></td></tr></table></figure>
+<p><code>-d</code>: 让容器后台运行</p>
+<p><code>--name</code>: 容器命名</p>
+<p><code>-p</code>: 将容器内部使用的网络端口映射到主机上</p>
+<p><code>-v</code>: 将主机目录映射到文件上</p>
+<p>这样就可以在主机的<a href="http://localhost:8080端口访问到服务" target="_blank" rel="external">http://localhost:8080端口访问到服务</a></p>
+<h3 id="上传到DockerHub"><a href="#上传到DockerHub" class="headerlink" title="上传到DockerHub"></a>上传到DockerHub</h3><p>访问<a href="https://link.zhihu.com/?target=https%3A//hub.docker.com/" target="_blank" rel="external">https://hub.docker.com/</a>，如果没有账号，需要先注册一个。</p>
+<p>利用命令docker login登录DockerHub，输入用户名、密码即可登录成功：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker login</div></pre></td></tr></table></figure>
+<p>将本地的镜像推送到DockerHub上，这里的kevinlau要和登录时的username一致</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker push kevinlau/next-blog</div></pre></td></tr></table></figure>
+<p>在别的机子可以下载到该镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker pull kevinlau/next-blog</div></pre></td></tr></table></figure>
+<p> 然后运行该镜像生成容器</p>
+<h2 id="Github-Actions自动化部署"><a href="#Github-Actions自动化部署" class="headerlink" title="Github Actions自动化部署"></a>Github Actions自动化部署</h2><p><code>github actions</code>可以在项目目录下创建<code>.github/workflows/deploy.yml</code>，也可以直接在网页上Actions一栏操作，github提供了很多第三方编写好的流程，也可以自己写一套</p>
+<p>这里直接放两个例子</p>
+<h3 id="next项目（客户端）"><a href="#next项目（客户端）" class="headerlink" title="next项目（客户端）"></a>next项目（客户端）</h3><p>这里的<code>secrets</code>相关字段涉及到<code>dockerhub</code>账号密码和服务器秘钥，需要自己到仓库<code>settings</code>下进行设置</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="attr">name:</span> <span class="string">Publish</span> <span class="string">Docker</span> <span class="string">image</span></div><div class="line"></div><div class="line"><span class="attr">on:</span></div><div class="line"><span class="attr">  push:</span></div><div class="line"><span class="attr">    branches:</span></div><div class="line"><span class="bullet">      -</span> <span class="string">master</span></div><div class="line"><span class="attr">jobs:</span></div><div class="line"><span class="attr">  push_to_registry:</span></div><div class="line"><span class="attr">    name:</span> <span class="string">Push</span> <span class="string">Docker</span> <span class="string">image</span> <span class="string">to</span> <span class="string">Docker</span> <span class="string">Hub</span></div><div class="line"><span class="attr">    runs-on:</span> <span class="string">ubuntu-latest</span></div><div class="line"><span class="attr">    steps:</span></div><div class="line">  </div><div class="line">      <span class="comment"># checkout</span></div><div class="line"><span class="attr">      - name:</span> <span class="string">Check</span> <span class="string">out</span> <span class="string">the</span> <span class="string">repo</span></div><div class="line"><span class="attr">        uses:</span> <span class="string">actions/checkout@v2</span></div><div class="line">      </div><div class="line">      <span class="comment"># build</span></div><div class="line"><span class="attr">      - name:</span> <span class="string">Build</span> <span class="string">the</span> <span class="string">Docker</span> <span class="string">image</span></div><div class="line"><span class="attr">        run:</span> <span class="string">docker</span> <span class="string">build</span> <span class="string">.</span> <span class="bullet">--file</span> <span class="string">Dockerfile</span> <span class="bullet">--tag</span> <span class="string">kevin031/blog-nextjs:latest</span></div><div class="line"></div><div class="line">      <span class="comment"># login</span></div><div class="line"><span class="attr">      - name:</span> <span class="string">Log</span> <span class="string">in</span> <span class="string">to</span> <span class="string">Docker</span> <span class="string">Hub</span></div><div class="line"><span class="attr">        uses:</span> <span class="string">docker/login-action@v1</span></div><div class="line"><span class="attr">        with:</span></div><div class="line"><span class="attr">          username:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.DOCKER_USERNAME</span> <span class="string">&#125;&#125;</span></div><div class="line"><span class="attr">          password:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.DOCKER_PASSWORD</span> <span class="string">&#125;&#125;</span></div><div class="line"></div><div class="line">      <span class="comment"># push to docker hub</span></div><div class="line"><span class="attr">      - name:</span> <span class="string">Push</span> <span class="string">to</span> <span class="string">Docker</span> <span class="string">Hub</span></div><div class="line"><span class="attr">        uses:</span> <span class="string">docker/build-push-action@v2</span></div><div class="line"><span class="attr">        with:</span></div><div class="line"><span class="attr">          push:</span> <span class="literal">true</span></div><div class="line"><span class="attr">          tags:</span> <span class="string">kevin031/blog-nextjs:latest</span></div><div class="line"></div><div class="line"><span class="attr">      - name:</span> <span class="string">Execute</span> <span class="string">SSH</span> <span class="string">commmands</span> <span class="string">on</span> <span class="string">remote</span> <span class="string">server</span></div><div class="line"><span class="attr">        uses:</span> <span class="string">JimCronqvist/action-ssh@master</span></div><div class="line"><span class="attr">        with:</span></div><div class="line"><span class="attr">          hosts:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.HOST</span> <span class="string">&#125;&#125;</span></div><div class="line"><span class="attr">          privateKey:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.SSH_PRIVATE_KEY</span> <span class="string">&#125;&#125;</span></div><div class="line"><span class="attr">          debug:</span> <span class="literal">true</span></div><div class="line"><span class="attr">          command:</span> <span class="string">|</span></div><div class="line"><span class="string">            docker ps -a</span></div><div class="line"><span class="string">            docker rm -f kevinlau-cn</span></div><div class="line"><span class="string">            docker pull kevin031/blog-nextjs</span></div><div class="line"><span class="string">            docker run --name kevinlau-cn --restart unless-stopped -p 20229:3000 -d kevin031/blog-nextjs</span></div></pre></td></tr></table></figure>
+<h3 id="koa项目（接口服务）"><a href="#koa项目（接口服务）" class="headerlink" title="koa项目（接口服务）"></a>koa项目（接口服务）</h3><p>这里需要注意的是koa服务中有访问数据库相关的配置，没有选择通过命令行写入，所以改为通过映射主机的<code>config</code>文件到容器内来实现</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">name: Publish Docker image</div><div class="line"></div><div class="line">on:</div><div class="line">  push:</div><div class="line">    branches:</div><div class="line">      - master</div><div class="line">jobs:</div><div class="line">  push_to_registry:</div><div class="line">    name: Push Docker image to Docker Hub</div><div class="line">    runs-on: ubuntu-latest</div><div class="line">    steps:</div><div class="line">  </div><div class="line">      # checkout</div><div class="line">      - name: Check out the repo</div><div class="line">        uses: actions/checkout@v2</div><div class="line">      </div><div class="line">      # build</div><div class="line">      - name: Build the Docker image</div><div class="line">        run: docker build . --file Dockerfile --tag kevin031/blog-server:latest</div><div class="line"></div><div class="line">      # login</div><div class="line">      - name: Log in to Docker Hub</div><div class="line">        uses: docker/login-action@v1</div><div class="line">        with:</div><div class="line">          username: $&#123;&#123; secrets.DOCKER_USERNAME &#125;&#125;</div><div class="line">          password: $&#123;&#123; secrets.DOCKER_PASSWORD &#125;&#125;</div><div class="line"></div><div class="line">      # push to docker hub</div><div class="line">      - name: Push to Docker Hub</div><div class="line">        uses: docker/build-push-action@v2</div><div class="line">        with:</div><div class="line">          push: true</div><div class="line">          tags: kevin031/blog-server:latest</div><div class="line"></div><div class="line">      - name: Execute SSH commmands on remote server</div><div class="line">        uses: JimCronqvist/action-ssh@master</div><div class="line">        with:</div><div class="line">          hosts: $&#123;&#123; secrets.HOST &#125;&#125;</div><div class="line">          privateKey: $&#123;&#123; secrets.SSH_PRIVATE_KEY &#125;&#125;</div><div class="line">          debug: true</div><div class="line">          command: |</div><div class="line">            docker ps -a</div><div class="line">            docker rm -f blog-server-container</div><div class="line">            docker pull kevin031/blog-server</div><div class="line">            docker run --name blog-server-container --restart unless-stopped -p 20228:20228 -v /opt/config/blog-server:/app/config -d kevin031/blog-server</div></pre></td></tr></table></figure>
+<h2 id="相关资料"><a href="#相关资料" class="headerlink" title="相关资料"></a>相关资料</h2><h3 id="koa项目Dockerfile"><a href="#koa项目Dockerfile" class="headerlink" title="koa项目Dockerfile"></a>koa项目Dockerfile</h3><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">FROM</span> node:<span class="number">14</span>-alpine as build-stage</div><div class="line"><span class="keyword">WORKDIR</span> /app</div><div class="line">COPY package*.json ./</div><div class="line">RUN npm install</div><div class="line">COPY . .</div><div class="line"></div><div class="line">EXPOSE 20228</div><div class="line">CMD ["node", "index.js"]</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Docker/" rel="tag"># Docker</a>
+          
+            <a href="/tags/自动部署/" rel="tag"># 自动部署</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/07/12/快速搭起一个TypeScript项目脚手架/" rel="next" title="快速搭起一个TypeScript项目脚手架">
+                <i class="fa fa-chevron-left"></i> 快速搭起一个TypeScript项目脚手架
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image"
+              src="/images/avatar.gif"
+              alt="KevinLau" />
+          
+            <p class="site-author-name" itemprop="name">KevinLau</p>
+            <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Kevin031" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2122637140" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>微博</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker构建流程"><span class="nav-number">2.</span> <span class="nav-text">Docker构建流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构建镜像"><span class="nav-number">2.1.</span> <span class="nav-text">构建镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例化容器"><span class="nav-number">2.2.</span> <span class="nav-text">实例化容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#上传到DockerHub"><span class="nav-number">2.3.</span> <span class="nav-text">上传到DockerHub</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Github-Actions自动化部署"><span class="nav-number">3.</span> <span class="nav-text">Github Actions自动化部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#next项目（客户端）"><span class="nav-number">3.1.</span> <span class="nav-text">next项目（客户端）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#koa项目（接口服务）"><span class="nav-number">3.2.</span> <span class="nav-text">koa项目（接口服务）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关资料"><span class="nav-number">4.</span> <span class="nav-text">相关资料</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#koa项目Dockerfile"><span class="nav-number">4.1.</span> <span class="nav-text">koa项目Dockerfile</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 &mdash; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KevinLau</span>
+
+  
+</div>
+
+
+  <!--<div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>-->
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
